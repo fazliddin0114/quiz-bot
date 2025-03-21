@@ -1,12 +1,21 @@
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, PollAnswerHandler, CallbackContext
+import asyncio
 import random
+from aiogram import Bot, Dispatcher, types
+from aiogram.filters import Command
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import Message
 
-TOKEN = "7267797063:AAHjnlqhlLYU1rEAXf2S1VWLbKrTICagnak"
+# BotFather tomonidan berilgan token
+TOKEN = "7267797063:AAHjnlqhlLYU1rEAXf2S1VWLbKrTICagnak"  # Bu yerga haqiqiy tokenni qo'ying
+ADMIN_IDS = [6588255887]  # Admin IDlari
 
+bot = Bot(token=TOKEN)
+dp = Dispatcher()
+
+# Test savollari
 quizzes = {
-    "quiz0": [
-    {"question": "Ko'rmoq/tushunmoq", "options": ["SEE", "LOOK", "NOTICE", "WATCH"], "correct": 0},
+    "state": [
+        {"question": "Ko'rmoq/tushunmoq", "options": ["SEE", "LOOK", "NOTICE", "WATCH"], "correct": 0},
     {"question": "Rohatlanmoq", "options": ["LIKE", "ENJOY", "PREFER", "LOVE"], "correct": 1},
     {"question": "His qilmoq", "options": ["THINK", "FEEL", "EXPECT", "HOPE"], "correct": 1},
     {"question": "Yoqtirmoq", "options": ["LOVE", "LIKE", "HATE", "DISLIKE"], "correct": 1},
@@ -57,8 +66,8 @@ quizzes = {
     {"question": "Tasavvur qilmoq", "options": ["IMAGINE", "THINK", "BELIEVE", "EXPECT"], "correct": 0},
     {"question": "Umid qilmoq", "options": ["HOPE", "EXPECT", "WISH", "BELIEVE"], "correct": 0},
     {"question": "Keçhirmoq", "options": ["FORGIVE", "FORGET", "IGNORE", "REMEMBER"], "correct": 0}
-],
-    "quiz1":[
+    ],
+  "p_verb_1":[
     {
         "question": "Yo’q bo‘lmoq",
         "options": ["Absent from", "Accompanied by", "According to", "Account for"],
@@ -110,7 +119,7 @@ quizzes = {
         "correct": 2
     }
 ],
-    "quiz2": [
+"p_verb_2": [
     {
         "question": "Ko’nmoq, rozi bo‘lmoq",
         "options": ["Agree to", "Agree on smth", "Agree with smb", "Ahead of"],
@@ -162,7 +171,7 @@ quizzes = {
         "correct": 3
     }
 ],
-    "quiz3":[
+    "p_verb_3":[
     {
         "question": "Jahl chiqmoq (kimdandir nimadir qilgani uchun)",
         "options": ["Angry with smb for doing smth", "Annoyed with smb about smth", "Anxious about smth", "Apply to smb for smth"],
@@ -214,7 +223,7 @@ quizzes = {
         "correct": 2
     }
 ],
-    "quiz4": [
+    "p_verb_4": [
     {
         "question": "Bahslashmoq",
         "options": ["Argue with smb about smth", "Arrest smb for smth", "Arrive at", "Arrive in"],
@@ -265,127 +274,641 @@ quizzes = {
         "options": ["Assure smb of", "Attach for smth", "Argue with smb about smth", "Ashamed of"],
         "correct": 1
     }
+],
+"irregular_verbs_1": [
+        {
+       "question": "Bo‘lmoq",
+        "options": ["Be - Was/Were - Been", "Beat - Beat - Beaten", "Begin - Began - Begun", "Buy - Bought - Bought"],
+            "correct": 0
+        },
+        {
+            "question": "Urmoq",
+            "options": ["Blow - Blew - Blown", "Beat - Beat - Beaten", "Bring - Brought - Brought", "Catch - Caught - Caught"],
+            "correct": 1
+        },
+        {
+            "question": "Boshlamoq",
+            "options": ["Begin - Began - Begun", "Bite - Bit - Bitten", "Break - Broke - Broken", "Cut - Cut - Cut"],
+            "correct": 0
+        },
+        {
+            "question": "Egmoq",
+            "options": ["Bend - Bent - Bent", "Broadcast - Broadcast - Broadcast", "Build - Built - Built", "Come - Came - Come"],
+            "correct": 0
+        },
+        {
+            "question": "Tishlamoq",
+            "options": ["Bite - Bit - Bitten", "Cost - Cost - Cost", "Creep - Crept - Crept", "Cut - Cut - Cut"],
+            "correct": 0
+        },
+        {
+            "question": "Sindirmoq",
+            "options": ["Blow - Blew - Blown", "Break - Broke - Broken", "Bring - Brought - Brought", "Buy - Bought - Bought"],
+            "correct": 1
+        },
+        {
+            "question": "Olib kelmoq",
+            "options": ["Burst - Burst - Burst", "Buy - Bought - Bought", "Bring - Brought - Brought", "Be - Was/Were - Been"],
+            "correct": 2
+        },
+        {
+            "question": "Sotib olmoq",
+            "options": ["Buy - Bought - Bought", "Catch - Caught - Caught", "Choose - Chose - Chosen", "Come - Came - Come"],
+            "correct": 0
+        },
+        {
+            "question": "Ushlamoq",
+            "options": ["Choose - Chose - Chosen", "Cost - Cost - Cost", "Catch - Caught - Caught", "Cut - Cut - Cut"],
+            "correct": 2
+        },
+        {
+            "question": "Kelmoq",
+            "options": ["Cut - Cut - Cut", "Come - Came - Come", "Broadcast - Broadcast - Broadcast", "Bend - Bent - Bent"],
+            "correct": 1
+        }
+    ],
+
+    "irregular_verbs_2": [
+    {
+        "question": "Tarqatmoq, hal qilmoq",
+        "options": ["deal - dealt - dealt", "dig - dug - dug", "do - did - done", "draw - drew - drawn"],
+        "correct": 0
+    },
+    {
+        "question": "Kovlamoq",
+        "options": ["deal - dealt - dealt", "dig - dug - dug", "do - did - done", "drink - drank - drunk"],
+        "correct": 1
+    },
+    {
+        "question": "Qilmoq, bajarmoq",
+        "options": ["draw - drew - drawn", "do - did - done", "deal - dealt - dealt", "fly - flew - flown"],
+        "correct": 1
+    },
+    {
+        "question": "Chizmoq",
+        "options": ["drink - drank - drunk", "drive - drove - driven", "draw - drew - drawn", "eat - ate - eaten"],
+        "correct": 2
+    },
+    {
+        "question": "Ichmoq",
+        "options": ["drink - drank - drunk", "deal - dealt - dealt", "fly - flew - flown", "forgive - forgave - forgiven"],
+        "correct": 0
+    },
+    {
+        "question": "Haydamoq (mashinani…) ",
+        "options": ["find - found - found", "forbid - forbade - forbidden", "drive - drove - driven", "fight - fought - fought"],
+        "correct": 2
+    },
+    {
+        "question": "Yemoq",
+        "options": ["forgive - forgave - forgiven", "eat - ate - eaten", "feel - felt - felt", "fly - flew - flown"],
+        "correct": 1
+    },
+    {
+        "question": "Yiqilmoq",
+        "options": ["fight - fought - fought", "fall - fell - fallen", "freeze - froze - frozen", "feed - fed - fed"],
+        "correct": 1
+    },
+    {
+        "question": "Boqmoq, ovqatlantirmoq",
+        "options": ["feed - fed - fed", "fight - fought - fought", "forgive - forgave - forgiven", "flee - fled - fled"],
+        "correct": 0
+    },
+    {
+        "question": "His qilmoq",
+        "options": ["find - found - found", "feel - felt - felt", "forgive - forgave - forgiven", "get - got - got"],
+        "correct": 1
+    },
+    {
+        "question": "Kurashmoq",
+        "options": ["fight - fought - fought", "feed - fed - fed", "find - found - found", "freeze - froze - frozen"],
+        "correct": 0
+    },
+    {
+        "question": "Topmoq",
+        "options": ["flee - fled - fled", "find - found - found", "forbid - forbade - forbidden", "fly - flew - flown"],
+        "correct": 1
+    },
+    {
+        "question": "Qochmoq, qochib ketmoq",
+        "options": ["fly - flew - flown", "forbid - forbade - forbidden", "flee - fled - fled", "fall - fell - fallen"],
+        "correct": 2
+    },
+    {
+        "question": "Uchmoq",
+        "options": ["freeze - froze - frozen", "fly - flew - flown", "forgive - forgave - forgiven", "forget - forgot - forgotten"],
+        "correct": 1
+    },
+    {
+        "question": "Ta’qiqlamoq",
+        "options": ["forgive - forgave - forgiven", "forget - forgot - forgotten", "forbid - forbade - forbidden", "fly - flew - flown"],
+        "correct": 2
+    },
+    {
+        "question": "Unutmoq",
+        "options": ["forgive - forgave - forgiven", "forget - forgot - forgotten", "get - got - got", "give - gave - given"],
+        "correct": 1
+    },
+    {
+        "question": "Kechirmoq",
+        "options": ["give - gave - given", "get - got - got", "forgive - forgave - forgiven", "freeze - froze - frozen"],
+        "correct": 2
+    },
+    {
+        "question": "Muzlamoq",
+        "options": ["freeze - froze - frozen", "forgive - forgave - forgiven", "forget - forgot - forgotten", "fight - fought - fought"],
+        "correct": 0
+    },
+    {
+        "question": "Olmoq, yetmoq",
+        "options": ["get - got - got", "give - gave - given", "fall - fell - fallen", "flee - fled - fled"],
+        "correct": 0
+    },
+    {
+        "question": "Bermoq",
+        "options": ["give - gave - given", "forget - forgot - forgotten", "find - found - found", "fly - flew - flown"],
+        "correct": 0
+    }
+],
+
+"irregular_verbs_3": [
+    {
+        "question": "Ketmoq, bormoq",
+        "options": ["go - went - gone", "grow - grew - grown", "hang - hung - hung", "hear - heard - heard"],
+        "correct": 0
+    },
+    {
+        "question": "O‘smoq, o‘stirmoq",
+        "options": ["hit - hit - hit", "grow - grew - grown", "hide - hid - hidden", "hold - held - held"],
+        "correct": 1
+    },
+    {
+        "question": "Ilmoq",
+        "options": ["hear - heard - heard", "hang - hung - hung", "keep - kept - kept", "kneel - knelt - knelt"],
+        "correct": 1
+    },
+    {
+        "question": "Eshitmoq",
+        "options": ["hide - hid - hidden", "hear - heard - heard", "hit - hit - hit", "hurt - hurt - hurt"],
+        "correct": 1
+    },
+    {
+        "question": "Yashirmoq, berkitmoq",
+        "options": ["hold - held - held", "hit - hit - hit", "hide - hid - hidden", "hurt - hurt - hurt"],
+        "correct": 2
+    },
+    {
+        "question": "Urmoq",
+        "options": ["hit - hit - hit", "hold - held - held", "keep - kept - kept", "kneel - knelt - knelt"],
+        "correct": 0
+    },
+    {
+        "question": "Ushlamoq, o‘tkazmoq",
+        "options": ["hurt - hurt - hurt", "keep - kept - kept", "hold - held - held", "kneel - knelt - knelt"],
+        "correct": 2
+    },
+    {
+        "question": "Jarohatlamoq, og‘rimoq",
+        "options": ["keep - kept - kept", "hurt - hurt - hurt", "kneel - knelt - knelt", "lay - laid - laid"],
+        "correct": 1
+    },
+    {
+        "question": "Saqlamoq",
+        "options": ["lay - laid - laid", "keep - kept - kept", "kneel - knelt - knelt", "know - knew - known"],
+        "correct": 1
+    },
+    {
+        "question": "Tizzalamoq",
+        "options": ["kneel - knelt - knelt", "know - knew - known", "lead - led - led", "leave - left - left"],
+        "correct": 0
+    },
+    {
+        "question": "Bilmoq",
+        "options": ["lay - laid - laid", "leave - left - left", "know - knew - known", "lend - lent - lent"],
+        "correct": 2
+    },
+    {
+        "question": "Qo‘ymoq",
+        "options": ["let - let - let", "lie - lay - lain", "lay - laid - laid", "light - lit - lit"],
+        "correct": 2
+    },
+    {
+        "question": "Yetaklamoq",
+        "options": ["lend - lent - lent", "light - lit - lit", "lie - lay - lain", "lead - led - led"],
+        "correct": 3
+    },
+    {
+        "question": "Jo‘nab ketmoq, qoldirmoq",
+        "options": ["light - lit - lit", "lose - lost - lost", "leave - left - left", "mean - meant - meant"],
+        "correct": 2
+    },
+    {
+        "question": "Qarz bermoq",
+        "options": ["lend - lent - lent", "let - let - let", "mean - meant - meant", "lose - lost - lost"],
+        "correct": 0
+    },
+    {
+        "question": "Ruxsat bermoq",
+        "options": ["lie - lay - lain", "let - let - let", "mean - meant - meant", "lead - led - led"],
+        "correct": 1
+    },
+    {
+        "question": "Yotmoq, aldamoq",
+        "options": ["lie - lay - lain", "light - lit - lit", "lend - lent - lent", "lose - lost - lost"],
+        "correct": 0
+    },
+    {
+        "question": "Yoqmoq",
+        "options": ["light - lit - lit", "lead - led - led", "lie - lay - lain", "mean - meant - meant"],
+        "correct": 0
+    },
+    {
+        "question": "Yo‘qotmoq",
+        "options": ["lose - lost - lost", "let - let - let", "light - lit - lit", "lay - laid - laid"],
+        "correct": 0
+    },
+    {
+        "question": "Anglatmoq",
+        "options": ["lead - led - led", "lose - lost - lost", "mean - meant - meant", "lie - lay - lain"],
+        "correct": 2
+    }
 ]
 
 }
 
-def start_command(update: Update, context: CallbackContext) -> None:
-    """Foydalanuvchiga test tanlash uchun tugmachalarni chiqaradi."""
-    show_quiz_options(update.message)
+# Foydalanuvchi ma'lumotlari
+user_data = {}
+ratings = {}  # Reyting tizimi
 
-def show_quiz_options(message) -> None:
-    keyboard = [[InlineKeyboardButton(f"Quiz {i}", callback_data=f"quiz{i}")] for i in range(5)]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    message.reply_text("Qaysi testni ishlaysiz?", reply_markup=reply_markup)
+@dp.message(Command("start"))
+async def start(message: types.Message):
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="🧠❤️👀 State Verbs")],
+            [KeyboardButton(text="📜 Preposition Verbs")],  # Preposition Verbs tugmasi
+            [KeyboardButton(text="🌟 Irregular Verbs")],  # Irregular Verbs tugmasi
+            [KeyboardButton(text="👤 Profil")],
+            [KeyboardButton(text="📈 Reyting")],
+            [KeyboardButton(text="📞 Adminga murojaat")],
+        ],
+        resize_keyboard=True
+    )
+    await message.answer("Quyidagi funksiyalardan birini tanlang:", reply_markup=keyboard)
 
-def quiz_handler(update: Update, context: CallbackContext) -> None:
-    """Testni boshlaydi va savollarni yuboradi."""
-    query = update.callback_query
-    query.answer()
-    chat_id = query.message.chat_id
-    quiz_name = query.data
+@dp.message(lambda message: message.text == "📜 Preposition Verbs")
+async def show_preposition_verbs(message: types.Message):
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="📜 P verb 1"), KeyboardButton(text="📜 P verb 2")],
+            [KeyboardButton(text="📜 P verb 3"), KeyboardButton(text="📜 P verb 4")],
+            [KeyboardButton(text="⬅️ Ortga")],  # Ortga qaytish tugmasi
+        ],
+        resize_keyboard=True
+    )
+    await message.answer("Quyidagi Preposition Verbs bo‘limlaridan birini tanlang:", reply_markup=keyboard)
 
-    if quiz_name not in quizzes or not quizzes[quiz_name]:
-        query.message.reply_text("Bu testda savollar yo‘q.")
+@dp.message(lambda message: message.text == "🌟 Irregular Verbs")
+async def show_irregular_verbs(message: types.Message):
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="🌟 I verb 1"), KeyboardButton(text="🌟 I verb 2"), KeyboardButton(text="🌟 I verb 3")],
+            [KeyboardButton(text="⬅️ Ortga")],  # Ortga qaytish tugmasi
+        ],
+        resize_keyboard=True
+    )
+    await message.answer("Quyidagi Irregular Verbs bo‘limlaridan birini tanlang:", reply_markup=keyboard)
+
+@dp.message(lambda message: message.text == "⬅️ Ortga")
+async def back_to_main_menu(message: types.Message):
+    await start(message)
+# Profil ko'rsatish
+@dp.message(lambda message: message.text == "👤 Profil")
+async def show_profile(message: types.Message):
+    user_id = message.from_user.id
+    user_info = user_data.get(user_id)
+
+    if not user_info or "subjects" not in user_info:
+        await message.answer("Siz hali test ishlamagansiz! 📌")
         return
-
-    questions = quizzes[quiz_name][:]
-    random.shuffle(questions)
-
-
-    context.user_data["questions"] = questions
-    context.user_data["quiz_name"] = quiz_name
-    context.user_data["question_index"] = 0
-    context.user_data["correct_count"] = 0
-    context.user_data["wrong_count"] = 0
-    context.user_data["polls"] = {}
-    context.user_data["chat_id"] = chat_id  # So‘rovnoma ishlashi uchun kerak
-
-    send_next_question(update, context)
-
-def send_next_question(update: Update, context: CallbackContext) -> None:
-    """Keyingi savolni yuboradi yoki test tugaganligini bildiradi."""
-    chat_id = context.user_data.get("chat_id")
-    questions = context.user_data.get("questions", [])
-    index = context.user_data.get("question_index", 0)
-
-    if index < len(questions):
-        question = questions[index]
-        options = question["options"]
-        correct_index = question["correct"]
-
-        poll_message = context.bot.send_poll(
-            chat_id=chat_id,
-            question=question["question"],
-            options=options,
-            type="quiz",
-            correct_option_id=correct_index,
-            is_anonymous=False
+    
+    profile_text = "👤 *Sizning profilingiz:*\n\n"
+    
+    for subject, stats in user_info["subjects"].items():
+        profile_text += (
+            f"📚 *{subject.capitalize()}*\n"
+            f"✅ To‘g‘ri javoblar: {stats['correct']}\n"
+            f"❌ Xato javoblar: {stats['wrong']}\n"
+            f"📊 Jami savollar: {stats['total']}\n\n"
         )
+    
+    await message.answer(profile_text, parse_mode="Markdown")
 
-        context.user_data["polls"][poll_message.poll.id] = index
+
+# Reyting tizimi
+@dp.message(lambda message: message.text == "📈 Reyting")
+async def show_ratings(message: types.Message):
+    if not ratings:
+        await message.answer("📌 Hali hech kim test ishlamagan!")
+        return
+
+    # Reyting bo‘yicha tartiblash (katta ball birinchi bo‘lishi uchun)
+    sorted_ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
+
+    result = "🏆 *Top 10 Reyting:*\n\n"
+    for idx, (user_id, score) in enumerate(sorted_ratings[:10], 1):
+        try:
+            user = await bot.get_chat(user_id)
+            result += f"{idx}. *{user.first_name}* — {score} ball\n"
+        except Exception:
+            result += f"{idx}. Ism mavjud emas — {score} ball\n"
+
+    await message.answer(result, parse_mode="Markdown")
+
+
+# Test boshlash
+@dp.message(lambda message: message.text in ["🧠❤️👀 State Verbs", "📜 P verb 1", "📜 P verb 2", "📜 P verb 3", "📜 P verb 4", "🌟 I verb 1", "🌟 I verb 2", "🌟 I verb 3"],)
+async def start_quiz(message: types.Message):
+    user_id = message.from_user.id
+
+    if message.text == "🧠❤️👀 State Verbs":
+        subject = "state"
+    elif message.text == "📜 P verb 1":
+        subject = "p_verb_1"
+    elif message.text == "📜 P verb 2":
+        subject = "p_verb_2"
+    elif message.text == "📜 P verb 3":
+        subject = "p_verb_3"
+    elif message.text == "📜 P verb 4":
+        subject = "p_verb_4"
+    elif message.text == "🌟 I verb 1":
+        subject = "irregular_verbs_1"
+    elif message.text == "🌟 I verb 2":
+        subject = "irregular_verbs_2"
+    elif message.text == "🌟 I verb 3":
+        subject = "irregular_verbs_3"
     else:
-        correct = context.user_data.get("correct_count", 0)
-        wrong = context.user_data.get("wrong_count", 0)
-        total = correct + wrong
-        result_text = f"✅ Test tugadi!\n📊 Statistikangiz:\n✅ To‘g‘ri javoblar: {correct}/{total}\n❌ Noto‘g‘ri javoblar: {wrong}/{total}"
+        subject = "unknown"
 
-        keyboard = [[InlineKeyboardButton(f"Quiz {i}", callback_data=f"quiz{i}")] for i in range(5)]
-        reply_markup = InlineKeyboardMarkup(keyboard)
+    # Foydalanuvchi ma'lumotlarini tekshiramiz va yangilaymiz
+    if user_id not in user_data:
+        user_data[user_id] = {"subjects": {}, "score": 0}
+    
+    if subject not in user_data[user_id]["subjects"]:
+        user_data[user_id]["subjects"][subject] = {"correct": 0, "wrong": 0, "total": 0}
 
-        context.bot.send_message(chat_id=chat_id, text=result_text)
-        context.bot.send_message(chat_id=chat_id, text="Qaysi testni ishlaysiz?", reply_markup=reply_markup)
+    # Test boshlangani haqida bitta xabar yuboramiz
+    await message.answer(f"📢 {message.text} bo‘yicha test boshlandi!")
 
-def poll_answer_handler(update: Update, context: CallbackContext) -> None:
-    """Foydalanuvchi so‘rovnomaga javob berganda uni tekshiradi."""
-    poll_id = update.poll_answer.poll_id
-    user_choice = update.poll_answer.option_ids[0] if update.poll_answer.option_ids else None
-    chat_id = context.user_data.get("chat_id")
+    # Savolni faqat bitta marta yuboramiz
+    await send_next_question(user_id, subject)
 
-    if "polls" not in context.user_data or poll_id not in context.user_data["polls"]:
+async def send_next_question(user_id, subject):
+    user_info = user_data[user_id]
+    questions = quizzes[subject].copy()
+    
+    # Agar foydalanuvchi barcha savollarga javob bergan bo'lsa, testni tugatish
+    if user_info["subjects"][subject]["total"] >= len(questions):
+        await bot.send_message(user_id, f"🎉 Test tugadi! Sizning natijangiz: {user_info['subjects'][subject]['correct']}/{user_info['subjects'][subject]['total']}")
+        
+        # Reytingda o'rni
+        sorted_ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
+        user_rank = next((idx for idx, (uid, _) in enumerate(sorted_ratings, 1) if uid == user_id), None)
+        await bot.send_message(user_id, f"📊 Sizning reytingdagi o'rningiz: {user_rank}")
+
+        # **Testni qayta ishlashga ruxsat berish**
+        user_info["subjects"][subject]["total"] = 0
+        user_info["subjects"][subject]["correct"] = 0
+        user_info["subjects"][subject]["wrong"] = 0
+        
+        return
+    
+    # Keyingi savolni yuborish
+    question_data = random.choice(questions)
+
+    # Variantlarni aralashtirish va to‘g‘ri javobning yangi indeksini topish
+    original_options = question_data["options"]
+    correct_answer = original_options[question_data["correct"]]
+
+    shuffled_options = original_options[:]  # Variantlarni nusxalash
+    random.shuffle(shuffled_options)  # Random tartibga keltirish
+    new_correct_index = shuffled_options.index(correct_answer)  # Yangi indeks
+
+    # Telegram poll (so‘rovnoma) yaratish
+    poll_msg = await bot.send_poll(
+        chat_id=user_id,
+        question=question_data["question"],
+        options=shuffled_options,  # Aralashtirilgan variantlar
+        type="quiz",
+        correct_option_id=new_correct_index,  # Yangi indeks bo‘yicha to‘g‘ri javob
+        is_anonymous=False
+    )
+
+    # Foydalanuvchining tanlovini tekshirish uchun ma’lumot saqlash
+    user_info["current_poll"] = {
+        "poll_id": poll_msg.poll.id,
+        "subject": subject,
+        "correct_option": new_correct_index  # To‘g‘ri javobning yangi indeksini saqlash
+    }
+# Test javobini qayta ishlash
+@dp.poll_answer()
+async def handle_poll_answer(poll_answer: types.PollAnswer):
+    user_id = poll_answer.user.id
+    user_info = user_data.get(user_id)
+    
+    if not user_info or "current_poll" not in user_info:
+        return
+    
+    selected_option = poll_answer.option_ids[0]
+    subject = user_info["current_poll"]["subject"]
+    correct_answer = user_info["current_poll"]["correct_option"]
+    
+    if selected_option == correct_answer:
+        user_info["subjects"][subject]["correct"] += 1
+        user_info["score"] += 1
+    else:
+        user_info["subjects"][subject]["wrong"] += 1
+    
+    user_info["subjects"][subject]["total"] += 1
+    
+    # Reytingni yangilash
+    ratings[user_id] = user_info["score"]
+    
+    # Javob berilganligini bildirish
+    await bot.send_message(user_id, f"✅ Javobingiz qabul qilindi! Sizning natijangiz: {user_info['subjects'][subject]['correct']}/{user_info['subjects'][subject]['total']}")
+    
+    # Keyingi savolni yuborish
+    await send_next_question(user_id, subject)
+
+# 📞 Foydalanuvchi "Adminga murojaat" tugmasini bossachi
+@dp.message(lambda message: message.text == "📞 Adminga murojaat")
+async def contact_admin(message: Message):
+    await message.answer("✍️ Adminga xabar yuborish uchun matn, rasm, video yoki fayl yuboring.")
+
+# 📩 Foydalanuvchi adminlarga xabar yuborsa
+@dp.message(lambda message: message.from_user.id not in ADMIN_IDS)
+async def user_to_admin(message: Message):
+    for admin_id in ADMIN_IDS:
+        try:
+            if message.text:
+                sent_msg = await bot.send_message(admin_id, f"📬 Yangi xabar:\n"
+                                                            f"👤 Foydalanuvchi ID: {message.from_user.id}\n"
+                                                            f"📝 Xabar: {message.text}")
+            elif message.photo:
+                sent_msg = await bot.send_photo(admin_id, message.photo[-1].file_id, caption=f"📬 Yangi xabar:\n"
+                                                                                             f"👤 Foydalanuvchi ID: {message.from_user.id}")
+            elif message.video:
+                sent_msg = await bot.send_video(admin_id, message.video.file_id, caption=f"📬 Yangi xabar:\n"
+                                                                                         f"👤 Foydalanuvchi ID: {message.from_user.id}")
+            elif message.document:
+                sent_msg = await bot.send_document(admin_id, message.document.file_id, caption=f"📬 Yangi xabar:\n"
+                                                                                               f"👤 Foydalanuvchi ID: {message.from_user.id}")
+
+            await message.answer("✅ Xabaringiz adminlarga yuborildi. Iltimos, javobni kuting.")
+        except Exception as e:
+            print(f"❌ Xabar yuborilmadi: {e}")
+
+# 📩 Admin foydalanuvchiga javob bersa
+@dp.message(lambda message: message.reply_to_message and message.from_user.id in ADMIN_IDS)
+async def admin_to_user(message: Message):
+    if "📬 Yangi xabar:" in message.reply_to_message.text:
+        try:
+            user_id_line = [line for line in message.reply_to_message.text.split("\n") if "Foydalanuvchi ID:" in line]
+            if user_id_line:
+                user_id = int(user_id_line[0].split(": ")[1])
+                await bot.send_message(user_id, f"📩 Admin javobi:\n{message.text}")
+            else:
+                await message.answer("❌ Foydalanuvchi ID topilmadi. Xatolik yuz berdi.")
+        except ValueError:
+            await message.answer("❌ Foydalanuvchi ID topilmadi. Xatolik yuz berdi.")
+# Admin panel
+@dp.message(Command("admin"))
+async def admin_panel(message: types.Message):
+    if message.from_user.id not in ADMIN_IDS:
+        await message.answer("Siz admin emassiz!")
+        return
+    
+    keyboard = types.ReplyKeyboardMarkup(
+        keyboard=[
+            [types.KeyboardButton(text="📊 Statistika")],
+            [types.KeyboardButton(text="📢 Reklama yuborish")],
+            [types.KeyboardButton(text="➕ Yangi test qo'shish")],
+        ],
+        resize_keyboard=True
+    )
+    await message.answer("Admin panelga xush kelibsiz!", reply_markup=keyboard)
+
+# Admin: Statistika
+@dp.message(lambda message: message.text == "📊 Statistika" and message.from_user.id in ADMIN_IDS)
+async def show_statistics(message: types.Message):
+    total_users = len(user_data)
+    await message.answer(f"📊 Bot foydalanuvchilari soni: {total_users}")
+
+# Admin: Reklama yuborish
+# 📢 Admin "Reklama yuborish" tugmasini bossachi
+@dp.message(lambda message: message.text == "📢 Reklama yuborish" and message.from_user.id in ADMIN_IDS)
+async def ask_for_advertisement(message: Message):
+    await message.answer("✍️ Reklama uchun matn, rasm, video yoki fayl yuboring.")
+
+# 📢 Admin xabar, rasm, video yoki fayl yuborsa
+@dp.message(lambda message: message.from_user.id in ADMIN_IDS)
+async def send_advertisement(message: Message):
+    if not user_data:
+        await message.answer("⚠️ Hozircha hech qanday foydalanuvchi yo‘q!")
         return
 
-    index = context.user_data["polls"].pop(poll_id)
-    questions = context.user_data.get("questions", [])
+    success, failed = 0, 0
 
-    if index >= len(questions):
-        return
+    for user_id in user_data:
+        try:
+            if message.text:
+                await bot.send_message(user_id, message.text)
+            elif message.photo:
+                await bot.send_photo(user_id, message.photo[-1].file_id, caption=message.caption)
+            elif message.video:
+                await bot.send_video(user_id, message.video.file_id, caption=message.caption)
+            elif message.document:
+                await bot.send_document(user_id, message.document.file_id, caption=message.caption)
+            success += 1
+        except Exception as e:
+            print(f"❌ Xabar yuborilmadi (User ID: {user_id}): {e}")
+            failed += 1
 
-    correct_index = questions[index]["correct"]
+    await message.answer(f"✅ Reklama {success} ta foydalanuvchiga yuborildi!\n❌ Xatoliklar: {failed}")
+# 🎯 Foydalanuvchilarni avtomatik ro‘yxatga olish
+@dp.message(lambda message: message.from_user.id not in ADMIN_IDS)
+async def register_user(message: Message):
+    user_data.add(message.from_user.id)
+# Admin: Yangi test qo'shish
+@dp.message(lambda message: message.text == "➕ Yangi test qo'shish" and message.from_user.id in ADMIN_IDS)
+async def add_new_test(message: types.Message):
 
-    if user_choice is not None:  # Agar foydalanuvchi javob bergan bo'lsa
-        if user_choice == correct_index:
-            context.user_data["correct_count"] += 1
-        else:
-            context.user_data["wrong_count"] += 1
+    await message.answer("Yangi test qo'shish uchun quyidagi formatda xabar yuboring:\n\n"
+                         "Fan nomi: Savol matni\n"
+                         "A) Variant 1\n"
+                         "B) Variant 2\n"
+                         "C) Variant 3\n"
+                         "To'g'ri javob: A")
 
-    context.user_data["question_index"] += 1
-    send_next_question(update, context)
+@dp.message(lambda msg: msg.from_user.id in ADMIN_IDS)
+async def process_new_test(msg: types.Message):
+    try:
+        # Xabarni bo'lib olish
+        lines = msg.text.split("\n")
 
-def add_question(update: Update, context: CallbackContext) -> None:
-    """Yangi savol qo‘shish."""
-    args = context.args
-    if len(args) < 5:
-        update.message.reply_text("Format: /addquiz quizX Savol javob1 javob2 javob3 to‘g‘ri_javob_index")
-        return
-    quiz_name, question, *options, correct = args
-    if quiz_name not in quizzes:
-        quizzes[quiz_name] = []
-    quizzes[quiz_name].append({"question": question, "options": options, "correct": int(correct)})
-    update.message.reply_text("Savol qo‘shildi!")
+        if len(lines) < 5:
+            raise ValueError("To'liq formatda kiritilmagan.")
 
-def main():
-    updater = Updater(TOKEN, use_context=True)
-    dp = updater.dispatcher
+        # Fan nomi va savolni ajratib olish
+        subject_part = lines[0].split(": ", 1)
+        if len(subject_part) < 2:
+            raise ValueError("Fan nomi noto‘g‘ri formatda.")
 
-    dp.add_handler(CommandHandler("start", start_command))
-    dp.add_handler(CommandHandler("addquiz", add_question))
-    dp.add_handler(CallbackQueryHandler(quiz_handler, pattern="^quiz[0-4]$"))
-    dp.add_handler(PollAnswerHandler(poll_answer_handler))
+        subject = subject_part[0].strip()
+        question = subject_part[1].strip()
 
-    print("Bot ishga tushdi...")
-    updater.start_polling()
-    updater.idle()
+        # Variantlarni olish
+        options = []
+        for i in range(1, 4):  # A, B, C variantlari
+            if len(lines[i]) < 4 or lines[i][1] != ")":
+                raise ValueError("Variantlar noto‘g‘ri formatda.")
+            options.append(lines[i][3:].strip())
+
+        # To‘g‘ri javobni olish
+        correct_part = lines[4].split(": ", 1)
+        if len(correct_part) < 2:
+            raise ValueError("To'g'ri javob noto‘g‘ri formatda.")
+        
+        correct_option = correct_part[1].strip().upper()
+        if correct_option not in ["A", "B", "C"]:
+            raise ValueError("To'g'ri javob faqat A, B yoki C bo‘lishi kerak.")
+
+        correct_index = ord(correct_option) - ord("A")  # Indeksni aniqlash (0, 1, 2)
+
+        # Testni saqlash
+        if subject not in quizzes:
+            quizzes[subject] = []
+        quizzes[subject].append({
+            "question": question,
+            "options": options,
+            "correct": correct_index
+        })
+
+        await msg.answer("✅ Yangi test muvaffaqiyatli qo'shildi!")
+    
+    except ValueError as e:
+        await msg.answer(f"❌ Xatolik: {e}")
+    except Exception as e:
+        await msg.answer(f"❌ Kutilmagan xatolik: {e}")
+
+        
+
+# Botni ishga tushirish
+async def main():
+    await bot.delete_webhook(drop_pending_updates=True)
+    await dp.start_polling(bot)
 
 if __name__ == "__main__":
-    main()
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("Bot to'xtatildi.")
