@@ -4,6 +4,8 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types import Message
+from aiogram import types, F
+
 
 # BotFather tomonidan berilgan token
 TOKEN = "7267797063:AAHjnlqhlLYU1rEAXf2S1VWLbKrTICagnak"  # Bu yerga haqiqiy tokenni qo'ying
@@ -780,27 +782,40 @@ async def admin_to_user(message: Message):
                 await message.answer("❌ Foydalanuvchi ID topilmadi. Xatolik yuz berdi.")
         except ValueError:
             await message.answer("❌ Foydalanuvchi ID topilmadi. Xatolik yuz berdi.")
-# Admin panel
+
+
+# Admin paneli
 @dp.message(Command("admin"))
 async def admin_panel(message: types.Message):
     if message.from_user.id not in ADMIN_IDS:
-        await message.answer("Siz admin emassiz!")
+        await message.answer("❌ Siz admin emassiz!")
         return
-    
-    keyboard = types.ReplyKeyboardMarkup(
+
+    keyboard = ReplyKeyboardMarkup(
         keyboard=[
-            [types.KeyboardButton(text="📊 Statistika")],
-            [types.KeyboardButton(text="📢 Reklama yuborish")],
-            [types.KeyboardButton(text="➕ Yangi test qo'shish")],
+            [KeyboardButton(text="📊 Statistika")],
+            [KeyboardButton(text="📢 Reklama yuborish")],
+            [KeyboardButton(text="🏠 Asosiy menyu")],  # Asosiy menyuga qaytish tugmasi
         ],
-        resize_keyboard=True
+        resize_keyboard=True,
+        one_time_keyboard=True,
     )
-    await message.answer("Admin panelga xush kelibsiz!", reply_markup=keyboard)
+
+    await message.answer("👋 Admin panelga xush kelibsiz!", reply_markup=keyboard)
+
+# Asosiy menyuga qaytish
+@dp.message(lambda message: message.text == "🏠 Asosiy menyu")
+async def back_to_main_menu(message: types.Message):
+    await start(message)  # start funksiyasini chaqiramiz
 
 # Admin: Statistika
-@dp.message(lambda message: message.text == "📊 Statistika" and message.from_user.id in ADMIN_IDS)
+@dp.message(F.text == "📊 Statistika")
 async def show_statistics(message: types.Message):
-    total_users = len(user_data)
+    if message.from_user.id not in ADMIN_IDS:
+        await message.answer("❌ Siz admin emassiz!")
+        return
+
+    total_users = len(user_data)  # Foydalanuvchilar sonini hisoblash
     await message.answer(f"📊 Bot foydalanuvchilari soni: {total_users}")
 
 # Admin: Reklama yuborish
@@ -838,69 +853,7 @@ async def send_advertisement(message: Message):
 @dp.message(lambda message: message.from_user.id not in ADMIN_IDS)
 async def register_user(message: Message):
     user_data.add(message.from_user.id)
-# Admin: Yangi test qo'shish
-@dp.message(lambda message: message.text == "➕ Yangi test qo'shish" and message.from_user.id in ADMIN_IDS)
-async def add_new_test(message: types.Message):
 
-    await message.answer("Yangi test qo'shish uchun quyidagi formatda xabar yuboring:\n\n"
-                         "Fan nomi: Savol matni\n"
-                         "A) Variant 1\n"
-                         "B) Variant 2\n"
-                         "C) Variant 3\n"
-                         "To'g'ri javob: A")
-
-@dp.message(lambda msg: msg.from_user.id in ADMIN_IDS)
-async def process_new_test(msg: types.Message):
-    try:
-        # Xabarni bo'lib olish
-        lines = msg.text.split("\n")
-
-        if len(lines) < 5:
-            raise ValueError("To'liq formatda kiritilmagan.")
-
-        # Fan nomi va savolni ajratib olish
-        subject_part = lines[0].split(": ", 1)
-        if len(subject_part) < 2:
-            raise ValueError("Fan nomi noto‘g‘ri formatda.")
-
-        subject = subject_part[0].strip()
-        question = subject_part[1].strip()
-
-        # Variantlarni olish
-        options = []
-        for i in range(1, 4):  # A, B, C variantlari
-            if len(lines[i]) < 4 or lines[i][1] != ")":
-                raise ValueError("Variantlar noto‘g‘ri formatda.")
-            options.append(lines[i][3:].strip())
-
-        # To‘g‘ri javobni olish
-        correct_part = lines[4].split(": ", 1)
-        if len(correct_part) < 2:
-            raise ValueError("To'g'ri javob noto‘g‘ri formatda.")
-        
-        correct_option = correct_part[1].strip().upper()
-        if correct_option not in ["A", "B", "C"]:
-            raise ValueError("To'g'ri javob faqat A, B yoki C bo‘lishi kerak.")
-
-        correct_index = ord(correct_option) - ord("A")  # Indeksni aniqlash (0, 1, 2)
-
-        # Testni saqlash
-        if subject not in quizzes:
-            quizzes[subject] = []
-        quizzes[subject].append({
-            "question": question,
-            "options": options,
-            "correct": correct_index
-        })
-
-        await msg.answer("✅ Yangi test muvaffaqiyatli qo'shildi!")
-    
-    except ValueError as e:
-        await msg.answer(f"❌ Xatolik: {e}")
-    except Exception as e:
-        await msg.answer(f"❌ Kutilmagan xatolik: {e}")
-
-        
 
 # Botni ishga tushirish
 async def main():
@@ -912,7 +865,4 @@ if __name__ == "__main__":
         asyncio.run(main())
     except KeyboardInterrupt:
         print("Bot to'xtatildi.")
-
-if __name__ == "__main__":
-    main()
 
