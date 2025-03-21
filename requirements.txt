@@ -1,4 +1,3 @@
-python -m venv venv
-venv/Scripts/activate
-aiogram
+python3
+aiogram3
 python-dotenv
