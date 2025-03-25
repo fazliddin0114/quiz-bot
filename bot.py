@@ -1332,11 +1332,9 @@ async def back_to_main_menu(message: types.Message):
     keyboard = ReplyKeyboardMarkup(
        keyboard=[
             [KeyboardButton(text="🧠❤️👀 State Verbs")],
-            [KeyboardButton(text="📜 Preposition Verbs")],
-            [KeyboardButton(text="🌟 Irregular Verbs")],
+            [KeyboardButton(text="📜 Preposition Verbs"), KeyboardButton(text="🌟 Irregular Verbs")],
             [KeyboardButton(text="⏳ English Tenses")],  # Yangi bo'lim
-            [KeyboardButton(text="👤 Profil")],
-            [KeyboardButton(text="📈 Reyting")],
+            [KeyboardButton(text="👤 Profil"),  KeyboardButton(text="📈 Reyting")],
             [KeyboardButton(text="📞 Adminga murojaat")],
         ],
         resize_keyboard=True
