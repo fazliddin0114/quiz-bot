@@ -9,7 +9,7 @@ from aiogram import types, F
 
 # BotFather tomonidan berilgan token
 TOKEN = "7267797063:AAHjnlqhlLYU1rEAXf2S1VWLbKrTICagnak"  # Bu yerga haqiqiy tokenni qo'ying
-ADMIN_IDS = [6588255887]  # Admin IDlari
+ADMIN_IDS = [7871012050]  # Admin IDlari
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
@@ -278,160 +278,210 @@ quizzes = {
     }
 ],
 "irregular_verbs_1": [
-        {
-       "question": "Bo‘lmoq",
-        "options": ["Be - Was/Were - Been", "Beat - Beat - Beaten", "Begin - Began - Begun", "Buy - Bought - Bought"],
-            "correct": 0
-        },
-        {
-            "question": "Urmoq",
-            "options": ["Blow - Blew - Blown", "Beat - Beat - Beaten", "Bring - Brought - Brought", "Catch - Caught - Caught"],
-            "correct": 1
-        },
-        {
-            "question": "Boshlamoq",
-            "options": ["Begin - Began - Begun", "Bite - Bit - Bitten", "Break - Broke - Broken", "Cut - Cut - Cut"],
-            "correct": 0
-        },
-        {
-            "question": "Egmoq",
-            "options": ["Bend - Bent - Bent", "Broadcast - Broadcast - Broadcast", "Build - Built - Built", "Come - Came - Come"],
-            "correct": 0
-        },
-        {
-            "question": "Tishlamoq",
-            "options": ["Bite - Bit - Bitten", "Cost - Cost - Cost", "Creep - Crept - Crept", "Cut - Cut - Cut"],
-            "correct": 0
-        },
-        {
-            "question": "Sindirmoq",
-            "options": ["Blow - Blew - Blown", "Break - Broke - Broken", "Bring - Brought - Brought", "Buy - Bought - Bought"],
-            "correct": 1
-        },
-        {
-            "question": "Olib kelmoq",
-            "options": ["Burst - Burst - Burst", "Buy - Bought - Bought", "Bring - Brought - Brought", "Be - Was/Were - Been"],
-            "correct": 2
-        },
-        {
-            "question": "Sotib olmoq",
-            "options": ["Buy - Bought - Bought", "Catch - Caught - Caught", "Choose - Chose - Chosen", "Come - Came - Come"],
-            "correct": 0
-        },
-        {
-            "question": "Ushlamoq",
-            "options": ["Choose - Chose - Chosen", "Cost - Cost - Cost", "Catch - Caught - Caught", "Cut - Cut - Cut"],
-            "correct": 2
-        },
-        {
-            "question": "Kelmoq",
-            "options": ["Cut - Cut - Cut", "Come - Came - Come", "Broadcast - Broadcast - Broadcast", "Bend - Bent - Bent"],
-            "correct": 1
-        }
-    ],
+    {
+        "question": "Bo‘lmoq",
+        "options": ["be - was/were - been", "beat - beat - beaten", "become - became - become", "begin - began - begun"],
+        "correct": 0
+    },
+    {
+        "question": "Urmoq, yengmoq",
+        "options": ["become - became - become", "beat - beat - beaten", "begin - began - begun", "bend - bent - bent"],
+        "correct": 1
+    },
+    {
+        "question": "Bo‘lib qolmoq",
+        "options": ["bet - bet - bet", "become - became - become", "begin - began - begun", "bite - bit - bitten"],
+        "correct": 1
+    },
+    {
+        "question": "Boshlamoq",
+        "options": ["begin - began - begun", "bet - bet - bet", "bend - bent - bent", "bite - bit - bitten"],
+        "correct": 0
+    },
+    {
+        "question": "Egilmoq",
+        "options": ["break - broke - broken", "bend - bent - bent", "bet - bet - bet", "blow - blew - blown"],
+        "correct": 1
+    },
+    {
+        "question": "Tikish (pul tikmoq)",
+        "options": ["bite - bit - bitten", "bet - bet - bet", "break - broke - broken", "bring - brought - brought"],
+        "correct": 1
+    },
+    {
+        "question": "Tishlamoq",
+        "options": ["blow - blew - blown", "bite - bit - bitten", "bring - brought - brought", "build - built - built"],
+        "correct": 1
+    },
+    {
+        "question": "Puflamoq, esmoq",
+        "options": ["break - broke - broken", "blow - blew - blown", "broadcast - broadcast - broadcast", "burst - burst - burst"],
+        "correct": 1
+    },
+    {
+        "question": "Sindirmoq",
+        "options": ["break - broke - broken", "bring - brought - brought", "broadcast - broadcast - broadcast", "burst - burst - burst"],
+        "correct": 0
+    },
+    {
+        "question": "Olib kelmoq",
+        "options": ["build - built - built", "buy - bought - bought", "bring - brought - brought", "broadcast - broadcast - broadcast"],
+        "correct": 2
+    },
+    {
+        "question": "E‘lon qilmoq",
+        "options": ["burst - burst - burst", "buy - bought - bought", "catch - caught - caught", "broadcast - broadcast - broadcast"],
+        "correct": 3
+    },
+    {
+        "question": "Qurmoq",
+        "options": ["build - built - built", "burst - burst - burst", "catch - caught - caught", "choose - chose - chosen"],
+        "correct": 0
+    },
+    {
+        "question": "Portlamoq",
+        "options": ["catch - caught - caught", "choose - chose - chosen", "burst - burst - burst", "come - came - come"],
+        "correct": 2
+    },
+    {
+        "question": "Sotib olmoq",
+        "options": ["buy - bought - bought", "cost - cost - cost", "creep - crept - crept", "cut - cut - cut"],
+        "correct": 0
+    },
+    {
+        "question": "Ushlamoq, tutib olmoq",
+        "options": ["cost - cost - cost", "creep - crept - crept", "catch - caught - caught", "cut - cut - cut"],
+        "correct": 2
+    },
+    {
+        "question": "Tanlamoq",
+        "options": ["choose - chose - chosen", "come - came - come", "cost - cost - cost", "creep - crept - crept"],
+        "correct": 0
+    },
+    {
+        "question": "Kelmoq",
+        "options": ["cost - cost - cost", "creep - crept - crept", "come - came - come", "cut - cut - cut"],
+        "correct": 2
+    },
+    {
+        "question": "Narx turmoq",
+        "options": ["creep - crept - crept", "cost - cost - cost", "cut - cut - cut", "deal - dealt - dealt"],
+        "correct": 1
+    },
+    {
+        "question": "Uzoq yurmoq, sekin harakatlanmoq",
+        "options": ["creep - crept - crept", "deal - dealt - dealt", "dig - dug - dug", "do - did - done"],
+        "correct": 0
+    },
+    {
+        "question": "Kesmoq",
+        "options": ["cut - cut - cut", "deal - dealt - dealt", "dig - dug - dug", "do - did - done"],
+        "correct": 0
+    }
+]
 
     "irregular_verbs_2": [
     {
-        "question": "Tarqatmoq, hal qilmoq",
+        "question": "Bitim tuzmoq",
         "options": ["deal - dealt - dealt", "dig - dug - dug", "do - did - done", "draw - drew - drawn"],
         "correct": 0
     },
     {
-        "question": "Kovlamoq",
-        "options": ["deal - dealt - dealt", "dig - dug - dug", "do - did - done", "drink - drank - drunk"],
-        "correct": 1
-    },
-    {
-        "question": "Qilmoq, bajarmoq",
-        "options": ["draw - drew - drawn", "do - did - done", "deal - dealt - dealt", "fly - flew - flown"],
-        "correct": 1
-    },
-    {
-        "question": "Chizmoq",
-        "options": ["drink - drank - drunk", "drive - drove - driven", "draw - drew - drawn", "eat - ate - eaten"],
-        "correct": 2
-    },
-    {
-        "question": "Ichmoq",
-        "options": ["drink - drank - drunk", "deal - dealt - dealt", "fly - flew - flown", "forgive - forgave - forgiven"],
+        "question": "Qazimoq",
+        "options": ["dig - dug - dug", "do - did - done", "draw - drew - drawn", "dream - dreamt - dreamt"],
         "correct": 0
     },
     {
-        "question": "Haydamoq (mashinani…) ",
-        "options": ["find - found - found", "forbid - forbade - forbidden", "drive - drove - driven", "fight - fought - fought"],
-        "correct": 2
+        "question": "Qilmoq",
+        "options": ["do - did - done", "draw - drew - drawn", "dream - dreamt - dreamt", "drink - drank - drunk"],
+        "correct": 0
+    },
+    {
+        "question": "Chizmoq",
+        "options": ["draw - drew - drawn", "dream - dreamt - dreamt", "drink - drank - drunk", "drive - drove - driven"],
+        "correct": 0
+    },
+    {
+        "question": "Orzu qilmoq",
+        "options": ["dream - dreamt - dreamt", "drink - drank - drunk", "drive - drove - driven", "eat - ate - eaten"],
+        "correct": 0
+    },
+    {
+        "question": "Ichmoq",
+        "options": ["drink - drank - drunk", "drive - drove - driven", "eat - ate - eaten", "fall - fell - fallen"],
+        "correct": 0
+    },
+    {
+        "question": "Haydamoq",
+        "options": ["drive - drove - driven", "eat - ate - eaten", "fall - fell - fallen", "feed - fed - fed"],
+        "correct": 0
     },
     {
         "question": "Yemoq",
-        "options": ["forgive - forgave - forgiven", "eat - ate - eaten", "feel - felt - felt", "fly - flew - flown"],
-        "correct": 1
+        "options": ["eat - ate - eaten", "fall - fell - fallen", "feed - fed - fed", "feel - felt - felt"],
+        "correct": 0
     },
     {
         "question": "Yiqilmoq",
-        "options": ["fight - fought - fought", "fall - fell - fallen", "freeze - froze - frozen", "feed - fed - fed"],
-        "correct": 1
+        "options": ["fall - fell - fallen", "feed - fed - fed", "feel - felt - felt", "fight - fought - fought"],
+        "correct": 0
     },
     {
         "question": "Boqmoq, ovqatlantirmoq",
-        "options": ["feed - fed - fed", "fight - fought - fought", "forgive - forgave - forgiven", "flee - fled - fled"],
+        "options": ["feed - fed - fed", "feel - felt - felt", "fight - fought - fought", "find - found - found"],
         "correct": 0
     },
     {
         "question": "His qilmoq",
-        "options": ["find - found - found", "feel - felt - felt", "forgive - forgave - forgiven", "get - got - got"],
-        "correct": 1
+        "options": ["feel - felt - felt", "fight - fought - fought", "find - found - found", "fly - flew - flown"],
+        "correct": 0
     },
     {
-        "question": "Kurashmoq",
-        "options": ["fight - fought - fought", "feed - fed - fed", "find - found - found", "freeze - froze - frozen"],
+        "question": "Ulashmoq, jang qilmoq",
+        "options": ["fight - fought - fought", "find - found - found", "fly - flew - flown", "forget - forgot - forgotten"],
         "correct": 0
     },
     {
         "question": "Topmoq",
-        "options": ["flee - fled - fled", "find - found - found", "forbid - forbade - forbidden", "fly - flew - flown"],
-        "correct": 1
-    },
-    {
-        "question": "Qochmoq, qochib ketmoq",
-        "options": ["fly - flew - flown", "forbid - forbade - forbidden", "flee - fled - fled", "fall - fell - fallen"],
-        "correct": 2
+        "options": ["find - found - found", "fly - flew - flown", "forget - forgot - forgotten", "forgive - forgave - forgiven"],
+        "correct": 0
     },
     {
         "question": "Uchmoq",
-        "options": ["freeze - froze - frozen", "fly - flew - flown", "forgive - forgave - forgiven", "forget - forgot - forgotten"],
-        "correct": 1
-    },
-    {
-        "question": "Ta’qiqlamoq",
-        "options": ["forgive - forgave - forgiven", "forget - forgot - forgotten", "forbid - forbade - forbidden", "fly - flew - flown"],
-        "correct": 2
+        "options": ["fly - flew - flown", "forget - forgot - forgotten", "forgive - forgave - forgiven", "freeze - froze - frozen"],
+        "correct": 0
     },
     {
         "question": "Unutmoq",
-        "options": ["forgive - forgave - forgiven", "forget - forgot - forgotten", "get - got - got", "give - gave - given"],
-        "correct": 1
+        "options": ["forget - forgot - forgotten", "forgive - forgave - forgiven", "freeze - froze - frozen", "get - got - gotten"],
+        "correct": 0
     },
     {
         "question": "Kechirmoq",
-        "options": ["give - gave - given", "get - got - got", "forgive - forgave - forgiven", "freeze - froze - frozen"],
-        "correct": 2
+        "options": ["forgive - forgave - forgiven", "freeze - froze - frozen", "get - got - gotten", "give - gave - given"],
+        "correct": 0
     },
     {
         "question": "Muzlamoq",
-        "options": ["freeze - froze - frozen", "forgive - forgave - forgiven", "forget - forgot - forgotten", "fight - fought - fought"],
+        "options": ["freeze - froze - frozen", "get - got - gotten", "give - gave - given", "go - went - gone"],
         "correct": 0
     },
     {
         "question": "Olmoq, yetmoq",
-        "options": ["get - got - got", "give - gave - given", "fall - fell - fallen", "flee - fled - fled"],
+        "options": ["get - got - gotten", "give - gave - given", "go - went - gone", "grow - grew - grown"],
         "correct": 0
     },
     {
         "question": "Bermoq",
-        "options": ["give - gave - given", "forget - forgot - forgotten", "find - found - found", "fly - flew - flown"],
+        "options": ["give - gave - given", "go - went - gone", "grow - grew - grown", "hang - hung - hung"],
+        "correct": 0
+    },
+    {
+        "question": "Ketmoq, bormoq",
+        "options": ["go - went - gone", "grow - grew - grown", "hang - hung - hung", "hear - heard - heard"],
         "correct": 0
     }
-],
+]
 
 "irregular_verbs_3": [
     {
@@ -536,182 +586,856 @@ quizzes = {
     }
 ]
 
+"irregular_verbs_4": [
+    {
+        "question": "Qilmoq, yasamoq",
+        "options": ["make – made – made", "mean – meant – meant", "meet – met – met", "pay – paid – paid"],
+        "correct": 0
+    },
+    {
+        "question": "Uchrashmoq",
+        "options": ["put – put – put", "meet – met – met", "read – read – read", "ride – rode – ridden"],
+        "correct": 1
+    },
+    {
+        "question": "To‘lamoq",
+        "options": ["run – ran – run", "pay – paid – paid", "read – read – read", "ride – rode – ridden"],
+        "correct": 1
+    },
+    {
+        "question": "O‘qimoq",
+        "options": ["read – read – read", "run – ran – run", "see – saw – seen", "sell – sold – sold"],
+        "correct": 0
+    },
+    {
+        "question": "Minmoq",
+        "options": ["ride – rode – ridden", "say – said – said", "see – saw – seen", "sell – sold – sold"],
+        "correct": 0
+    },
+    {
+        "question": "Yugurmoq",
+        "options": ["run – ran – run", "say – said – said", "see – saw – seen", "seek – sought – sought"],
+        "correct": 0
+    },
+    {
+        "question": "Aytmoq",
+        "options": ["sell – sold – sold", "send – sent – sent", "say – said – said", "set – set – set"],
+        "correct": 2
+    },
+    {
+        "question": "Ko‘rmoq",
+        "options": ["sell – sold – sold", "see – saw – seen", "send – sent – sent", "set – set – set"],
+        "correct": 1
+    },
+    {
+        "question": "Izlamoq",
+        "options": ["send – sent – sent", "seek – sought – sought", "set – set – set", "shake – shook – shaken"],
+        "correct": 1
+    },
+    {
+        "question": "Sotmoq",
+        "options": ["sell – sold – sold", "send – sent – sent", "set – set – set", "shake – shook – shaken"],
+        "correct": 0
+    },
+    {
+        "question": "Yubormoq",
+        "options": ["send – sent – sent", "set – set – set", "shake – shook – shaken", "shine – shone – shone"],
+        "correct": 0
+    },
+    {
+        "question": "O‘rnatmoq",
+        "options": ["set – set – set", "shake – shook – shaken", "shine – shone – shone", "shoot – shot – shot"],
+        "correct": 0
+    },
+    {
+        "question": "Silkitmoq",
+        "options": ["shake – shook – shaken", "shine – shone – shone", "shoot – shot – shot", "show – showed – shown"],
+        "correct": 0
+    },
+    {
+        "question": "Yaltiramoq",
+        "options": ["shine – shone – shone", "shoot – shot – shot", "show – showed – shown", "shut – shut – shut"],
+        "correct": 0
+    },
+    {
+        "question": "O‘q otmoq",
+        "options": ["shoot – shot – shot", "show – showed – shown", "shut – shut – shut", "sing – sang – sung"],
+        "correct": 0
+    },
+    {
+        "question": "Ko‘rsatmoq",
+        "options": ["show – showed – shown", "shut – shut – shut", "sing – sang – sung", "sit – sat – sat"],
+        "correct": 0
+    },
+    {
+        "question": "Yopmoq",
+        "options": ["shut – shut – shut", "sing – sang – sung", "sit – sat – sat", "sleep – slept – slept"],
+        "correct": 0
+    },
+    {
+        "question": "Kuylamoq",
+        "options": ["sing – sang – sung", "sit – sat – sat", "sleep – slept – slept", "slide – slid – slid"],
+        "correct": 0
+    },
+    {
+        "question": "O‘tirib olmoq",
+        "options": ["sit – sat – sat", "sleep – slept – slept", "slide – slid – slid", "speak – spoke – spoken"],
+        "correct": 0
+    },
+    {
+        "question": "Uxlamoq",
+        "options": ["sleep – slept – slept", "slide – slid – slid", "speak – spoke – spoken", "spend – spent – spent"],
+        "correct": 0
+    }
+]
+
+"present_simple": [
+    {
+        "question": "She ___ to school every day.",
+        "options": ["go", "goes", "going", "gone"],
+        "correct": 1
+    },
+    {
+        "question": "They ___ football on Sundays.",
+        "options": ["play", "plays", "playing", "played"],
+        "correct": 0
+    },
+    {
+        "question": "He ___ not like coffee.",
+        "options": ["do", "does", "doing", "done"],
+        "correct": 1
+    },
+    {
+        "question": "___ you speak English?",
+        "options": ["Do", "Does", "Is", "Are"],
+        "correct": 0
+    },
+    {
+        "question": "We ___ TV in the evening.",
+        "options": ["watch", "watches", "watching", "watched"],
+        "correct": 0
+    },
+    {
+        "question": "My mother ___ delicious cakes.",
+        "options": ["make", "makes", "making", "made"],
+        "correct": 1
+    },
+    {
+        "question": "The sun ___ in the east.",
+        "options": ["rise", "rises", "rising", "rose"],
+        "correct": 1
+    },
+    {
+        "question": "Cats ___ milk.",
+        "options": ["love", "loves", "loving", "loved"],
+        "correct": 0
+    },
+    {
+        "question": "She ___ her homework every day.",
+        "options": ["do", "does", "doing", "done"],
+        "correct": 1
+    },
+    {
+        "question": "I ___ breakfast at 7 am.",
+        "options": ["have", "has", "having", "had"],
+        "correct": 0
+    },
+    {
+        "question": "Water ___ at 100 degrees Celsius.",
+        "options": ["boil", "boils", "boiling", "boiled"],
+        "correct": 1
+    },
+    {
+        "question": "My parents ___ in a small village.",
+        "options": ["live", "lives", "living", "lived"],
+        "correct": 0
+    },
+    {
+        "question": "___ your brother work here?",
+        "options": ["Do", "Does", "Is", "Are"],
+        "correct": 1
+    },
+    {
+        "question": "This shop ___ at 9 o'clock every morning.",
+        "options": ["open", "opens", "opening", "opened"],
+        "correct": 1
+    },
+    {
+        "question": "Birds ___ in the sky.",
+        "options": ["fly", "flies", "flying", "flew"],
+        "correct": 0
+    },
+    {
+        "question": "She ___ three languages fluently.",
+        "options": ["speak", "speaks", "speaking", "spoken"],
+        "correct": 1
+    },
+    {
+        "question": "We ___ our grandparents every weekend.",
+        "options": ["visit", "visits", "visiting", "visited"],
+        "correct": 0
+    },
+    {
+        "question": "The train ___ at 5:30 pm.",
+        "options": ["leave", "leaves", "leaving", "left"],
+        "correct": 1
+    },
+    {
+        "question": "___ they know the answer?",
+        "options": ["Do", "Does", "Is", "Are"],
+        "correct": 0
+    },
+    {
+        "question": "My sister ___ as a nurse.",
+        "options": ["work", "works", "working", "worked"],
+        "correct": 1
+    }
+]
+
+"present_continuous": [
+    {
+        "question": "She ___ a book now.",
+        "options": ["read", "reads", "is reading", "reading"],
+        "correct": 2
+    },
+    {
+        "question": "They ___ football at the moment.",
+        "options": ["play", "plays", "are playing", "playing"],
+        "correct": 2
+    },
+    {
+        "question": "Look! It ___.",
+        "options": ["rain", "rains", "is raining", "raining"],
+        "correct": 2
+    },
+    {
+        "question": "What ___ you ___ now?",
+        "options": ["do, do", "are, doing", "is, doing", "does, do"],
+        "correct": 1
+    },
+    {
+        "question": "The children ___ TV now.",
+        "options": ["watch", "watches", "are watching", "watching"],
+        "correct": 2
+    },
+    {
+        "question": "Listen! Someone ___.",
+        "options": ["sing", "sings", "is singing", "singing"],
+        "correct": 2
+    },
+    {
+        "question": "She ___ her homework now.",
+        "options": ["do", "does", "is doing", "doing"],
+        "correct": 2
+    },
+    {
+        "question": "They ___ to London next week.",
+        "options": ["travel", "travels", "are traveling", "traveling"],
+        "correct": 2
+    },
+    {
+        "question": "I ___ for my exam these days.",
+        "options": ["study", "studies", "am studying", "studying"],
+        "correct": 2
+    },
+    {
+        "question": "Why ___ you ___?",
+        "options": ["do, cry", "are, crying", "is, crying", "does, cry"],
+        "correct": 1
+    },
+    {
+        "question": "The baby ___ right now.",
+        "options": ["sleep", "sleeps", "is sleeping", "sleeping"],
+        "correct": 2
+    },
+    {
+        "question": "We ___ dinner at the moment.",
+        "options": ["have", "has", "are having", "having"],
+        "correct": 2
+    },
+    {
+        "question": "The students ___ for the test.",
+        "options": ["prepare", "prepares", "are preparing", "preparing"],
+        "correct": 2
+    },
+    {
+        "question": "Where ___ you ___ these days?",
+        "options": ["do, live", "are, living", "is, living", "does, live"],
+        "correct": 1
+    },
+    {
+        "question": "My phone ___ at the moment.",
+        "options": ["not work", "doesn't work", "isn't working", "not working"],
+        "correct": 2
+    },
+    {
+        "question": "The workers ___ the road this week.",
+        "options": ["repair", "repairs", "are repairing", "repairing"],
+        "correct": 2
+    },
+    {
+        "question": "Look! The dog ___ with the children.",
+        "options": ["play", "plays", "is playing", "playing"],
+        "correct": 2
+    },
+    {
+        "question": "I ___ to the radio while cooking.",
+        "options": ["listen", "listens", "am listening", "listening"],
+        "correct": 2
+    },
+    {
+        "question": "They ___ a new house these days.",
+        "options": ["build", "builds", "are building", "building"],
+        "correct": 2
+    },
+    {
+        "question": "Why ___ he ___ so fast?",
+        "options": ["do, run", "is, running", "does, run", "are, running"],
+        "correct": 1
+    }
+]
+
+"past_simple": [
+    {
+        "question": "She ___ to Paris last year.",
+        "options": ["go", "goes", "went", "gone"],
+        "correct": 2
+    },
+    {
+        "question": "They ___ a new car yesterday.",
+        "options": ["buy", "buys", "bought", "buying"],
+        "correct": 2
+    },
+    {
+        "question": "He ___ his homework an hour ago.",
+        "options": ["finish", "finishes", "finished", "finishing"],
+        "correct": 2
+    },
+    {
+        "question": "___ you see that movie last night?",
+        "options": ["Do", "Does", "Did", "Are"],
+        "correct": 2
+    },
+    {
+        "question": "We ___ dinner at 8 pm yesterday.",
+        "options": ["have", "has", "had", "having"],
+        "correct": 2
+    },
+    {
+        "question": "The sun ___ at 6 am yesterday.",
+        "options": ["rise", "rises", "rose", "rising"],
+        "correct": 2
+    },
+    {
+        "question": "She ___ her keys this morning.",
+        "options": ["lose", "loses", "lost", "losing"],
+        "correct": 2
+    },
+    {
+        "question": "I ___ a letter to my friend last week.",
+        "options": ["write", "writes", "wrote", "written"],
+        "correct": 2
+    },
+    {
+        "question": "They ___ home late last night.",
+        "options": ["come", "comes", "came", "coming"],
+        "correct": 2
+    },
+    {
+        "question": "He ___ his breakfast quickly.",
+        "options": ["eat", "eats", "ate", "eating"],
+        "correct": 2
+    },
+    {
+        "question": "We ___ very tired after the trip.",
+        "options": ["are", "were", "was", "is"],
+        "correct": 1
+    },
+    {
+        "question": "Shakespeare ___ many famous plays.",
+        "options": ["write", "writes", "wrote", "written"],
+        "correct": 2
+    },
+    {
+        "question": "___ they visit you last summer?",
+        "options": ["Do", "Does", "Did", "Are"],
+        "correct": 2
+    },
+    {
+        "question": "The war ___ in 1945.",
+        "options": ["end", "ends", "ended", "ending"],
+        "correct": 2
+    },
+    {
+        "question": "She ___ her arm when she fell.",
+        "options": ["break", "breaks", "broke", "broken"],
+        "correct": 2
+    },
+    {
+        "question": "I ___ my wallet at the restaurant.",
+        "options": ["leave", "leaves", "left", "leaving"],
+        "correct": 2
+    },
+    {
+        "question": "They ___ married in 2010.",
+        "options": ["get", "gets", "got", "gotten"],
+        "correct": 2
+    },
+    {
+        "question": "The phone ___ while I was sleeping.",
+        "options": ["ring", "rings", "rang", "rung"],
+        "correct": 2
+    },
+    {
+        "question": "We ___ a great time at the party.",
+        "options": ["have", "has", "had", "having"],
+        "correct": 2
+    },
+    {
+        "question": "He ___ me a beautiful gift.",
+        "options": ["give", "gives", "gave", "given"],
+        "correct": 2
+    }
+]
+
+"past_continuous": [
+    {
+        "question": "She ___ TV when I called.",
+        "options": ["watch", "watched", "was watching", "were watching"],
+        "correct": 2
+    },
+    {
+        "question": "They ___ football at 5 pm yesterday.",
+        "options": ["play", "played", "were playing", "was playing"],
+        "correct": 2
+    },
+    {
+        "question": "What ___ you ___ when the phone rang?",
+        "options": ["was, doing", "were, doing", "did, do", "do, do"],
+        "correct": 1
+    },
+    {
+        "question": "I ___ a book when you called.",
+        "options": ["read", "reads", "was reading", "were reading"],
+        "correct": 2
+    },
+    {
+        "question": "The children ___ when the teacher came in.",
+        "options": ["talk", "talks", "were talking", "was talking"],
+        "correct": 2
+    },
+    {
+        "question": "He ___ his car when the accident happened.",
+        "options": ["drive", "drives", "was driving", "were driving"],
+        "correct": 2
+    },
+    {
+        "question": "We ___ dinner when the guests arrived.",
+        "options": ["have", "has", "were having", "was having"],
+        "correct": 2
+    },
+    {
+        "question": "She ___ a shower when the doorbell rang.",
+        "options": ["take", "takes", "was taking", "were taking"],
+        "correct": 2
+    },
+    {
+        "question": "They ___ to music when I saw them.",
+        "options": ["listen", "listens", "were listening", "was listening"],
+        "correct": 2
+    },
+    {
+        "question": "The sun ___ when I woke up.",
+        "options": ["shine", "shines", "was shining", "were shining"],
+        "correct": 2
+    },
+    {
+        "question": "I ___ my homework when the lights went out.",
+        "options": ["do", "did", "was doing", "were doing"],
+        "correct": 2
+    },
+    {
+        "question": "The students ___ while the teacher was explaining.",
+        "options": ["talk", "talked", "were talking", "was talking"],
+        "correct": 2
+    },
+    {
+        "question": "What ___ you ___ at 8 pm yesterday?",
+        "options": ["were, doing", "was, doing", "did, do", "do, do"],
+        "correct": 0
+    },
+    {
+        "question": "The phone ___ while I was cooking.",
+        "options": ["ring", "rang", "was ringing", "were ringing"],
+        "correct": 2
+    },
+    {
+        "question": "She ___ when I entered the room.",
+        "options": ["cry", "cried", "was crying", "were crying"],
+        "correct": 2
+    },
+    {
+        "question": "We ___ the news when the power failed.",
+        "options": ["watch", "watched", "were watching", "was watching"],
+        "correct": 2
+    },
+    {
+        "question": "The birds ___ when I left home.",
+        "options": ["sing", "sang", "were singing", "was singing"],
+        "correct": 2
+    },
+    {
+        "question": "He ___ a letter when his pen broke.",
+        "options": ["write", "wrote", "was writing", "were writing"],
+        "correct": 2
+    },
+    {
+        "question": "They ___ about their future plans when I joined them.",
+        "options": ["talk", "talked", "were talking", "was talking"],
+        "correct": 2
+    },
+    {
+        "question": "I ___ to work when I met my old friend.",
+        "options": ["walk", "walked", "was walking", "were walking"],
+        "correct": 2
+    }
+]
+
+"future_simple": [
+    {
+        "question": "She ___ to London next month.",
+        "options": ["travel", "travels", "will travel", "is traveling"],
+        "correct": 2
+    },
+    {
+        "question": "They ___ a new house next year.",
+        "options": ["buy", "buys", "will buy", "are buying"],
+        "correct": 2
+    },
+    {
+        "question": "I think it ___ tomorrow.",
+        "options": ["rain", "rains", "will rain", "is raining"],
+        "correct": 2
+    },
+    {
+        "question": "___ you help me with this?",
+        "options": ["Do", "Does", "Will", "Are"],
+        "correct": 2
+    },
+    {
+        "question": "We ___ the exam next week.",
+        "options": ["take", "takes", "will take", "are taking"],
+        "correct": 2
+    },
+    {
+        "question": "He ___ 18 next month.",
+        "options": ["be", "is", "will be", "are"],
+        "correct": 2
+    },
+    {
+        "question": "I promise I ___ late.",
+        "options": ["not be", "won't be", "am not", "not"],
+        "correct": 1
+    },
+    {
+        "question": "They ___ at 8 am tomorrow.",
+        "options": ["arrive", "arrives", "will arrive", "are arriving"],
+        "correct": 2
+    },
+    {
+        "question": "She ___ a doctor when she grows up.",
+        "options": ["become", "becomes", "will become", "is becoming"],
+        "correct": 2
+    },
+    {
+        "question": "___ you marry me?",
+        "options": ["Do", "Does", "Will", "Are"],
+        "correct": 2
+    },
+    {
+        "question": "I'm sure you ___ the test.",
+        "options": ["pass", "passes", "will pass", "are passing"],
+        "correct": 2
+    },
+    {
+        "question": "They ___ probably ___ late.",
+        "options": ["will, be", "are, being", "do, be", "does, be"],
+        "correct": 0
+    },
+    {
+        "question": "What ___ you ___ after graduation?",
+        "options": ["do, do", "will, do", "are, doing", "does, do"],
+        "correct": 1
+    },
+    {
+        "question": "The meeting ___ at 3 pm tomorrow.",
+        "options": ["start", "starts", "will start", "is starting"],
+        "correct": 2
+    },
+    {
+        "question": "I hope the weather ___ nice for our picnic.",
+        "options": ["is", "will be", "be", "are"],
+        "correct": 1
+    },
+    {
+        "question": "She ___ definitely ___ to the party.",
+        "options": ["will, come", "is, coming", "does, come", "do, come"],
+        "correct": 0
+    },
+    {
+        "question": "We ___ our grandparents this weekend.",
+        "options": ["visit", "visits", "will visit", "are visiting"],
+        "correct": 2
+    },
+    {
+        "question": "The train ___ in ten minutes.",
+        "options": ["leave", "leaves", "will leave", "is leaving"],
+        "correct": 2
+    },
+    {
+        "question": "___ they finish the project on time?",
+        "options": ["Do", "Does", "Will", "Are"],
+        "correct": 2
+    },
+    {
+        "question": "I ___ you as soon as I arrive.",
+        "options": ["call", "calls", "will call", "am calling"],
+        "correct": 2
+    }
+]
+
+"future_continuous": [
+    {
+        "question": "This time tomorrow, I ___ on the beach.",
+        "options": ["lie", "will lie", "will be lying", "am lying"],
+        "correct": 2
+    },
+    {
+        "question": "At 8 pm tonight, they ___ dinner.",
+        "options": ["have", "will have", "will be having", "are having"],
+        "correct": 2
+    },
+    {
+        "question": "Don't call at 9 - I ___ my favorite show.",
+        "options": ["watch", "will watch", "will be watching", "am watching"],
+        "correct": 2
+    },
+    {
+        "question": "What ___ you ___ this time next week?",
+        "options": ["will, do", "are, doing", "will, be doing", "do, do"],
+        "correct": 2
+    },
+    {
+        "question": "She ___ for her exam all day tomorrow.",
+        "options": ["study", "will study", "will be studying", "is studying"],
+        "correct": 2
+    },
+    {
+        "question": "They ___ to Paris this time next month.",
+        "options": ["fly", "will fly", "will be flying", "are flying"],
+        "correct": 2
+    },
+    {
+        "question": "We ___ a meeting at 10 am tomorrow.",
+        "options": ["have", "will have", "will be having", "are having"],
+        "correct": 2
+    },
+    {
+        "question": "He ___ his car at 5 pm tomorrow.",
+        "options": ["wash", "will wash", "will be washing", "is washing"],
+        "correct": 2
+    },
+    {
+        "question": "The sun ___ when we wake up tomorrow.",
+        "options": ["shine", "will shine", "will be shining", "is shining"],
+        "correct": 2
+    },
+    {
+        "question": "I ___ TV at this time tomorrow.",
+        "options": ["watch", "will watch", "will be watching", "am watching"],
+        "correct": 2
+    },
+    {
+        "question": "At midnight tonight, we ___ soundly.",
+        "options": ["sleep", "will sleep", "will be sleeping", "are sleeping"],
+        "correct": 2
+    },
+    {
+        "question": "This time next year, I ___ at university.",
+        "options": ["study", "will study", "will be studying", "am studying"],
+        "correct": 2
+    },
+    {
+        "question": "The workers ___ the road all day tomorrow.",
+        "options": ["repair", "will repair", "will be repairing", "are repairing"],
+        "correct": 2
+    },
+    {
+        "question": "What ___ she ___ at 3 pm tomorrow?",
+        "options": ["will, do", "is, doing", "will, be doing", "does, do"],
+        "correct": 2
+    },
+    {
+        "question": "The plane ___ over the Atlantic at this time tomorrow.",
+        "options": ["fly", "will fly", "will be flying", "is flying"],
+        "correct": 2
+    },
+    {
+        "question": "They ___ their anniversary all evening.",
+        "options": ["celebrate", "will celebrate", "will be celebrating", "are celebrating"],
+        "correct": 2
+    },
+    {
+        "question": "I ___ for you at the station when your train arrives.",
+        "options": ["wait", "will wait", "will be waiting", "am waiting"],
+        "correct": 2
+    },
+    {
+        "question": "The kids ___ in the pool all afternoon.",
+        "options": ["swim", "will swim", "will be swimming", "are swimming"],
+        "correct": 2
+    },
+    {
+        "question": "At 7 am tomorrow, I ___ to work.",
+        "options": ["drive", "will drive", "will be driving", "am driving"],
+        "correct": 2
+    },
+    {
+        "question": "The chef ___ a special dish for the guests at this time tomorrow.",
+        "options": ["prepare", "will prepare", "will be preparing", "is preparing"],
+        "correct": 2
+    }
+]
+
 }
 
 # Foydalanuvchi ma'lumotlari
 user_data = {}
 ratings = {}  # Reyting tizimi
 
-@dp.message(Command("start"))
-async def start(message: types.Message):
-    keyboard = ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text="🧠❤️👀 State Verbs")],
-            [KeyboardButton(text="📜 Preposition Verbs")],  # Preposition Verbs tugmasi
-            [KeyboardButton(text="🌟 Irregular Verbs")],  # Irregular Verbs tugmasi
-            [KeyboardButton(text="👤 Profil")],
-            [KeyboardButton(text="📈 Reyting")],
-            [KeyboardButton(text="📞 Adminga murojaat")],
-        ],
-        resize_keyboard=True
-    )
-    await message.answer("Quyidagi funksiyalardan birini tanlang:", reply_markup=keyboard)
-
-@dp.message(lambda message: message.text == "📜 Preposition Verbs")
-async def show_preposition_verbs(message: types.Message):
-    keyboard = ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text="📜 P verb 1"), KeyboardButton(text="📜 P verb 2")],
-            [KeyboardButton(text="📜 P verb 3"), KeyboardButton(text="📜 P verb 4")],
-            [KeyboardButton(text="⬅️ Ortga")],  # Ortga qaytish tugmasi
-        ],
-        resize_keyboard=True
-    )
-    await message.answer("Quyidagi Preposition Verbs bo‘limlaridan birini tanlang:", reply_markup=keyboard)
-
-@dp.message(lambda message: message.text == "🌟 Irregular Verbs")
-async def show_irregular_verbs(message: types.Message):
-    keyboard = ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text="🌟 I verb 1"), KeyboardButton(text="🌟 I verb 2"), KeyboardButton(text="🌟 I verb 3")],
-            [KeyboardButton(text="⬅️ Ortga")],  # Ortga qaytish tugmasi
-        ],
-        resize_keyboard=True
-    )
-    await message.answer("Quyidagi Irregular Verbs bo‘limlaridan birini tanlang:", reply_markup=keyboard)
-
-@dp.message(lambda message: message.text == "⬅️ Ortga")
-async def back_to_main_menu(message: types.Message):
-    await start(message)
-# Profil ko'rsatish
-@dp.message(lambda message: message.text == "👤 Profil")
-async def show_profile(message: types.Message):
-    user_id = message.from_user.id
-    user_info = user_data.get(user_id)
-
-    if not user_info or "subjects" not in user_info:
-        await message.answer("Siz hali test ishlamagansiz! 📌")
-        return
-    
-    profile_text = "👤 *Sizning profilingiz:*\n\n"
-    
-    for subject, stats in user_info["subjects"].items():
-        profile_text += (
-            f"📚 *{subject.capitalize()}*\n"
-            f"✅ To‘g‘ri javoblar: {stats['correct']}\n"
-            f"❌ Xato javoblar: {stats['wrong']}\n"
-            f"📊 Jami savollar: {stats['total']}\n\n"
-        )
-    
-    await message.answer(profile_text, parse_mode="Markdown")
-
-
-# Reyting tizimi
-@dp.message(lambda message: message.text == "📈 Reyting")
-async def show_ratings(message: types.Message):
-    if not ratings:
-        await message.answer("📌 Hali hech kim test ishlamagan!")
-        return
-
-    # Reyting bo‘yicha tartiblash (katta ball birinchi bo‘lishi uchun)
-    sorted_ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
-
-    result = "🏆 *Top 10 Reyting:*\n\n"
-    for idx, (user_id, score) in enumerate(sorted_ratings[:10], 1):
-        try:
-            user = await bot.get_chat(user_id)
-            result += f"{idx}. *{user.first_name}* — {score} ball\n"
-        except Exception:
-            result += f"{idx}. Ism mavjud emas — {score} ball\n"
-
-    await message.answer(result, parse_mode="Markdown")
-
-
-# Test boshlash
-@dp.message(lambda message: message.text in ["🧠❤️👀 State Verbs", "📜 P verb 1", "📜 P verb 2", "📜 P verb 3", "📜 P verb 4", "🌟 I verb 1", "🌟 I verb 2", "🌟 I verb 3"],)
+@dp.message(lambda message: message.text in [
+    "🧠 State Verbs",
+    "📜 P verb 1", "📜 P verb 2", "📜 P verb 3", "📜 P verb 4",
+    "🌟 I verb 1", "🌟 I verb 2", "🌟 I verb 3", "🌟 I verb 4",
+    "⏳ Present Simple", "⏳ Present Continuous",
+    "⏳ Past Simple", "⏳ Past Continuous",
+    "⏳ Future Simple", "⏳ Future Continuous",
+    "♻️ Barcha Preposition Verbs", "♻️ Barcha Irregular Verbs", "♻️ Barcha Tenses"
+])
 async def start_quiz(message: types.Message):
     user_id = message.from_user.id
+    subject_map = {
+        "🧠 State Verbs": ["state"],
+        "📜 P verb 1": ["p_verb_1"],
+        "📜 P verb 2": ["p_verb_2"],
+        "📜 P verb 3": ["p_verb_3"],
+        "📜 P verb 4": ["p_verb_4"],
+        "🌟 I verb 1": ["irregular_verbs_1"],
+        "🌟 I verb 2": ["irregular_verbs_2"],
+        "🌟 I verb 3": ["irregular_verbs_3"],
+        "🌟 I verb 4": ["irregular_verbs_4"],
+        "⏳ Present Simple": ["present_simple"],
+        "⏳ Present Continuous": ["present_continuous"],
+        "⏳ Past Simple": ["past_simple"],
+        "⏳ Past Continuous": ["past_continuous"],
+        "⏳ Future Simple": ["future_simple"],
+        "⏳ Future Continuous": ["future_continuous"],
+        "♻️ Barcha Preposition Verbs": ["p_verb_1", "p_verb_2", "p_verb_3", "p_verb_4"],
+        "♻️ Barcha Irregular Verbs": ["irregular_verbs_1", "irregular_verbs_2", "irregular_verbs_3", "irregular_verbs_4"],
+        "♻️ Barcha Tenses": ["present_simple", "present_continuous", "past_simple", "past_continuous", "future_simple", "future_continuous"]
+    }
+    
+    subjects = subject_map.get(message.text)
+    if not subjects:
+        await message.answer("❌ Xatolik yuz berdi!")
+        return
 
-    if message.text == "🧠❤️👀 State Verbs":
-        subject = "state"
-    elif message.text == "📜 P verb 1":
-        subject = "p_verb_1"
-    elif message.text == "📜 P verb 2":
-        subject = "p_verb_2"
-    elif message.text == "📜 P verb 3":
-        subject = "p_verb_3"
-    elif message.text == "📜 P verb 4":
-        subject = "p_verb_4"
-    elif message.text == "🌟 I verb 1":
-        subject = "irregular_verbs_1"
-    elif message.text == "🌟 I verb 2":
-        subject = "irregular_verbs_2"
-    elif message.text == "🌟 I verb 3":
-        subject = "irregular_verbs_3"
-    else:
-        subject = "unknown"
-
-    # Foydalanuvchi ma'lumotlarini tekshiramiz va yangilaymiz
     if user_id not in user_data:
-        user_data[user_id] = {"subjects": {}, "score": 0}
+        user_data[user_id] = {"subjects": {}, "score": 0, "current_question": {}, "all_quizzes": []}
     
-    if subject not in user_data[user_id]["subjects"]:
-        user_data[user_id]["subjects"][subject] = {"correct": 0, "wrong": 0, "total": 0}
+    # Barcha testlar uchun savollarni birlashtirish
+    all_questions = []
+    for subject in subjects:
+        if subject not in user_data[user_id]["subjects"]:
+            user_data[user_id]["subjects"][subject] = {
+                "correct": 0, 
+                "wrong": 0, 
+                "total": 0, 
+                "current_index": 0
+            }
+        all_questions.extend(quizzes[subject])
+    
+    # Agar barcha testlar tanlangan bo'lsa
+    if len(subjects) > 1:
+        user_data[user_id]["all_quizzes"] = all_questions
+        user_data[user_id]["current_subject"] = "all"
+        user_data[user_id]["subjects"]["all"] = {
+            "correct": 0,
+            "wrong": 0,
+            "total": 0,
+            "current_index": 0
+        }
+    
+    await message.answer(f"📢 {message.text} testi boshlandi!")
+    await send_next_question(user_id, subjects[0] if len(subjects) == 1 else "all", message.text)  # message.text ni qo'shdik
 
-    # Test boshlangani haqida bitta xabar yuboramiz
-    await message.answer(f"📢 {message.text} bo‘yicha test boshlandi!")
-
-    # Savolni faqat bitta marta yuboramiz
-    await send_next_question(user_id, subject)
-
-async def send_next_question(user_id, subject):
+async def send_next_question(user_id, subject, quiz_name):  # quiz_name parametrini qo'shdik
     user_info = user_data[user_id]
-    questions = quizzes[subject].copy()
     
-    # Agar foydalanuvchi barcha savollarga javob bergan bo'lsa, testni tugatish
-    if user_info["subjects"][subject]["total"] >= len(questions):
-        await bot.send_message(user_id, f"🎉 Test tugadi! Sizning natijangiz: {user_info['subjects'][subject]['correct']}/{user_info['subjects'][subject]['total']}")
+    # Agar barcha testlar ishlanayotgan bo'lsa
+    if subject == "all":
+        questions = user_info["all_quizzes"]
+        subject_info = user_info["subjects"]["all"]
+    else:
+        questions = quizzes[subject]
+        subject_info = user_info["subjects"][subject]
+    
+    if subject_info["current_index"] >= len(questions):
+        await bot.send_message(
+            user_id,
+            f"🎉 {quiz_name} testi tugadi! Natijangiz: {subject_info['correct']}/{subject_info['total']}"
+        )
         
-        # Reytingda o'rni
         sorted_ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
         user_rank = next((idx for idx, (uid, _) in enumerate(sorted_ratings, 1) if uid == user_id), None)
-        await bot.send_message(user_id, f"📊 Sizning reytingdagi o'rningiz: {user_rank}")
-
-        # **Testni qayta ishlashga ruxsat berish**
-        user_info["subjects"][subject]["total"] = 0
-        user_info["subjects"][subject]["correct"] = 0
-        user_info["subjects"][subject]["wrong"] = 0
+        await bot.send_message(user_id, f"📊 Reytingdagi o'rningiz: {user_rank}")
         
+        subject_info["total"] = 0
+        subject_info["correct"] = 0
+        subject_info["wrong"] = 0
+        subject_info["current_index"] = 0
+        
+        # Agar barcha testlar bo'lsa, all_quizzes ni tozalash
+        if subject == "all":
+            user_info["all_quizzes"] = []
         return
     
-    # Keyingi savolni yuborish
-    question_data = random.choice(questions)
-
-    # Variantlarni aralashtirish va to‘g‘ri javobning yangi indeksini topish
-    original_options = question_data["options"]
-    correct_answer = original_options[question_data["correct"]]
-
-    shuffled_options = original_options[:]  # Variantlarni nusxalash
-    random.shuffle(shuffled_options)  # Random tartibga keltirish
-    new_correct_index = shuffled_options.index(correct_answer)  # Yangi indeks
-
-    # Telegram poll (so‘rovnoma) yaratish
+    question_data = questions[subject_info["current_index"]]
+    
+    shuffled_options = question_data["options"].copy()
+    correct_answer = shuffled_options[question_data["correct"]]
+    random.shuffle(shuffled_options)
+    new_correct_index = shuffled_options.index(correct_answer)
+    
+    user_info["current_poll"] = {
+        "poll_id": None,
+        "subject": subject,
+        "correct_option": new_correct_index,
+        "question_index": subject_info["current_index"],
+        "quiz_name": quiz_name  # quiz_name ni saqlaymiz
+    }
+    
     poll_msg = await bot.send_poll(
         chat_id=user_id,
         question=question_data["question"],
-        options=shuffled_options,  # Aralashtirilgan variantlar
+        options=shuffled_options,
         type="quiz",
-        correct_option_id=new_correct_index,  # Yangi indeks bo‘yicha to‘g‘ri javob
+        correct_option_id=new_correct_index,
         is_anonymous=False
     )
+    
+    user_info["current_poll"]["poll_id"] = poll_msg.poll.id
 
-    # Foydalanuvchining tanlovini tekshirish uchun ma’lumot saqlash
-    user_info["current_poll"] = {
-        "poll_id": poll_msg.poll.id,
-        "subject": subject,
-        "correct_option": new_correct_index  # To‘g‘ri javobning yangi indeksini saqlash
-    }
-# Test javobini qayta ishlash
 @dp.poll_answer()
 async def handle_poll_answer(poll_answer: types.PollAnswer):
     user_id = poll_answer.user.id
@@ -723,23 +1447,34 @@ async def handle_poll_answer(poll_answer: types.PollAnswer):
     selected_option = poll_answer.option_ids[0]
     subject = user_info["current_poll"]["subject"]
     correct_answer = user_info["current_poll"]["correct_option"]
+    question_index = user_info["current_poll"]["question_index"]
+    quiz_name = user_info["current_poll"]["quiz_name"]  # quiz_name ni olamiz
     
+    # Javobni tekshirish
     if selected_option == correct_answer:
         user_info["subjects"][subject]["correct"] += 1
         user_info["score"] += 1
+        feedback = "✅ To'g'ri javob!"
     else:
-        user_info["subjects"][subject]["wrong"] += 1
+        if subject == "all":
+            # Barcha testlar uchun to'g'ri javobni topish
+            question_data = user_info["all_quizzes"][question_index]
+            correct_option_text = question_data["options"][question_data["correct"]]
+        else:
+            correct_option_text = quizzes[subject][question_index]["options"][quizzes[subject][question_index]["correct"]]
+        feedback = f"❌ Noto'g'ri javob! To'g'ri javob: {correct_option_text}"
     
     user_info["subjects"][subject]["total"] += 1
+    user_info["subjects"][subject]["current_index"] += 1
     
     # Reytingni yangilash
     ratings[user_id] = user_info["score"]
     
-    # Javob berilganligini bildirish
-    await bot.send_message(user_id, f"✅ Javobingiz qabul qilindi! Sizning natijangiz: {user_info['subjects'][subject]['correct']}/{user_info['subjects'][subject]['total']}")
+    # Javob haqida xabar
+    await bot.send_message(user_id, feedback)
     
     # Keyingi savolni yuborish
-    await send_next_question(user_id, subject)
+    await send_next_question(user_id, subject, quiz_name)  # quiz_name ni uzatamiz
 
 # 📞 Foydalanuvchi "Adminga murojaat" tugmasini bossachi
 @dp.message(lambda message: message.text == "📞 Adminga murojaat")
