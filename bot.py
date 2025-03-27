@@ -691,6 +691,741 @@ quizzes = {
     }
 ]
 ,
+"irregular_verbs_5": [
+    {
+        "question": "Turmoq",
+        "options": ["stand – stood – stood", "steal – stole – stolen", "stick – stuck – stuck", "sting – stung – stung"],
+        "correct": 0
+    },
+    {
+        "question": "O‘g‘irlamoq",
+        "options": ["steal – stole – stolen", "stick – stuck – stuck", "sting – stung – stung", "stink – stank – stunk"],
+        "correct": 0
+    },
+    {
+        "question": "Yopishtirmoq, tiqilmoq",
+        "options": ["stick – stuck – stuck", "sting – stung – stung", "stink – stank – stunk", "strike – struck – struck"],
+        "correct": 0
+    },
+    {
+        "question": "Chaqmoq (ari, chayon)",
+        "options": ["sting – stung – stung", "stink – stank – stunk", "strike – struck – struck", "swear – swore – sworn"],
+        "correct": 0
+    },
+    {
+        "question": "Sasimoq, hid yomon bo‘lmoq",
+        "options": ["stink – stank – stunk", "strike – struck – struck", "swear – swore – sworn", "sweep – swept – swept"],
+        "correct": 0
+    },
+    {
+        "question": "Urmoq, zarba bermoq",
+        "options": ["strike – struck – struck", "swear – swore – sworn", "sweep – swept – swept", "swim – swam – swum"],
+        "correct": 0
+    },
+    {
+        "question": "Qasam ichmoq",
+        "options": ["swear – swore – sworn", "sweep – swept – swept", "swim – swam – swum", "swing – swung – swung"],
+        "correct": 0
+    },
+    {
+        "question": "Supurmoq",
+        "options": ["sweep – swept – swept", "swim – swam – swum", "swing – swung – swung", "take – took – taken"],
+        "correct": 0
+    },
+    {
+        "question": "Suzmoq",
+        "options": ["swim – swam – swum", "swing – swung – swung", "take – took – taken", "teach – taught – taught"],
+        "correct": 0
+    },
+    {
+        "question": "Tegirmoq, silkitmoq",
+        "options": ["swing – swung – swung", "take – took – taken", "teach – taught – taught", "tear – tore – torn"],
+        "correct": 0
+    },
+    {
+        "question": "Olmoq",
+        "options": ["take – took – taken", "teach – taught – taught", "tear – tore – torn", "tell – told – told"],
+        "correct": 0
+    },
+    {
+        "question": "O‘rgatmoq",
+        "options": ["teach – taught – taught", "tear – tore – torn", "tell – told – told", "think – thought – thought"],
+        "correct": 0
+    },
+    {
+        "question": "Yirtmoq",
+        "options": ["tear – tore – torn", "tell – told – told", "think – thought – thought", "throw – threw – thrown"],
+        "correct": 0
+    },
+    {
+        "question": "Aytmoq, gapirmoq",
+        "options": ["tell – told – told", "think – thought – thought", "throw – threw – thrown", "understand – understood – understood"],
+        "correct": 0
+    },
+    {
+        "question": "O‘ylamoq",
+        "options": ["think – thought – thought", "throw – threw – thrown", "understand – understood – understood", "wake – woke – woken"],
+        "correct": 0
+    },
+    {
+        "question": "Otmoq (narsa)",
+        "options": ["throw – threw – thrown", "understand – understood – understood", "wake – woke – woken", "wear – wore – worn"],
+        "correct": 0
+    },
+    {
+        "question": "Tushunmoq",
+        "options": ["understand – understood – understood", "wake – woke – woken", "wear – wore – worn", "weep – wept – wept"],
+        "correct": 0
+    },
+    {
+        "question": "Uyg‘otmoq",
+        "options": ["wake – woke – woken", "wear – wore – worn", "weep – wept – wept", "win – won – won"],
+        "correct": 0
+    },
+    {
+        "question": "Kiyinmoq",
+        "options": ["wear – wore – worn", "weep – wept – wept", "win – won – won", "write – wrote – written"],
+        "correct": 0
+    },
+    {
+        "question": "Yig‘lamoq",
+        "options": ["weep – wept – wept", "win – won – won", "write – wrote – written", "stand – stood – stood"],
+        "correct": 0
+    },
+    {
+        "question": "Yutmoq (g‘alaba)",
+        "options": ["win – won – won", "write – wrote – written", "stand – stood – stood", "steal – stole – stolen"],
+        "correct": 0
+    }
+]
+    ,
+    "irregular_verbs_6": [
+    {
+        "question": "Yozmoq",
+        "options": ["write – wrote – written", "arise – arose – arisen", "awake – awoke – awoken", "bear – bore – borne"],
+        "correct": 0
+    },
+    {
+        "question": "Ko'tarilmoq, paydo bo'lmoq",
+        "options": ["arise – arose – arisen", "awake – awoke – awoken", "bear – bore – borne", "befall – befell – befallen"],
+        "correct": 0
+    },
+    {
+        "question": "Uygonmoq",
+        "options": ["awake – awoke – awoken", "bear – bore – borne", "befall – befell – befallen", "bid – bid/bade – bid/bidden"],
+        "correct": 0
+    },
+    {
+        "question": "Ko'tarmoq, chidamoq",
+        "options": ["bear – bore – borne", "befall – befell – befallen", "bid – bid/bade – bid/bidden", "bind – bound – bound"],
+        "correct": 0
+    },
+    {
+        "question": "Sodir bo'lmoq, yuz bermoq",
+        "options": ["befall – befell – befallen", "bid – bid/bade – bid/bidden", "bind – bound – bound", "bleed – bled – bled"],
+        "correct": 0
+    },
+    {
+        "question": "Taklif qilmoq, buyurmoq",
+        "options": ["bid – bid/bade – bid/bidden", "bind – bound – bound", "bleed – bled – bled", "breed – bred – bred"],
+        "correct": 0
+    },
+    {
+        "question": "Bog'lamoq",
+        "options": ["bind – bound – bound", "bleed – bled – bled", "breed – bred – bred", "cling – clung – clung"],
+        "correct": 0
+    },
+    {
+        "question": "Qonamoq",
+        "options": ["bleed – bled – bled", "breed – bred – bred", "cling – clung – clung", "dive – dove/dived – dived"],
+        "correct": 0
+    },
+    {
+        "question": "Ko'paytirmoq, boqmoq",
+        "options": ["breed – bred – bred", "cling – clung – clung", "dive – dove/dived – dived", "draw – drew – drawn"],
+        "correct": 0
+    },
+    {
+        "question": "Yopishmoq, mahkam ushlamoq",
+        "options": ["cling – clung – clung", "dive – dove/dived – dived", "draw – drew – drawn", "dream – dreamt/dreamed – dreamt/dreamed"],
+        "correct": 0
+    },
+    {
+        "question": "Sho'ng'imoq",
+        "options": ["dive – dove/dived – dived", "draw – drew – drawn", "dream – dreamt/dreamed – dreamt/dreamed", "feed – fed – fed"],
+        "correct": 0
+    },
+    {
+        "question": "Chizmoq, tortmoq",
+        "options": ["draw – drew – drawn", "dream – dreamt/dreamed – dreamt/dreamed", "feed – fed – fed", "flee – fled – fled"],
+        "correct": 0
+    },
+    {
+        "question": "Tush ko'rmoq",
+        "options": ["dream – dreamt/dreamed – dreamt/dreamed", "feed – fed – fed", "flee – fled – fled", "fling – flung – flung"],
+        "correct": 0
+    },
+    {
+        "question": "Boqmoq, ovqat bermoq",
+        "options": ["feed – fed – fed", "flee – fled – fled", "fling – flung – flung", "grind – ground – ground"],
+        "correct": 0
+    },
+    {
+        "question": "Qochmoq",
+        "options": ["flee – fled – fled", "fling – flung – flung", "grind – ground – ground", "hear – heard – heard"],
+        "correct": 0
+    },
+    {
+        "question": "Otmoq, uloqtirmoq",
+        "options": ["fling – flung – flung", "grind – ground – ground", "hear – heard – heard", "lead – led – led"],
+        "correct": 0
+    },
+    {
+        "question": "Maydamoq, yanchmoq",
+        "options": ["grind – ground – ground", "hear – heard – heard", "lead – led – led", "lend – lent – lent"],
+        "correct": 0
+    },
+    {
+        "question": "Eshitmoq",
+        "options": ["hear – heard – heard", "lead – led – led", "lend – lent – lent", "write – wrote – written"],
+        "correct": 0
+    },
+    {
+        "question": "Rahnamolik qilmoq, boshlmoq",
+        "options": ["lead – led – led", "lend – lent – lent", "write – wrote – written", "arise – arose – arisen"],
+        "correct": 0
+    },
+    {
+        "question": "Qarzga bermoq",
+        "options": ["lend – lent – lent", "write – wrote – written", "arise – arose – arisen", "awake – awoke – awoken"],
+        "correct": 0
+    }
+],
+{
+  "irregular_verbs_all": [
+    {
+      "question": "Bo'lmoq",
+      "options": ["be – was/were – been", "beat – beat – beaten", "become – became – become", "begin – began – begun"],
+      "correct": 0
+    },
+    {
+      "question": "Urilmoq",
+      "options": ["beat – beat – beaten", "become – became – become", "begin – began – begun", "bend – bent – bent"],
+      "correct": 0
+    },
+    {
+      "question": "Bo'lmoq (o'zgarish)",
+      "options": ["become – became – become", "begin – began – begun", "bend – bent – bent", "bet – bet – bet"],
+      "correct": 0
+    },
+    {
+      "question": "Boshlanmoq",
+      "options": ["begin – began – begun", "bend – bent – bent", "bet – bet – bet", "bite – bit – bitten"],
+      "correct": 0
+    },
+    {
+      "question": "Egilmoq",
+      "options": ["bend – bent – bent", "bet – bet – bet", "bite – bit – bitten", "blow – blew – blown"],
+      "correct": 0
+    },
+    {
+      "question": "Tishlamoq",
+      "options": ["bite – bit – bitten", "blow – blew – blown", "break – broke – broken", "bring – brought – brought"],
+      "correct": 0
+    },
+    {
+      "question": "Puflamoq",
+      "options": ["blow – blew – blown", "break – broke – broken", "bring – brought – brought", "build – built – built"],
+      "correct": 0
+    },
+    {
+      "question": "Sindirmoq",
+      "options": ["break – broke – broken", "bring – brought – brought", "build – built – built", "burn – burned/burnt – burned/burnt"],
+      "correct": 0
+    },
+    {
+      "question": "Olib kelmoq",
+      "options": ["bring – brought – brought", "build – built – built", "burn – burned/burnt – burned/burnt", "buy – bought – bought"],
+      "correct": 0
+    },
+    {
+      "question": "Qurmoq",
+      "options": ["build – built – built", "burn – burned/burnt – burned/burnt", "buy – bought – bought", "catch – caught – caught"],
+      "correct": 0
+    },
+    {
+      "question": "Yonmoq",
+      "options": ["burn – burned/burnt – burned/burnt", "buy – bought – bought", "catch – caught – caught", "choose – chose – chosen"],
+      "correct": 0
+    },
+    {
+      "question": "Sotib olmoq",
+      "options": ["buy – bought – bought", "catch – caught – caught", "choose – chose – chosen", "come – came – come"],
+      "correct": 0
+    },
+    {
+      "question": "Tutmoq",
+      "options": ["catch – caught – caught", "choose – chose – chosen", "come – came – come", "cost – cost – cost"],
+      "correct": 0
+    },
+    {
+      "question": "Tanlamoq",
+      "options": ["choose – chose – chosen", "come – came – come", "cost – cost – cost", "cut – cut – cut"],
+      "correct": 0
+    },
+    {
+      "question": "Kelmoq",
+      "options": ["come – came – come", "cost – cost – cost", "cut – cut – cut", "dig – dug – dug"],
+      "correct": 0
+    },
+    {
+      "question": "Narx turmoq",
+      "options": ["cost – cost – cost", "cut – cut – cut", "dig – dug – dug", "do – did – done"],
+      "correct": 0
+    },
+    {
+      "question": "Kesmoq",
+      "options": ["cut – cut – cut", "dig – dug – dug", "do – did – done", "draw – drew – drawn"],
+      "correct": 0
+    },
+    {
+      "question": "Qazimoq",
+      "options": ["dig – dug – dug", "do – did – done", "draw – drew – drawn", "drink – drank – drunk"],
+      "correct": 0
+    },
+    {
+      "question": "Qilmoq",
+      "options": ["do – did – done", "draw – drew – drawn", "drink – drank – drunk", "drive – drove – driven"],
+      "correct": 0
+    },
+    {
+      "question": "Chizmoq",
+      "options": ["draw – drew – drawn", "drink – drank – drunk", "drive – drove – driven", "eat – ate – eaten"],
+      "correct": 0
+    },
+    {
+      "question": "Ichmoq",
+      "options": ["drink – drank – drunk", "drive – drove – driven", "eat – ate – eaten", "fall – fell – fallen"],
+      "correct": 0
+    },
+    {
+      "question": "Haydamoq",
+      "options": ["drive – drove – driven", "eat – ate – eaten", "fall – fell – fallen", "feed – fed – fed"],
+      "correct": 0
+    },
+    {
+      "question": "Yemoq",
+      "options": ["eat – ate – eaten", "fall – fell – fallen", "feed – fed – fed", "feel – felt – felt"],
+      "correct": 0
+    },
+    {
+      "question": "Yiqilmoq",
+      "options": ["fall – fell – fallen", "feed – fed – fed", "feel – felt – felt", "fight – fought – fought"],
+      "correct": 0
+    },
+    {
+      "question": "Boqmoq",
+      "options": ["feed – fed – fed", "feel – felt – felt", "fight – fought – fought", "find – found – found"],
+      "correct": 0
+    },
+    {
+      "question": "Hiss qilmoq",
+      "options": ["feel – felt – felt", "fight – fought – fought", "find – found – found", "fly – flew – flown"],
+      "correct": 0
+    },
+    {
+      "question": "Jang qilmoq",
+      "options": ["fight – fought – fought", "find – found – found", "fly – flew – flown", "forget – forgot – forgotten"],
+      "correct": 0
+    },
+    {
+      "question": "Topmoq",
+      "options": ["find – found – found", "fly – flew – flown", "forget – forgot – forgotten", "forgive – forgave – forgiven"],
+      "correct": 0
+    },
+    {
+      "question": "Uchmoq",
+      "options": ["fly – flew – flown", "forget – forgot – forgotten", "forgive – forgave – forgiven", "freeze – froze – frozen"],
+      "correct": 0
+    },
+    {
+      "question": "Unutmoq",
+      "options": ["forget – forgot – forgotten", "forgive – forgave – forgiven", "freeze – froze – frozen", "get – got – gotten"],
+      "correct": 0
+    },
+    {
+      "question": "Kechirmoq",
+      "options": ["forgive – forgave – forgiven", "freeze – froze – frozen", "get – got – gotten", "give – gave – given"],
+      "correct": 0
+    },
+    {
+      "question": "Muzlamoq",
+      "options": ["freeze – froze – frozen", "get – got – gotten", "give – gave – given", "go – went – gone"],
+      "correct": 0
+    },
+    {
+      "question": "Olishmoq",
+      "options": ["get – got – gotten", "give – gave – given", "go – went – gone", "grow – grew – grown"],
+      "correct": 0
+    },
+    {
+      "question": "Bermoq",
+      "options": ["give – gave – given", "go – went – gone", "grow – grew – grown", "hang – hung – hung"],
+      "correct": 0
+    },
+    {
+      "question": "Ketmoq",
+      "options": ["go – went – gone", "grow – grew – grown", "hang – hung – hung", "have – had – had"],
+      "correct": 0
+    },
+    {
+      "question": "O'smoq",
+      "options": ["grow – grew – grown", "hang – hung – hung", "have – had – had", "hear – heard – heard"],
+      "correct": 0
+    },
+    {
+      "question": "Osilmoq",
+      "options": ["hang – hung – hung", "have – had – had", "hear – heard – heard", "hide – hid – hidden"],
+      "correct": 0
+    },
+    {
+      "question": "Egallamoq",
+      "options": ["have – had – had", "hear – heard – heard", "hide – hid – hidden", "hit – hit – hit"],
+      "correct": 0
+    },
+    {
+      "question": "Eshitmoq",
+      "options": ["hear – heard – heard", "hide – hid – hidden", "hit – hit – hit", "hold – held – held"],
+      "correct": 0
+    },
+    {
+      "question": "Yashirmoq",
+      "options": ["hide – hid – hidden", "hit – hit – hit", "hold – held – held", "hurt – hurt – hurt"],
+      "correct": 0
+    },
+    {
+      "question": "Urilmoq",
+      "options": ["hit – hit – hit", "hold – held – held", "hurt – hurt – hurt", "keep – kept – kept"],
+      "correct": 0
+    },
+    {
+      "question": "Uslab turmoq",
+      "options": ["hold – held – held", "hurt – hurt – hurt", "keep – kept – kept", "know – knew – known"],
+      "correct": 0
+    },
+    {
+      "question": "Alam qilmoq",
+      "options": ["hurt – hurt – hurt", "keep – kept – kept", "know – knew – known", "lay – laid – laid"],
+      "correct": 0
+    },
+    {
+      "question": "Saqlab turmoq",
+      "options": ["keep – kept – kept", "know – knew – known", "lay – laid – laid", "lead – led – led"],
+      "correct": 0
+    },
+    {
+      "question": "Bilmoq",
+      "options": ["know – knew – known", "lay – laid – laid", "lead – led – led", "leave – left – left"],
+      "correct": 0
+    },
+    {
+      "question": "Qo'yishmoq",
+      "options": ["lay – laid – laid", "lead – led – led", "leave – left – left", "lend – lent – lent"],
+      "correct": 0
+    },
+    {
+      "question": "Boshqarmoq",
+      "options": ["lead – led – led", "leave – left – left", "lend – lent – lent", "let – let – let"],
+      "correct": 0
+    },
+    {
+      "question": "Ketishmoq",
+      "options": ["leave – left – left", "lend – lent – lent", "let – let – let", "lie – lay – lain"],
+      "correct": 0
+    },
+    {
+      "question": "Qarzga bermoq",
+      "options": ["lend – lent – lent", "let – let – let", "lie – lay – lain", "lose – lost – lost"],
+      "correct": 0
+    },
+    {
+      "question": "Ruxsat bermoq",
+      "options": ["let – let – let", "lie – lay – lain", "lose – lost – lost", "make – made – made"],
+      "correct": 0
+    },
+    {
+      "question": "Yotishmoq",
+      "options": ["lie – lay – lain", "lose – lost – lost", "make – made – made", "mean – meant – meant"],
+      "correct": 0
+    },
+    {
+      "question": "Yo'qotmoq",
+      "options": ["lose – lost – lost", "make – made – made", "mean – meant – meant", "meet – met – met"],
+      "correct": 0
+    },
+    {
+      "question": "Qilmoq, yasamoq",
+      "options": ["make – made – made", "mean – meant – meant", "meet – met – met", "pay – paid – paid"],
+      "correct": 0
+    },
+    {
+      "question": "Anglatmoq",
+      "options": ["mean – meant – meant", "meet – met – met", "pay – paid – paid", "put – put – put"],
+      "correct": 0
+    },
+    {
+      "question": "Uchrashmoq",
+      "options": ["meet – met – met", "pay – paid – paid", "put – put – put", "read – read – read"],
+      "correct": 0
+    },
+    {
+      "question": "To'lamoq",
+      "options": ["pay – paid – paid", "put – put – put", "read – read – read", "ride – rode – ridden"],
+      "correct": 0
+    },
+    {
+      "question": "Qo'yishmoq",
+      "options": ["put – put – put", "read – read – read", "ride – rode – ridden", "ring – rang – rung"],
+      "correct": 0
+    },
+    {
+      "question": "O'qimoq",
+      "options": ["read – read – read", "ride – rode – ridden", "ring – rang – rung", "rise – rose – risen"],
+      "correct": 0
+    },
+    {
+      "question": "Minmoq",
+      "options": ["ride – rode – ridden", "ring – rang – rung", "rise – rose – risen", "run – ran – run"],
+      "correct": 0
+    },
+    {
+      "question": "Qo'ng'iroq qilmoq",
+      "options": ["ring – rang – rung", "rise – rose – risen", "run – ran – run", "say – said – said"],
+      "correct": 0
+    },
+    {
+      "question": "Ko'tarilmoq",
+      "options": ["rise – rose – risen", "run – ran – run", "say – said – said", "see – saw – seen"],
+      "correct": 0
+    },
+    {
+      "question": "Yugurmoq",
+      "options": ["run – ran – run", "say – said – said", "see – saw – seen", "seek – sought – sought"],
+      "correct": 0
+    },
+    {
+      "question": "Aytmoq",
+      "options": ["say – said – said", "see – saw – seen", "seek – sought – sought", "sell – sold – sold"],
+      "correct": 0
+    },
+    {
+      "question": "Ko'rmoq",
+      "options": ["see – saw – seen", "seek – sought – sought", "sell – sold – sold", "send – sent – sent"],
+      "correct": 0
+    },
+    {
+      "question": "Izlamoq",
+      "options": ["seek – sought – sought", "sell – sold – sold", "send – sent – sent", "set – set – set"],
+      "correct": 0
+    },
+    {
+      "question": "Sotmoq",
+      "options": ["sell – sold – sold", "send – sent – sent", "set – set – set", "shake – shook – shaken"],
+      "correct": 0
+    },
+    {
+      "question": "Yubormoq",
+      "options": ["send – sent – sent", "set – set – set", "shake – shook – shaken", "shine – shone – shone"],
+      "correct": 0
+    },
+    {
+      "question": "O'rnatmoq",
+      "options": ["set – set – set", "shake – shook – shaken", "shine – shone – shone", "shoot – shot – shot"],
+      "correct": 0
+    },
+    {
+      "question": "Silkitmoq",
+      "options": ["shake – shook – shaken", "shine – shone – shone", "shoot – shot – shot", "show – showed – shown"],
+      "correct": 0
+    },
+    {
+      "question": "Yaltiramoq",
+      "options": ["shine – shone – shone", "shoot – shot – shot", "show – showed – shown", "shut – shut – shut"],
+      "correct": 0
+    },
+    {
+      "question": "O'q otmoq",
+      "options": ["shoot – shot – shot", "show – showed – shown", "shut – shut – shut", "sing – sang – sung"],
+      "correct": 0
+    },
+    {
+      "question": "Ko'rsatmoq",
+      "options": ["show – showed – shown", "shut – shut – shut", "sing – sang – sung", "sit – sat – sat"],
+      "correct": 0
+    },
+    {
+      "question": "Yopmoq",
+      "options": ["shut – shut – shut", "sing – sang – sung", "sit – sat – sat", "sleep – slept – slept"],
+      "correct": 0
+    },
+    {
+      "question": "Kuylamoq",
+      "options": ["sing – sang – sung", "sit – sat – sat", "sleep – slept – slept", "slide – slid – slid"],
+      "correct": 0
+    },
+    {
+      "question": "O'tirib olmoq",
+      "options": ["sit – sat – sat", "sleep – slept – slept", "slide – slid – slid", "speak – spoke – spoken"],
+      "correct": 0
+    },
+    {
+      "question": "Uxlamoq",
+      "options": ["sleep – slept – slept", "slide – slid – slid", "speak – spoke – spoken", "spend – spent – spent"],
+      "correct": 0
+    },
+    {
+      "question": "Sirpanmoq",
+      "options": ["slide – slid – slid", "speak – spoke – spoken", "spend – spent – spent", "spit – spat – spat"],
+      "correct": 0
+    },
+    {
+      "question": "Gapirmoq",
+      "options": ["speak – spoke – spoken", "spend – spent – spent", "spit – spat – spat", "split – split – split"],
+      "correct": 0
+    },
+    {
+      "question": "Sarflamoq",
+      "options": ["spend – spent – spent", "spit – spat – spat", "split – split – split", "spread – spread – spread"],
+      "correct": 0
+    },
+    {
+      "question": "Tupurmoq",
+      "options": ["spit – spat – spat", "split – split – split", "spread – spread – spread", "stand – stood – stood"],
+      "correct": 0
+    },
+    {
+      "question": "Bo'lmoq (yoriq)",
+      "options": ["split – split – split", "spread – spread – spread", "stand – stood – stood", "steal – stole – stolen"],
+      "correct": 0
+    },
+    {
+      "question": "Yoymoq",
+      "options": ["spread – spread – spread", "stand – stood – stood", "steal – stole – stolen", "stick – stuck – stuck"],
+      "correct": 0
+    },
+    {
+      "question": "Turmoq",
+      "options": ["stand – stood – stood", "steal – stole – stolen", "stick – stuck – stuck", "sting – stung – stung"],
+      "correct": 0
+    },
+    {
+      "question": "O'g'irlamoq",
+      "options": ["steal – stole – stolen", "stick – stuck – stuck", "sting – stung – stung", "stink – stank – stunk"],
+      "correct": 0
+    },
+    {
+      "question": "Yopishtirmoq",
+      "options": ["stick – stuck – stuck", "sting – stung – stung", "stink – stank – stunk", "strike – struck – struck"],
+      "correct": 0
+    },
+    {
+      "question": "Chaqmoq (ari)",
+      "options": ["sting – stung – stung", "stink – stank – stunk", "strike – struck – struck", "swear – swore – sworn"],
+      "correct": 0
+    },
+    {
+      "question": "Sasimoq",
+      "options": ["stink – stank – stunk", "strike – struck – struck", "swear – swore – sworn", "sweep – swept – swept"],
+      "correct": 0
+    },
+    {
+      "question": "Urmoq",
+      "options": ["strike – struck – struck", "swear – swore – sworn", "sweep – swept – swept", "swim – swam – swum"],
+      "correct": 0
+    },
+    {
+      "question": "Qasam ichmoq",
+      "options": ["swear – swore – sworn", "sweep – swept – swept", "swim – swam – swum", "swing – swung – swung"],
+      "correct": 0
+    },
+    {
+      "question": "Supurmoq",
+      "options": ["sweep – swept – swept", "swim – swam – swum", "swing – swung – swung", "take – took – taken"],
+      "correct": 0
+    },
+    {
+      "question": "Suzmoq",
+      "options": ["swim – swam – swum", "swing – swung – swung", "take – took – taken", "teach – taught – taught"],
+      "correct": 0
+    },
+    {
+      "question": "Tegirmoq",
+      "options": ["swing – swung – swung", "take – took – taken", "teach – taught – taught", "tear – tore – torn"],
+      "correct": 0
+    },
+    {
+      "question": "Olishmoq",
+      "options": ["take – took – taken", "teach – taught – taught", "tear – tore – torn", "tell – told – told"],
+      "correct": 0
+    },
+    {
+      "question": "O'rgatmoq",
+      "options": ["teach – taught – taught", "tear – tore – torn", "tell – told – told", "think – thought – thought"],
+      "correct": 0
+    },
+    {
+      "question": "Yirtmoq",
+      "options": ["tear – tore – torn", "tell – told – told", "think – thought – thought", "throw – threw – thrown"],
+      "correct": 0
+    },
+    {
+      "question": "Aytmoq",
+      "options": ["tell – told – told", "think – thought – thought", "throw – threw – thrown", "understand – understood – understood"],
+      "correct": 0
+    },
+    {
+      "question": "O'ylamoq",
+      "options": ["think – thought – thought", "throw – threw – thrown", "understand – understood – understood", "wake – woke – woken"],
+      "correct": 0
+    },
+    {
+      "question": "Otmoq",
+      "options": ["throw – threw – thrown", "understand – understood – understood", "wake – woke – woken", "wear – wore – worn"],
+      "correct": 0
+    },
+    {
+      "question": "Tushunmoq",
+      "options": ["understand – understood – understood", "wake – woke – woken", "wear – wore – worn", "weep – wept – wept"],
+      "correct": 0
+    },
+    {
+      "question": "Uyg'otmoq",
+      "options": ["wake – woke – woken", "wear – wore – worn", "weep – wept – wept", "win – won – won"],
+      "correct": 0
+    },
+    {
+      "question": "Kiyinmoq",
+      "options": ["wear – wore – worn", "weep – wept – wept", "win – won – won", "write – wrote – written"],
+      "correct": 0
+    },
+    {
+      "question": "Yig'lamoq",
+      "options": ["weep – wept – wept", "win – won – won", "write – wrote – written", "be – was/were – been"],
+      "correct": 0
+    },
+    {
+      "question": "Yutmoq",
+      "options": ["win – won – won", "write – wrote – written", "be – was/were – been", "beat – beat – beaten"],
+      "correct": 0
+    },
+    {
+      "question": "Yozmoq",
+      "options": ["write – wrote – written", "be – was/were – been", "beat – beat – beaten", "become – became – become"],
+      "correct": 0
+    }
+  ]
+},
+    
 "present_simple": [
     {
         "question": "She ___ to school every day.",
@@ -1378,6 +2113,8 @@ async def show_irregular_verbs(message: types.Message):
         keyboard=[
             [KeyboardButton(text="🌟 I verb 1"), KeyboardButton(text="🌟 I verb 2")],
             [KeyboardButton(text="🌟 I verb 3"), KeyboardButton(text="🌟 I verb 4")],
+            [KeyboardButton(text="🌟 I verb 5"), KeyboardButton(text="🌟 I verb 6")],
+            [KeyboardButton(text="🌟 I verb All")],
             [KeyboardButton(text="♻️ Barcha Irregular Verbs")],
             [KeyboardButton(text="⬅️ Ortga")],
         ],
@@ -1385,17 +2122,23 @@ async def show_irregular_verbs(message: types.Message):
     )
 
     await message.answer(
-        "🌟 *Irregular Verbs testlaridan birini tanlang:*\n\n"
-        "📌 *Eng ko‘p ishlatiladigan fe’llar:*\n"
-        "1️⃣ I verb 1 - Asosiy va keng tarqalgan irregular verbs\n\n"
-        "📌 *Qo‘shimcha fe’llar:*\n"
-        "2️⃣ I verb 2 - Ishlatilishi keng, lekin unchalik mashhur emas\n\n"
-        "📌 *Kamroq ishlatiladigan fe’llar:*\n"
-        "3️⃣ I verb 3 - Kam ishlatiladigan irregular verbs\n\n"
-        "📌 *Noyob fe’llar:*\n"
-        "4️⃣ I verb 4 - Juda kam uchraydigan irregular verbs\n\n"
-        "♻️ - *Barcha irregular verbs aralash holda*\n"
-        "⬅️ *Ortga qaytish*",
+ """
+🌟 *Irregular Verbs testlaridan birini tanlang:*\n\n
+📌 *Eng ko‘p ishlatiladigan fe’llar:*\n
+1️⃣ I verb 1 - 1 dan 20 gacha\n\n
+📌 *Qo‘shimcha fe’llar:*\n
+2️⃣ I verb 2 - 21 dan 40 gacha\n\n
+📌 *Kamroq ishlatiladigan fe’llar:*\n
+3️⃣ I verb 3 - 41 dan 60 gacha \n\n
+📌 *Noyob fe’llar:*\n
+4️⃣ I verb 4 - 61 dan 80 gacha\n\n
+5️⃣ I verb 5 - 81 dan 100 gacha\n\n
+6️⃣ I verb 6 - 100 dan 120 gacha\n\n
+🔄 All I verb ALL - Barcha testlarni takrorlash\n\n
+💡 *Eslatma:* Kerakli raqamni tanlang yoki /buyruqni kiriting!
+♻️ - *testni takrorlash*\n
+⬅️ *Ortga qaytish*
+""",
         reply_markup=keyboard,
         parse_mode="Markdown"
     )
@@ -1475,7 +2218,7 @@ async def show_ratings(message: types.Message):
 @dp.message(lambda message: message.text in [
     "🧠❤️👀 State Verbs", 
     "📜 P verb 1", "📜 P verb 2", "📜 P verb 3", "📜 P verb 4",
-    "🌟 I verb 1", "🌟 I verb 2", "🌟 I verb 3", "🌟 I verb 4",
+    "🌟 I verb 1", "🌟 I verb 2", "🌟 I verb 3", "🌟 I verb 4", "🌟 I verb 5", "🌟 I verb 6","🌟 I verb All",
     "⏳ Present Simple", "⏳ Present Continuous",
     "⏳ Past Simple", "⏳ Past Continuous",
     "⏳ Future Simple", "⏳ Future Continuous",
@@ -1493,6 +2236,9 @@ async def start_quiz(message: types.Message):
         "🌟 I verb 2": "irregular_verbs_2",
         "🌟 I verb 3": "irregular_verbs_3",
         "🌟 I verb 4": "irregular_verbs_4",
+        "🌟 I verb 5": "irregular_verbs_5",
+        "🌟 I verb 6": "irregular_verbs_6",
+        "🌟 I verb All": "irregular_verbs_all",
         "⏳ Present Simple": "present_simple",
         "⏳ Present Continuous": "present_continuous",
         "⏳ Past Simple": "past_simple",
