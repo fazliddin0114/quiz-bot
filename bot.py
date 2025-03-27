@@ -901,7 +901,6 @@ quizzes = {
         "correct": 0
     }
 ],
-{
   "irregular_verbs_all": [
     {
       "question": "Bo'lmoq",
@@ -1423,8 +1422,7 @@ quizzes = {
       "options": ["write – wrote – written", "be – was/were – been", "beat – beat – beaten", "become – became – become"],
       "correct": 0
     }
-  ]
-},
+  ],
     
 "present_simple": [
     {
