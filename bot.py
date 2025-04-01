@@ -2171,70 +2171,6 @@ async def show_tenses_menu(message: types.Message):
         reply_markup=keyboard,
         parse_mode="Markdown"
     )
-@dp.message(lambda message: message.text == "⏳ Present Simple")
-async def show_present_simple(message: types.Message):
-    lesson = """
-⏳ *PRESENT SIMPLE* - Oddiy Hozirgi Zamon
-
-🔹 *Asosiy ma'nosi*:
-• Doimiy holatlar 🏠
-• Takrorlanuvchi harakatlar 🔁
-• Tabiat qonunlari 🌍
-• Jadvaldagi voqealar 🕒
-
-🔸 *Qo'llanilishi*:
-1️⃣ *Doimiy harakatlar*:
-   - I _work_ in an office (Men ofisda ishlayman)
-   - She _studies_ at university (U universitetda o'qiydi)
-
-2️⃣ *Takroriy harakatlar*:
-   - We _visit_ our parents _every weekend_ (Har dam olishda ota-onamizga boramiz)
-   - He _usually drinks_ tea (U odatda choy ichadi)
-
-3️⃣ *Jadval/transport*:
-   - The train _leaves_ at 7 PM (Poyezd soat 19:00 da ketadi)
-   - Class _starts_ at 9 AM (Dars soat 9:00 da boshlanadi)
-
-4️⃣ *Tabiat hodisalari*:
-   - Water _boils_ at 100°C (Suv 100°C da qaynaydi)
-   - The Earth _revolves_ around the Sun (Yer Quyosh atrofida aylanadi)
-
-🔹 *Shakllanishi*:
-┌───────────┬─────────────┬─────────────┐
-│  Shaxs    │ Ijobiy      │ Inkor       │
-├───────────┼─────────────┼─────────────┤
-│ I/You/We  │ I work      │ I don't work│
-│ They      │             │             │
-├───────────┼─────────────┼─────────────┤
-│ He/She/It │ She works   │ She doesn't │
-│           │             │ work        │
-└───────────┴─────────────┴─────────────┘
-
-🔸 *Savol shakli*:
-• _Do_ you work? (Ishlayapsizmi?)
-• _Does_ she study? (U o'qiydimi?)
-
-📌 *Eslatmalar*:
-1. He/She/It bilan fe'lga -s/-es qo'shiladi:
-   - teach → teaches
-   - go → goes
-   - study → studies
-
-2. *Signal so'zlar*:
-   always, usually, often, sometimes, 
-   never, every day, on Mondays
-
-💡 *Farqlar*:
-• Present Simple: I _eat_ breakfast at 8 AM (Har kuni)
-• Present Continuous: I _am eating_ breakfast now (Hozir)
-
-📚 *Misol gaplar*:
-✅ I _watch_ TV in the evenings
-❌ She _doesn't like_ coffee
-❓ _Do_ you _speak_ English?
-"""
-    await message.answer(lesson, parse_mode="Markdown")
-
 
 @dp.message(lambda message: message.text == "📚 English Lessons")
 async def show_english_lessons(message: types.Message):
@@ -2504,7 +2440,7 @@ async def show_ratings(message: types.Message):
     sorted_ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
     result = "🏆 *Top 10 Reyting:*\n\n"
     
-    for idx, (user_id, score) in enumerate(sorted_ratings[:10], 1):
+    for idx, (user_id, score) in enumerate(sorted_ratings[:15], 1):
         try:
             user = await bot.get_chat(user_id)
             name = user.first_name or user.username or f"Foydalanuvchi {user_id}"
