@@ -2171,6 +2171,70 @@ async def show_tenses_menu(message: types.Message):
         reply_markup=keyboard,
         parse_mode="Markdown"
     )
+@dp.message(lambda message: message.text == "⏳ Present Simple")
+async def show_present_simple(message: types.Message):
+    lesson = """
+⏳ *PRESENT SIMPLE* - Oddiy Hozirgi Zamon
+
+🔹 *Asosiy ma'nosi*:
+• Doimiy holatlar 🏠
+• Takrorlanuvchi harakatlar 🔁
+• Tabiat qonunlari 🌍
+• Jadvaldagi voqealar 🕒
+
+🔸 *Qo'llanilishi*:
+1️⃣ *Doimiy harakatlar*:
+   - I _work_ in an office (Men ofisda ishlayman)
+   - She _studies_ at university (U universitetda o'qiydi)
+
+2️⃣ *Takroriy harakatlar*:
+   - We _visit_ our parents _every weekend_ (Har dam olishda ota-onamizga boramiz)
+   - He _usually drinks_ tea (U odatda choy ichadi)
+
+3️⃣ *Jadval/transport*:
+   - The train _leaves_ at 7 PM (Poyezd soat 19:00 da ketadi)
+   - Class _starts_ at 9 AM (Dars soat 9:00 da boshlanadi)
+
+4️⃣ *Tabiat hodisalari*:
+   - Water _boils_ at 100°C (Suv 100°C da qaynaydi)
+   - The Earth _revolves_ around the Sun (Yer Quyosh atrofida aylanadi)
+
+🔹 *Shakllanishi*:
+┌───────────┬─────────────┬─────────────┐
+│  Shaxs    │ Ijobiy      │ Inkor       │
+├───────────┼─────────────┼─────────────┤
+│ I/You/We  │ I work      │ I don't work│
+│ They      │             │             │
+├───────────┼─────────────┼─────────────┤
+│ He/She/It │ She works   │ She doesn't │
+│           │             │ work        │
+└───────────┴─────────────┴─────────────┘
+
+🔸 *Savol shakli*:
+• _Do_ you work? (Ishlayapsizmi?)
+• _Does_ she study? (U o'qiydimi?)
+
+📌 *Eslatmalar*:
+1. He/She/It bilan fe'lga -s/-es qo'shiladi:
+   - teach → teaches
+   - go → goes
+   - study → studies
+
+2. *Signal so'zlar*:
+   always, usually, often, sometimes, 
+   never, every day, on Mondays
+
+💡 *Farqlar*:
+• Present Simple: I _eat_ breakfast at 8 AM (Har kuni)
+• Present Continuous: I _am eating_ breakfast now (Hozir)
+
+📚 *Misol gaplar*:
+✅ I _watch_ TV in the evenings
+❌ She _doesn't like_ coffee
+❓ _Do_ you _speak_ English?
+"""
+    await message.answer(lesson, parse_mode="Markdown")
+
 
 @dp.message(lambda message: message.text == "📚 English Lessons")
 async def show_english_lessons(message: types.Message):
@@ -2199,9 +2263,9 @@ async def show_noun_lesson(message: types.Message):
         """
 📚 *Ingliz Tili Grammatikasi: Otlar (Nouns)*  
 
-# --------------------------
-# 1️⃣ *COUNTABLE vs UNCOUNTABLE NOUNS*
-# --------------------------
+
+ 1️⃣ *COUNTABLE vs UNCOUNTABLE NOUNS*
+
 ✅ *Sanaladigan (Countable):*  
    - `a book` → `two books`  
    - `an apple` → `three apples`  
@@ -2210,9 +2274,8 @@ async def show_noun_lesson(message: types.Message):
    - `water` (✅ some water | ❌ two waters)  
    - `sugar` (✅ much sugar | ❌ five sugars)  
 
-# --------------------------
-# 2️⃣ *KO'PLIK QOIDALARI (-s, -es, -ves, -ies)*
-# --------------------------
+ 2️⃣ *KO'PLIK QOIDALARI (-s, -es, -ves, -ies)*
+
 📌 *Oddiy qoida:* -s  
    - `cat → cats`  
    - `car → cars`  
@@ -2229,9 +2292,8 @@ async def show_noun_lesson(message: types.Message):
    - `baby → babies`  
    - `city → cities`  
 
-# --------------------------
-# 3️⃣ *NOTO'G'RI KO'PLIKLAR (Irregular Plurals)*
-# --------------------------
+ 3️⃣ *NOTO'G'RI KO'PLIKLAR (Irregular Plurals)*
+
 🔥 *O'zgaradiganlar:*  
    - `man → men`  
    - `woman → women`  
@@ -2240,9 +2302,9 @@ async def show_noun_lesson(message: types.Message):
    - `fish → fish`  
    - `deer → deer`  
 
-# --------------------------
-# 4️⃣ *SOME & COUNTABLE/UNCOUNTABLE*
-# --------------------------
+
+ 4️⃣ *SOME & COUNTABLE/UNCOUNTABLE*
+
 ✨ *Sanaladigan (ko'plik):*  
    - `some books`  
    - `some apples`  
@@ -2251,9 +2313,8 @@ async def show_noun_lesson(message: types.Message):
    - `some water`  
    - `some milk`  
 
-# --------------------------
-# 5️⃣ *TO BE FE'LI (is/am/are)*
-# --------------------------
+ 5️⃣ *TO BE FE'LI (is/am/are)*
+
 💡 *Yakkalik:*  
    - `I am a doctor.`  
    - `She is here.`  
@@ -2347,7 +2408,7 @@ _(Python kodiga o'xshab tuzilgan, lekin oddiy matn)_
         telegram_text,
         parse_mode="Markdown"
     )
-@dp.message(lambda message: message.text == "3️⃣ Quantifiers")
+@dp.message(lambda message: message.text =="3️⃣ A lot of/much/many")
 async def show_quantifiers_lesson(message: types.Message):
     telegram_text = """
 ⭐ *Ingliz Tili Grammatikasi: Miqdor Olmoshlari (Quantifiers)*  
@@ -2462,6 +2523,7 @@ async def show_ratings(message: types.Message):
     "⏳ Present Simple", "⏳ Present Continuous",
     "⏳ Past Simple", "⏳ Past Continuous",
     "⏳ Future Simple", "⏳ Future Continuous",
+    
     "♻️ Barcha Tenses", "♻️ Barcha Preposition Verbs", "♻️ Barcha Irregular Verbs"
 ])
 async def start_quiz(message: types.Message):
