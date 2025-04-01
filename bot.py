@@ -2052,11 +2052,10 @@ ratings = {}
 async def start(message: types.Message):
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
-            [KeyboardButton(text="🧠❤️👀 State Verbs")],
+            [KeyboardButton(text="🧠❤️👀 State Verbs"),  KeyboardButton(text="📚 English Lessons")],
             [KeyboardButton(text="📜 Preposition Verbs"), KeyboardButton(text="🌟 Irregular Verbs")],
-            [KeyboardButton(text="⏳ English Tenses")],  # Yangi bo'lim
-            [KeyboardButton(text="👤 Profil"),  KeyboardButton(text="📈 Reyting")],
-            [KeyboardButton(text="📞 Adminga murojaat")],
+            [KeyboardButton(text="⏳ English Tenses"),    KeyboardButton(text="👤 Profil")],  
+            [KeyboardButton(text="📈 Reyting"),           KeyboardButton(text="📞 Adminga murojaat")],
         ],
         resize_keyboard=True
     )
@@ -2066,11 +2065,10 @@ async def start(message: types.Message):
 async def back_to_main_menu(message: types.Message):
     keyboard = ReplyKeyboardMarkup(
        keyboard=[
-            [KeyboardButton(text="🧠❤️👀 State Verbs")],
+            [KeyboardButton(text="🧠❤️👀 State Verbs"),  KeyboardButton(text="📚 English Lessons")],
             [KeyboardButton(text="📜 Preposition Verbs"), KeyboardButton(text="🌟 Irregular Verbs")],
-            [KeyboardButton(text="⏳ English Tenses")],  # Yangi bo'lim
-            [KeyboardButton(text="👤 Profil"),  KeyboardButton(text="📈 Reyting")],
-            [KeyboardButton(text="📞 Adminga murojaat")],
+            [KeyboardButton(text="⏳ English Tenses"),    KeyboardButton(text="👤 Profil")],  
+            [KeyboardButton(text="📈 Reyting"),           KeyboardButton(text="📞 Adminga murojaat")],
         ],
         resize_keyboard=True
     )
@@ -2173,6 +2171,248 @@ async def show_tenses_menu(message: types.Message):
         reply_markup=keyboard,
         parse_mode="Markdown"
     )
+
+@dp.message(lambda message: message.text == "📚 English Lessons")
+async def show_english_lessons(message: types.Message):
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="1️⃣ The Noun"), KeyboardButton(text="2️⃣ Pronouns")],
+            [KeyboardButton(text="3️⃣ A lot of/much/many")],
+            [KeyboardButton(text="⬅️ Ortga")],
+        ],
+        resize_keyboard=True
+    )
+
+    await message.answer(
+        "📚 *Ingliz tili darslaridan birini tanlang:*\n\n"
+        "1️⃣ *The Noun* - Otlar va ularning qo'llanilishi\n"
+        "2️⃣ *Pronouns* - Olmoshlar (I, you, he, she...)\n"
+        "3️⃣ *A lot of/much/many* - Miqdor bildiruvchi so'zlar\n"
+        "⬅️ *Asosiy menyuga qaytish*",
+        reply_markup=keyboard,
+        parse_mode="Markdown"
+    )
+
+@dp.message(lambda message: message.text == "1️⃣ The Noun")
+async def show_noun_lesson(message: types.Message):
+    await message.answer(
+        """
+📚 *Ingliz Tili Grammatikasi: Otlar (Nouns)*  
+
+# --------------------------
+# 1️⃣ *COUNTABLE vs UNCOUNTABLE NOUNS*
+# --------------------------
+✅ *Sanaladigan (Countable):*  
+   - `a book` → `two books`  
+   - `an apple` → `three apples`  
+
+❌ *Sanalmaydigan (Uncountable):*  
+   - `water` (✅ some water | ❌ two waters)  
+   - `sugar` (✅ much sugar | ❌ five sugars)  
+
+# --------------------------
+# 2️⃣ *KO'PLIK QOIDALARI (-s, -es, -ves, -ies)*
+# --------------------------
+📌 *Oddiy qoida:* -s  
+   - `cat → cats`  
+   - `car → cars`  
+
+📌 *-s, -ss, -ch, -sh, -x, -o:* -es  
+   - `bus → buses`  
+   - `tomato → tomatoes`  
+
+📌 *-f/-fe:* -ves  
+   - `wolf → wolves`  
+   - `knife → knives`  
+
+📌 *-y → -ies* (undosh oldida)  
+   - `baby → babies`  
+   - `city → cities`  
+
+# --------------------------
+# 3️⃣ *NOTO'G'RI KO'PLIKLAR (Irregular Plurals)*
+# --------------------------
+🔥 *O'zgaradiganlar:*  
+   - `man → men`  
+   - `woman → women`  
+
+🔥 *O'zgarmaydiganlar:*  
+   - `fish → fish`  
+   - `deer → deer`  
+
+# --------------------------
+# 4️⃣ *SOME & COUNTABLE/UNCOUNTABLE*
+# --------------------------
+✨ *Sanaladigan (ko'plik):*  
+   - `some books`  
+   - `some apples`  
+
+✨ *Sanalmaydigan:*  
+   - `some water`  
+   - `some milk`  
+
+# --------------------------
+# 5️⃣ *TO BE FE'LI (is/am/are)*
+# --------------------------
+💡 *Yakkalik:*  
+   - `I am a doctor.`  
+   - `She is here.`  
+
+💡 *Ko'plik:*  
+   - `We are students.`  
+   - `They are happy.`  
+        """,
+        parse_mode="Markdown"
+    )
+
+
+
+
+@dp.message(lambda message: message.text == "2️⃣ Pronouns")
+async def show_pronouns_lesson(message: types.Message):
+    telegram_text = """
+⭐ *Ingliz Tili Grammatikasi: Olmoshlar (Pronouns)*  
+_(Python kodiga o'xshab tuzilgan, lekin oddiy matn)_  
+
+# --------------------------
+# 1️⃣ *DEMONSTRATIVE PRONOUNS (Ko'rsatish olmoshlari)*
+# --------------------------
+
+🔹 *Yaqin narsalar:*  
+   - `This` is a book. (Bu kitob.)  
+   - `These` are apples. (Bular olma.)  
+
+🔹 *Uzoq narsalar:*  
+   - `That` is a car. (U mashina.)  
+   - `Those` are trees. (Ular daraxtlar.)  
+
+✅ *Darak:* This is my bag.  
+❓ *So'roq:* Is that your car?  
+❌ *Inkor:* These are not your books.  
+
+# --------------------------
+# 2️⃣ *OBJECTIVE PRONOUNS (Ob'yekt olmoshlari)*
+# --------------------------
+
+📌 *Fe'lning ob'yecti* (nima? kim? ni/ga):  
+   - She loves `me`.  
+   - I see `him`.  
+   - Give it to `us`.  
+
+✅ *Darak:* She called me yesterday.  
+❓ *So'roq:* Did you see him?  
+❌ *Inkor:* They didn't invite us.  
+
+# --------------------------
+# 3️⃣ *POSSESSIVE ADJECTIVES (-ning)*
+# --------------------------
+
+🔹 *Ot oldidan keladi:*  
+   - `My` book  
+   - `His` car  
+   - `Our` house  
+
+✅ *Darak:* Her dress is beautiful.  
+❓ *So'roq:* Is this your phone?  
+❌ *Inkor:* Our teacher isn't here.  
+
+# --------------------------
+# 4️⃣ *POSSESSIVE PRONOUNS (-niki)*
+# --------------------------
+
+🔹 *Ot o'rniga keladi:*  
+   - The book is `mine`.  
+   - The car is `hers`.  
+
+✅ *Darak:* The red pen is mine.  
+❓ *So'roq:* Is this bag yours?  
+❌ *Inkor:* Those shoes aren't hers.  
+
+# --------------------------
+# 5️⃣ *POSSESSIVE CASE (-ning qo'shmasi)*
+# --------------------------
+
+📌 *Qoidalar:*  
+   - John's house  
+   - The cats' food (ko'plik)  
+   - Children's toys (noto'g'ri ko'plik)  
+
+✅ *Darak:* Sam's brother is a doctor.  
+❓ *So'roq:* Is this the cat's bowl?  
+❌ *Inkor:* This isn't John's laptop.  
+
+📚 *Eslatma:* Har bir turdagi olmoshni to'g'ri ishlatish muhim!
+"""
+    await message.answer(
+        telegram_text,
+        parse_mode="Markdown"
+    )
+@dp.message(lambda message: message.text == "3️⃣ Quantifiers")
+async def show_quantifiers_lesson(message: types.Message):
+    telegram_text = """
+⭐ *Ingliz Tili Grammatikasi: Miqdor Olmoshlari (Quantifiers)*  
+
+# --------------------------
+# 1️⃣ *A LOT OF / LOTS OF*
+# --------------------------
+
+🔹 *Ma'nosi:* "Ko'p" (sanaladigan va sanalmaydigan otlar bilan)  
+✅ *Misollar:*  
+   - `She has a lot of books.` (Unda ko'p kitob bor)  
+   - `There are lots of people here.` (Bu yerda ko'p odam bor)  
+
+# --------------------------
+# 2️⃣ *MUCH / HOW MUCH*
+# --------------------------
+
+🔹 *Ma'nosi:* "Ko'p" / "Qancha" (sanalmaydigan otlar)  
+✅ *Misollar:*  
+   - `We don't have much time.` (Bizda ko'p vaqt yo'q)  
+   - `How much sugar do you need?` (Qancha shakar kerak?)  
+
+# --------------------------
+# 3️⃣ *MANY / HOW MANY*
+# --------------------------
+
+🔹 *Ma'nosi:* "Ko'p" / "Qancha" (sanaladigan otlar)  
+✅ *Misollar:*  
+   - `There aren't many apples left.` (Ko'p olma qolmagan)  
+   - `How many students are there?` (Qancha talaba bor?)  
+
+# --------------------------
+# 4️⃣ *A LITTLE / LITTLE*
+# --------------------------
+
+🔹 *Ma'nosi:* "Bir oz" / "Juda kam" (sanalmaydigan otlar)  
+✅ *Misollar:*  
+   - `Add a little salt.` (Ozgina tuz qo'shing)  
+   - `There's little hope.` (Umid juda kam)  
+
+# --------------------------
+# 5️⃣ *A FEW / FEW*
+# --------------------------
+
+🔹 *Ma'nosi:* "Bir necha" / "Juda kam" (sanaladigan otlar)  
+✅ *Misollar:*  
+   - `I have a few friends.` (Menda bir necha do'st bor)  
+   - `Few people know this.` (Buni juda kam odam biladi)  
+
+📌 *Farqlar:*
+- `A little/A few` → Ijobiy (bir oz, lekin yetarli)
+- `Little/Few` → Salbiy (juda kam, deyarli yo'q)
+- `Much/Many` → Ko'pincha inkor/savol gaplarda
+
+💡 *Eslatma:*  
+- "Much" faqat sanalmaydigan otlar bilan  
+- "Many" faqat sanaladigan otlar bilan  
+- "A lot of" har ikkala tur bilan ishlatiladi
+"""
+    await message.answer(
+        telegram_text,
+        parse_mode="Markdown"
+    )
+
+
 
 @dp.message(lambda message: message.text == "👤 Profil")
 async def show_profile(message: types.Message):
