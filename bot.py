@@ -330,12 +330,7 @@ quizzes = {
             "options": ["Hujum qilish", "Ishonmoq", "Yomon munosabatda bo‘lmoq"],
             "correct": 1
         }
-    ],
-
-
-
-
-    
+    ],  
 "irregular_verbs_1": [
     {
         "question": "Bo‘lmoq",
@@ -2512,7 +2507,7 @@ async def show_ratings(message: types.Message):
 
 @dp.message(lambda message: message.text in [
     "🧠❤️👀 State Verbs", 
-    "📜 P verb 1", "📜 P verb 2", "📜 P verb 3", "📜 P verb 4", "📜 P verb 5"
+    "📜 P verb 1", "📜 P verb 2", "📜 P verb 3", "📜 P verb 4", "📜 P verb 5",
     "🌟 I verb 1", "🌟 I verb 2", "🌟 I verb 3", "🌟 I verb 4", "🌟 I verb 5", "🌟 I verb 6","🌟 I verb All",
     "⏳ Present Simple", "⏳ Present Continuous",
     "⏳ Past Simple", "⏳ Past Continuous",
