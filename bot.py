@@ -279,7 +279,7 @@ quizzes = {
         "correct": 1
     }
 ],
-    "p_verb_5" : [
+"p_verb_5" : [
         {
             "question": "\"Attack on\" birikmasining ma'nosi qanday?",
             "options": ["Qatnashmoq", "Hujum qilish", "Ishonmoq"],
@@ -2140,7 +2140,7 @@ async def show_preposition_verbs(message: types.Message):
             [KeyboardButton(text="📜 P verb 1"), KeyboardButton(text="📜 P verb 2")],
             [KeyboardButton(text="📜 P verb 3"), KeyboardButton(text="📜 P verb 4")],
             [KeyboardButton(text="📜 P verb 5")],
-            [KeyboardButton(text="♻️ Barcha Preposition Verbs"),KeyboardButton(text="⬅️ Ortga")],
+            [KeyboardButton(text="♻️ Barcha Preposition Verbs"),  KeyboardButton(text="⬅️ Ortga")],
             
         ],
         resize_keyboard=True
