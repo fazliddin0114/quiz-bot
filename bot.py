@@ -279,6 +279,63 @@ quizzes = {
         "correct": 1
     }
 ],
+    "p_verb_5" : [
+        {
+            "question": "\"Attack on\" birikmasining ma'nosi qanday?",
+            "options": ["Qatnashmoq", "Hujum qilish", "Ishonmoq"],
+            "correct": 1
+        },
+        {
+            "question": "\"Attend to\" qanday ma'noni anglatadi?",
+            "options": ["Asoslanmoq", "Qatnashmoq", "Yalinmoq"],
+            "correct": 1
+        },
+        {
+            "question": "\"(Un)aware of\" qanday tarjima qilinadi?",
+            "options": ["Xabardor", "Asoslanmoq", "Boshlamoq"],
+            "correct": 0
+        },
+        {
+            "question": "\"Bad at\" qanday ma'noni anglatadi?",
+            "options": ["Borasa yomon", "Yomon munosabatda bo‘lmoq", "Xabardor"],
+            "correct": 0
+        },
+        {
+            "question": "\"Bad to\" iborasining to‘g‘ri tarjimasi qaysi?",
+            "options": ["Yomon munosabatda bo‘lmoq", "Hujum qilish", "Ishonmoq"],
+            "correct": 0
+        },
+        {
+            "question": "\"Base on\" iborasining ma'nosi qanday?",
+            "options": ["Asoslanmoq", "Boshqa narsa", "Yalinmoq"],
+            "correct": 0
+        },
+        {
+            "question": "\"Basis for\" qanday tarjima qilinadi?",
+            "options": ["Xabardor", "Asos", "Ishonmoq"],
+            "correct": 1
+        },
+        {
+            "question": "\"Beg for\" iborasining tarjimasi qanday?",
+            "options": ["Yalinmoq", "Asoslanmoq", "Qatnashmoq"],
+            "correct": 0
+        },
+        {
+            "question": "\"Begin with\" qanday ma'noni anglatadi?",
+            "options": ["Yalinmoq", "Boshlamoq", "Xabardor"],
+            "correct": 1
+        },
+        {
+            "question": "\"Believe in\" qanday tarjima qilinadi?",
+            "options": ["Hujum qilish", "Ishonmoq", "Yomon munosabatda bo‘lmoq"],
+            "correct": 1
+        }
+    ],
+
+
+
+
+    
 "irregular_verbs_1": [
     {
         "question": "Bo‘lmoq",
@@ -2082,8 +2139,9 @@ async def show_preposition_verbs(message: types.Message):
         keyboard=[
             [KeyboardButton(text="📜 P verb 1"), KeyboardButton(text="📜 P verb 2")],
             [KeyboardButton(text="📜 P verb 3"), KeyboardButton(text="📜 P verb 4")],
-            [KeyboardButton(text="♻️ Barcha Preposition Verbs")],
-            [KeyboardButton(text="⬅️ Ortga")],
+            [KeyboardButton(text="📜 P verb 5")],
+            [KeyboardButton(text="♻️ Barcha Preposition Verbs"),KeyboardButton(text="⬅️ Ortga")],
+            
         ],
         resize_keyboard=True
     )
@@ -2454,7 +2512,7 @@ async def show_ratings(message: types.Message):
 
 @dp.message(lambda message: message.text in [
     "🧠❤️👀 State Verbs", 
-    "📜 P verb 1", "📜 P verb 2", "📜 P verb 3", "📜 P verb 4",
+    "📜 P verb 1", "📜 P verb 2", "📜 P verb 3", "📜 P verb 4", "📜 P verb 5"
     "🌟 I verb 1", "🌟 I verb 2", "🌟 I verb 3", "🌟 I verb 4", "🌟 I verb 5", "🌟 I verb 6","🌟 I verb All",
     "⏳ Present Simple", "⏳ Present Continuous",
     "⏳ Past Simple", "⏳ Past Continuous",
@@ -2470,6 +2528,7 @@ async def start_quiz(message: types.Message):
         "📜 P verb 2": "p_verb_2",
         "📜 P verb 3": "p_verb_3",
         "📜 P verb 4": "p_verb_4",
+        "📜 P verb 5": "p_verb_5",
         "🌟 I verb 1": "irregular_verbs_1",
         "🌟 I verb 2": "irregular_verbs_2",
         "🌟 I verb 3": "irregular_verbs_3",
