@@ -1477,6 +1477,15 @@ quizzes = {
     }
   ]
 ,
+
+
+
+
+
+
+
+
+
     
 "present_simple": [
     {
@@ -2274,59 +2283,393 @@ async def show_irregular_verbs(message: types.Message):
         reply_markup=keyboard,
         parse_mode="Markdown"
     )
+@dp.message(lambda message: message.text in [
+    "⏳ Present Simple", "⏳ Present Continuous", "⏳ Present Perfect", "⏳ Present Perfect Cont.",
+    "⏳ Past Simple", "⏳ Past Continuous", "⏳ Past Perfect", "⏳ Past Perfect Cont.",
+    "⏳ Future Simple", "⏳ Future Continuous", "⏳ Future Perfect", "⏳ Future Perfect Cont.",
+    "♻️ Barcha Tenses"
+])
+async def handle_tenses_quiz(message: types.Message):
+    user_id = message.from_user.id
+    tense_map = {
+        "⏳ Present Simple": {
+            "id": "present_simple",
+            "name": "Present Simple",
+            "description": "Oddiy hozirgi zamon (doimiy ishlar, faktlar)"
+        },
+        "⏳ Present Continuous": {
+            "id": "present_continuous",
+            "name": "Present Continuous",
+            "description": "Davom etayotgan hozirgi zamon (hozir bajarilayotgan ishlar)"
+        },
+        "⏳ Present Perfect": {
+            "id": "present_perfect",
+            "name": "Present Perfect",
+            "description": "Tugallangan hozirgi zamon (yaqin o'tgan ishlar)"
+        },
+        "⏳ Present Perfect Cont.": {
+            "id": "present_perfect_cont",
+            "name": "Present Perfect Continuous",
+            "description": "Tugallangan davomli zamon (uzoq davom etgan ishlar)"
+        },
+        "⏳ Past Simple": {
+            "id": "past_simple",
+            "name": "Past Simple",
+            "description": "Oddiy o'tgan zamon (tugallangan o'tgan ishlar)"
+        },
+        "⏳ Past Continuous": {
+            "id": "past_continuous",
+            "name": "Past Continuous",
+            "description": "Davom etgan o'tgan zamon (o'tgan davomli ishlar)"
+        },
+        "⏳ Past Perfect": {
+            "id": "past_perfect",
+            "name": "Past Perfect",
+            "description": "Tugallangan o'tgan zamon (boshqa o'tgan ishdan oldin)"
+        },
+        "⏳ Past Perfect Cont.": {
+            "id": "past_perfect_cont",
+            "name": "Past Perfect Continuous",
+            "description": "Tugallangan davomli o'tgan zamon (uzoq davom etgan o'tgan ishlar)"
+        },
+        "⏳ Future Simple": {
+            "id": "future_simple",
+            "name": "Future Simple",
+            "description": "Oddiy kelasi zamon (rejalar, bashoratlar)"
+        },
+        "⏳ Future Continuous": {
+            "id": "future_continuous",
+            "name": "Future Continuous",
+            "description": "Davom etadigan kelasi zamon (kelasi davomli ishlar)"
+        },
+        "⏳ Future Perfect": {
+            "id": "future_perfect",
+            "name": "Future Perfect",
+            "description": "Tugallangan kelasi zamon (kelasi vaqtgacha tugallanadigan ishlar)"
+        },
+        "⏳ Future Perfect Cont.": {
+            "id": "future_perfect_cont",
+            "name": "Future Perfect Continuous",
+            "description": "Tugallangan davomli kelasi zamon (kelasi vaqtgacha davom etadigan ishlar)"
+        },
+        "♻️ Barcha Tenses": {
+            "id": "all_tenses",
+            "name": "Barcha Zamonlar",
+            "description": "Barcha zamonlardan aralash test"
+        }
+    }
+    
+    tense_info = tense_map.get(message.text)
+    if not tense_info:
+        await message.answer("❌ Xatolik yuz berdi! Tanlov noto'g'ri.")
+        return
+    
+    # Initialize user data if not exists
+    if user_id not in user_data:
+        user_data[user_id] = {
+            "subjects": {},
+            "score": 0,
+            "current_quiz": None,
+            "all_quizzes": [],
+            "current_poll": None,
+            "start_time": datetime.now().isoformat()
+        }
+    
+    # Initialize tense data if not exists
+    if tense_info["id"] not in user_data[user_id]["subjects"]:
+        user_data[user_id]["subjects"][tense_info["id"]] = {
+            "correct": 0,
+            "wrong": 0,
+            "total": 0,
+            "current_index": 0,
+            "attempts": 0,
+            "best_score": 0,
+            "last_score": 0
+        }
+    
+    # Load quizzes if available
+    if tense_info["id"] in quizzes:
+        # For mixed tenses, combine all tenses questions
+        if tense_info["id"] == "all_tenses":
+            all_questions = []
+            for tense in ["present_simple", "present_continuous", "past_simple", 
+                         "past_continuous", "future_simple", "future_continuous"]:
+                if tense in quizzes:
+                    all_questions.extend(quizzes[tense])
+            random.shuffle(all_questions)
+            user_data[user_id]["all_quizzes"] = all_questions[:30]  # Limit to 30 questions
+        else:
+            user_data[user_id]["all_quizzes"] = quizzes[tense_info["id"]].copy()
+        
+        user_data[user_id]["current_quiz"] = tense_info["id"]
+        user_data[user_id]["subjects"][tense_info["id"]]["attempts"] += 1
+        
+        # Send quiz start message with instructions
+        start_message = (
+            f"📢 {tense_info['name']} testi boshlandi!\n"
+            f"ℹ️ {tense_info['description']}\n\n"
+            f"🔢 Jami savollar: {len(user_data[user_id]['all_quizzes'])} ta\n"
+            f"⏱ Har bir savol uchun 60 soniya vaqt\n\n"
+            f"📌 Test davomida quyidagi tugmalardan foydalanishingiz mumkin:\n"
+            f"📊 Test natijalari - Hozirgi natijalarni ko'rish\n"
+            f"🔄 Testni qayta boshlash - Testni boshidan boshlash\n"
+            f"❌ Testni to'xtatish - Testni tugatish"
+        )
+        
+        keyboard = ReplyKeyboardMarkup(
+            keyboard=[
+                [KeyboardButton(text="📊 Test natijalari")],
+                [KeyboardButton(text="🔄 Testni qayta boshlash"), KeyboardButton(text="❌ Testni to'xtatish")],
+                [KeyboardButton(text="⬅️ Asosiy menyu")]
+            ],
+            resize_keyboard=True
+        )
+        
+        await message.answer(start_message, reply_markup=keyboard)
+        await send_next_question(user_id, tense_info["id"], tense_info["name"])
+    else:
+        await message.answer("❌ Ushbu zamon uchun savollar topilmadi!")
 
+async def send_next_question(user_id, tense_id, tense_name):
+    if user_id not in user_data:
+        return
+    
+    user_info = user_data[user_id]
+    questions = user_info.get("all_quizzes", [])
+    tense_info = user_info["subjects"][tense_id]
+    
+    # Check if quiz is completed
+    if tense_info["current_index"] >= len(questions):
+        await complete_quiz(user_id, tense_id, tense_name)
+        return
+    
+    question_data = questions[tense_info["current_index"]]
+    
+    # Format question based on type
+    if isinstance(question_data["correct"], list):
+        # Word ordering question
+        options = question_data["options"].copy()
+        correct_order = [options[i] for i in question_data["correct"]]
+        correct_text = " ".join(correct_order)
+        
+        shuffled_options = options.copy()
+        random.shuffle(shuffled_options)
+        
+        question_text = f"{tense_info['current_index']+1}/{len(questions)}. {question_data['question']}\n\nSo'zlarni to'g'ri tartibda tanlang:"
+        
+        # Store current question info
+        user_info["current_poll"] = {
+            "poll_id": None,
+            "subject": tense_id,
+            "correct_text": correct_text,
+            "question_index": tense_info["current_index"],
+            "quiz_name": tense_name,
+            "question_time": datetime.now().isoformat(),
+            "type": "word_order"
+        }
+        
+        try:
+            # Send poll with options
+            poll_msg = await bot.send_poll(
+                chat_id=user_id,
+                question=question_text,
+                options=shuffled_options,
+                type="regular",  # Not quiz type for ordering questions
+                is_anonymous=False,
+                allows_multiple_answers=True,
+                open_period=60
+            )
+            user_info["current_poll"]["poll_id"] = poll_msg.poll.id
+            
+            # Schedule timeout check
+            asyncio.create_task(check_answer_timeout(user_id, poll_msg.poll.id))
+        except Exception as e:
+            print(f"Poll yuborishda xato: {e}")
+            await bot.send_message(user_id, "❌ Savol yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.")
+    else:
+        # Multiple choice question
+        options = question_data["options"].copy()
+        correct_answer = options[question_data["correct"]]
+        random.shuffle(options)
+        new_correct_index = options.index(correct_answer)
+        
+        question_text = f"{tense_info['current_index']+1}/{len(questions)}. {question_data['question']}"
+        
+        # Store current question info
+        user_info["current_poll"] = {
+            "poll_id": None,
+            "subject": tense_id,
+            "correct_option": new_correct_index,
+            "question_index": tense_info["current_index"],
+            "quiz_name": tense_name,
+            "question_time": datetime.now().isoformat(),
+            "type": "multiple_choice"
+        }
+        
+        try:
+            # Send poll with timeout
+            poll_msg = await bot.send_poll(
+                chat_id=user_id,
+                question=question_text,
+                options=options,
+                type="quiz",
+                correct_option_id=new_correct_index,
+                is_anonymous=False,
+                open_period=60
+            )
+            user_info["current_poll"]["poll_id"] = poll_msg.poll.id
+            
+            # Schedule timeout check
+            asyncio.create_task(check_answer_timeout(user_id, poll_msg.poll.id))
+        except Exception as e:
+            print(f"Poll yuborishda xato: {e}")
+            await bot.send_message(user_id, "❌ Savol yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.")
 
-@dp.message(lambda message: message.text == "⏳ English Tenses")
-async def show_tenses_menu(message: types.Message):
+@dp.poll_answer()
+async def handle_poll_answer(poll_answer: types.PollAnswer):
+    user_id = poll_answer.user.id
+    if user_id not in user_data or "current_poll" not in user_data[user_id]:
+        return
+    
+    user_info = user_data[user_id]
+    poll_data = user_info["current_poll"]
+    tense_info = user_info["subjects"][poll_data["subject"]]
+    
+    # Check if answer is for the current question
+    if poll_data.get("poll_id") != poll_answer.poll_id:
+        return
+    
+    # Handle different question types
+    if poll_data["type"] == "multiple_choice":
+        # Multiple choice question
+        selected_option = poll_answer.option_ids[0] if poll_answer.option_ids else None
+        
+        if selected_option == poll_data["correct_option"]:
+            tense_info["correct"] += 1
+            user_info["score"] += 1
+            feedback = "✅ To'g'ri javob!"
+        else:
+            question_data = user_info["all_quizzes"][poll_data["question_index"]]
+            correct_answer = question_data["options"][question_data["correct"]]
+            feedback = f"❌ Noto'g'ri javob! To'g'ri javob: {correct_answer}"
+            tense_info["wrong"] += 1
+        
+        tense_info["total"] += 1
+        tense_info["current_index"] += 1
+        
+        await bot.send_message(user_id, feedback)
+        await send_next_question(user_id, poll_data["subject"], poll_data["quiz_name"])
+    
+    elif poll_data["type"] == "word_order":
+        # Word ordering question
+        question_data = user_info["all_quizzes"][poll_data["question_index"]]
+        selected_order = [question_data["options"][i] for i in poll_answer.option_ids]
+        selected_text = " ".join(selected_order)
+        
+        if selected_text == poll_data["correct_text"]:
+            tense_info["correct"] += 1
+            user_info["score"] += 1
+            feedback = "✅ To'g'ri tartib!"
+        else:
+            feedback = f"❌ Noto'g'ri tartib! To'g'ri javob: {poll_data['correct_text']}"
+            tense_info["wrong"] += 1
+        
+        tense_info["total"] += 1
+        tense_info["current_index"] += 1
+        
+        await bot.send_message(user_id, feedback)
+        await send_next_question(user_id, poll_data["subject"], poll_data["quiz_name"])
+
+async def check_answer_timeout(user_id, poll_id):
+    await asyncio.sleep(60)  # Wait for 60 seconds
+    
+    if user_id in user_data and user_data[user_id].get("current_poll", {}).get("poll_id") == poll_id:
+        user_info = user_data[user_id]
+        poll_data = user_info["current_poll"]
+        tense_info = user_info["subjects"][poll_data["subject"]]
+        
+        # Mark as wrong answer due to timeout
+        tense_info["wrong"] += 1
+        tense_info["total"] += 1
+        tense_info["current_index"] += 1
+        
+        question_data = user_info["all_quizzes"][poll_data["question_index"]]
+        
+        if poll_data["type"] == "multiple_choice":
+            correct_answer = question_data["options"][question_data["correct"]]
+            feedback = f"⏳ Vaqt tugadi! To'g'ri javob: {correct_answer}"
+        elif poll_data["type"] == "word_order":
+            correct_order = [question_data["options"][i] for i in question_data["correct"]]
+            correct_text = " ".join(correct_order)
+            feedback = f"⏳ Vaqt tugadi! To'g'ri tartib: {correct_text}"
+        
+        await bot.send_message(user_id, feedback + "\nKeyingi savolga o'tilmoqda...")
+        await send_next_question(user_id, poll_data["subject"], poll_data["quiz_name"])
+
+async def complete_quiz(user_id, tense_id, tense_name):
+    if user_id not in user_data:
+        return
+    
+    user_info = user_data[user_id]
+    tense_info = user_info["subjects"][tense_id]
+    
+    # Calculate results
+    correct = tense_info["correct"]
+    wrong = tense_info["wrong"]
+    total = tense_info["total"]
+    percentage = (correct / total) * 100 if total > 0 else 0
+    
+    # Update best score
+    if percentage > tense_info["best_score"]:
+        tense_info["best_score"] = percentage
+    tense_info["last_score"] = percentage
+    
+    # Determine rating
+    if percentage >= 90:
+        rating = "🏆 A'lo"
+    elif percentage >= 70:
+        rating = "👍 Yaxshi"
+    elif percentage >= 50:
+        rating = "😐 Qoniqarli"
+    else:
+        rating = "😔 Qoniqarsiz"
+    
+    # Prepare results message
+    result_text = (
+        f"🎉 {tense_name} testi tugadi!\n\n"
+        f"📊 Natijalaringiz:\n"
+        f"✅ To'g'ri javoblar: {correct}\n"
+        f"❌ Noto'g'ri javoblar: {wrong}\n"
+        f"📈 Foiz: {percentage:.1f}% - {rating}\n\n"
+        f"🏅 Eng yaxshi natija: {tense_info['best_score']:.1f}%\n\n"
+        f"🔄 Testni qayta ishlash uchun /{tense_id} buyrug'idan foydalanishingiz mumkin."
+    )
+    
+    # Update ratings
+    ratings[user_id] = user_info["score"]
+    sorted_ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
+    user_rank = next((idx for idx, (uid, _) in enumerate(sorted_ratings, 1) if uid == user_id), None)
+    
+    if user_rank:
+        result_text += f"\n🏆 Umumiy reytingda {user_rank}-o'rindasiz!"
+    
+    # Reset current quiz
+    user_info["current_poll"] = None
+    user_info["current_quiz"] = None
+    
+    # Return to main menu
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
-            # Present Tenses Row
-            [KeyboardButton(text="🟢 Present Simple"), KeyboardButton(text="🟢 Present Continuous")],
-            [KeyboardButton(text="🟢 Present Perfect"), KeyboardButton(text="🟢 Present Perfect Cont.")],
-            
-            # Past Tenses Row
-            [KeyboardButton(text="🔴 Past Simple"), KeyboardButton(text="🔴 Past Continuous")],
-            [KeyboardButton(text="🔴 Past Perfect"), KeyboardButton(text="🔴 Past Perfect Cont.")],
-            
-            # Future Tenses Row
-            [KeyboardButton(text="🔵 Future Simple"), KeyboardButton(text="🔵 Future Continuous")],
-            [KeyboardButton(text="🔵 Future Perfect"), KeyboardButton(text="🔵 Future Perfect Cont.")],
-            
-            # Mixed and Special Options
-            [KeyboardButton(text="🔄 All Tenses Mixed")],
-            [KeyboardButton(text="📊 Tenses Comparison")],
-            [KeyboardButton(text="⬅️ Back to Main Menu")],
+            [KeyboardButton(text="🧠❤️👀 State Verbs"), KeyboardButton(text="📚 English Lessons")],
+            [KeyboardButton(text="📜 Preposition Verbs"), KeyboardButton(text="🌟 Irregular Verbs")],
+            [KeyboardButton(text="⏳ English Tenses"), KeyboardButton(text="👤 Profil")],
+            [KeyboardButton(text="📈 Reyting"), KeyboardButton(text="📞 Adminga murojaat")]
         ],
         resize_keyboard=True
     )
-
-    await message.answer(
-        "⏳ *English Tenses - Choose a Category:*\n\n"
-        "🎯 *Present Tenses:*\n"
-        "🟢 Present Simple - Regular actions/facts\n"
-        "🟢 Present Continuous - Happening now\n"
-        "🟢 Present Perfect - Completed actions\n"
-        "🟢 Present Perfect Cont. - Ongoing completed\n\n"
-        
-        "📜 *Past Tenses:*\n"
-        "🔴 Past Simple - Completed actions\n"
-        "🔴 Past Continuous - Past ongoing\n"
-        "🔴 Past Perfect - Before past actions\n"
-        "🔴 Past Perfect Cont. - Ongoing before past\n\n"
-        
-        "🔮 *Future Tenses:*\n"
-        "🔵 Future Simple - Predictions/decisions\n"
-        "🔵 Future Continuous - Future ongoing\n"
-        "🔵 Future Perfect - Completed by future\n"
-        "🔵 Future Perfect Cont. - Ongoing until future\n\n"
-        
-        "💡 *Additional Options:*\n"
-        "🔄 All Tenses Mixed - Random mixed practice\n"
-        "📊 Tenses Comparison - Compare similar tenses\n\n"
-        "⬅️ Return to main menu",
-        reply_markup=keyboard,
-        parse_mode="Markdown"
-    )
+    
+    await bot.send_message(user_id, result_text, reply_markup=keyboard)
+    
 @dp.message(lambda message: message.text == "📚 English Lessons")
 async def show_english_lessons(message: types.Message):
     keyboard = ReplyKeyboardMarkup(
