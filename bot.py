@@ -1478,108 +1478,158 @@ quizzes = {
   ]
 ,
     
-"present_simple": [
+"present_simple_test": [
     {
-        "question": "She ___ to school every day.",
-        "options": ["go", "goes", "going", "gone"],
-        "correct": 1
+      "question": "Quyidagi gapni to‘g‘ri tartibda tuzing:",
+      "options": ["She", "works", "in a hospital"],
+      "correct": [0, 1, 2]
     },
     {
-        "question": "They ___ football on Sundays.",
-        "options": ["play", "plays", "playing", "played"],
-        "correct": 0
+      "question": "Gap bo‘laklarini to‘g‘ri tartibda joylashtiring:",
+      "options": ["They", "usually", "drink", "tea", "in the morning"],
+      "correct": [0, 1, 2, 3, 4]
     },
     {
-        "question": "He ___ not like coffee.",
-        "options": ["do", "does", "doing", "done"],
-        "correct": 1
+      "question": "To‘g‘ri ketma-ketlikni tanlang:",
+      "options": ["My parents", "live", "in Tashkent"],
+      "correct": [0, 1, 2]
     },
     {
-        "question": "___ you speak English?",
-        "options": ["Do", "Does", "Is", "Are"],
-        "correct": 0
+      "question": "Gapni to‘g‘ri tuzing:",
+      "options": ["He", "doesn't", "play", "tennis"],
+      "correct": [0, 1, 2, 3]
     },
     {
-        "question": "We ___ TV in the evening.",
-        "options": ["watch", "watches", "watching", "watched"],
-        "correct": 0
+      "question": "Quyidagi so‘zlarni tartib bilan joylashtiring:",
+      "options": ["We", "often", "visit", "our grandparents"],
+      "correct": [0, 1, 2, 3]
     },
     {
-        "question": "My mother ___ delicious cakes.",
-        "options": ["make", "makes", "making", "made"],
-        "correct": 1
+      "question": "To‘g‘ri tartibni tanlang:",
+      "options": ["The sun", "rises", "in the east"],
+      "correct": [0, 1, 2]
     },
     {
-        "question": "The sun ___ in the east.",
-        "options": ["rise", "rises", "rising", "rose"],
-        "correct": 1
+      "question": "Gap tuzilishini tanlang:",
+      "options": ["She", "always", "arrives", "on time"],
+      "correct": [0, 1, 2, 3]
     },
     {
-        "question": "Cats ___ milk.",
-        "options": ["love", "loves", "loving", "loved"],
-        "correct": 0
+      "question": "To‘g‘ri javobni belgilang:",
+      "options": ["I", "don't", "like", "horror movies"],
+      "correct": [0, 1, 2, 3]
     },
     {
-        "question": "She ___ her homework every day.",
-        "options": ["do", "does", "doing", "done"],
-        "correct": 1
+      "question": "So‘z bo‘laklarini to‘g‘ri joylashtiring:",
+      "options": ["He", "teaches", "mathematics", "at university"],
+      "correct": [0, 1, 2, 3]
     },
     {
-        "question": "I ___ breakfast at 7 am.",
-        "options": ["have", "has", "having", "had"],
-        "correct": 0
+      "question": "Tartib bilan to‘g‘ri joylashtiring:",
+      "options": ["They", "watch", "TV", "after dinner"],
+      "correct": [0, 1, 2, 3]
     },
     {
-        "question": "Water ___ at 100 degrees Celsius.",
-        "options": ["boil", "boils", "boiling", "boiled"],
-        "correct": 1
+      "question": "Quyidagi gapni to‘g‘ri tartibda tuzing:",
+      "options": ["My brother", "plays", "football", "on weekends"],
+      "correct": [0, 1, 2, 3]
     },
     {
-        "question": "My parents ___ in a small village.",
-        "options": ["live", "lives", "living", "lived"],
-        "correct": 0
+      "question": "Gap bo‘laklarini to‘g‘ri tartibda joylashtiring:",
+      "options": ["She", "never", "eats", "fast food"],
+      "correct": [0, 1, 2, 3]
     },
     {
-        "question": "___ your brother work here?",
-        "options": ["Do", "Does", "Is", "Are"],
-        "correct": 1
+      "question": "To‘g‘ri ketma-ketlikni tanlang:",
+      "options": ["Water", "boils", "at 100 degrees Celsius"],
+      "correct": [0, 1, 2]
     },
     {
-        "question": "This shop ___ at 9 o'clock every morning.",
-        "options": ["open", "opens", "opening", "opened"],
-        "correct": 1
+      "question": "Gapni to‘g‘ri tuzing:",
+      "options": ["We", "don't", "speak", "French"],
+      "correct": [0, 1, 2, 3]
     },
     {
-        "question": "Birds ___ in the sky.",
-        "options": ["fly", "flies", "flying", "flew"],
-        "correct": 0
+      "question": "Quyidagi so‘zlarni tartib bilan joylashtiring:",
+      "options": ["The bus", "leaves", "at 8:30", "every morning"],
+      "correct": [0, 1, 2, 3]
     },
     {
-        "question": "She ___ three languages fluently.",
-        "options": ["speak", "speaks", "speaking", "spoken"],
-        "correct": 1
+      "question": "To‘g‘ri tartibni tanlang:",
+      "options": ["I", "usually", "go", "to bed", "at 11 p.m."],
+      "correct": [0, 1, 2, 3, 4]
     },
     {
-        "question": "We ___ our grandparents every weekend.",
-        "options": ["visit", "visits", "visiting", "visited"],
-        "correct": 0
+      "question": "Gap tuzilishini tanlang:",
+      "options": ["He", "works", "as a doctor"],
+      "correct": [0, 1, 2]
     },
     {
-        "question": "The train ___ at 5:30 pm.",
-        "options": ["leave", "leaves", "leaving", "left"],
-        "correct": 1
+      "question": "To‘g‘ri javobni belgilang:",
+      "options": ["They", "don't", "watch", "TV", "very often"],
+      "correct": [0, 1, 2, 3, 4]
     },
     {
-        "question": "___ they know the answer?",
-        "options": ["Do", "Does", "Is", "Are"],
-        "correct": 0
+      "question": "So‘z bo‘laklarini to‘g‘ri joylashtiring:",
+      "options": ["She", "reads", "a book", "every night"],
+      "correct": [0, 1, 2, 3]
     },
     {
-        "question": "My sister ___ as a nurse.",
-        "options": ["work", "works", "working", "worked"],
-        "correct": 1
+      "question": "Tartib bilan to‘g‘ri joylashtiring:",
+      "options": ["We", "have", "lunch", "at 1 o'clock"],
+      "correct": [0, 1, 2, 3]
+    },
+    {
+      "question": "Quyidagi gapni to‘g‘ri tartibda tuzing:",
+      "options": ["The Earth", "revolves", "around the Sun"],
+      "correct": [0, 1, 2]
+    },
+    {
+      "question": "Gap bo‘laklarini to‘g‘ri tartibda joylashtiring:",
+      "options": ["He", "doesn't", "smoke"],
+      "correct": [0, 1, 2]
+    },
+    {
+      "question": "To‘g‘ri ketma-ketlikni tanlang:",
+      "options": ["I", "take", "a shower", "every morning"],
+      "correct": [0, 1, 2, 3]
+    },
+    {
+      "question": "Gapni to‘g‘ri tuzing:",
+      "options": ["She", "speaks", "three languages"],
+      "correct": [0, 1, 2]
+    },
+    {
+      "question": "Quyidagi so‘zlarni tartib bilan joylashtiring:",
+      "options": ["They", "don't", "like", "cold weather"],
+      "correct": [0, 1, 2, 3]
+    },
+    {
+      "question": "To‘g‘ri tartibni tanlang:",
+      "options": ["My sister", "studies", "at university"],
+      "correct": [0, 1, 2]
+    },
+    {
+      "question": "Gap tuzilishini tanlang:",
+      "options": ["We", "often", "go", "for a walk", "in the park"],
+      "correct": [0, 1, 2, 3, 4]
+    },
+    {
+      "question": "To‘g‘ri javobni belgilang:",
+      "options": ["He", "doesn't", "drink", "coffee"],
+      "correct": [0, 1, 2, 3]
+    },
+    {
+      "question": "So‘z bo‘laklarini to‘g‘ri joylashtiring:",
+      "options": ["The shop", "opens", "at 9 a.m."],
+      "correct": [0, 1, 2]
+    },
+    {
+      "question": "Tartib bilan to‘g‘ri joylashtiring:",
+      "options": ["I", "always", "brush", "my teeth", "before bed"],
+      "correct": [0, 1, 2, 3, 4]
     }
-]
+  ]
 ,
 "present_continuous": [
     {
