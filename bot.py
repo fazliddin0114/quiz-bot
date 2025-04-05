@@ -1427,212 +1427,384 @@ quizzes = {
   ]
 ,
     
-"present_simple": [
+
+
+
+
+
+
+
+  "present_simple": [
     {
-        "question": "She ___ to school every day.",
-        "options": ["go", "goes", "going", "gone"],
-        "correct": 1
+      "question": "Quyidagi gapni to‘g‘ri tartibda tuzing:",
+      "options": ["She", "works", "in a hospital"],
+      "correct": [0, 1, 2],
+      "level": "oson"
     },
     {
-        "question": "They ___ football on Sundays.",
-        "options": ["play", "plays", "playing", "played"],
-        "correct": 0
+      "question": "Gap bo‘laklarini to‘g‘ri tartibda joylashtiring:",
+      "options": ["They", "usually", "drink", "tea", "in the morning"],
+      "correct": [0, 1, 2, 3, 4],
+      "level": "oson"
     },
     {
-        "question": "He ___ not like coffee.",
-        "options": ["do", "does", "doing", "done"],
-        "correct": 1
+      "question": "To‘g‘ri ketma-ketlikni tanlang:",
+      "options": ["My parents", "live", "in Tashkent"],
+      "correct": [0, 1, 2],
+      "level": "oson"
     },
     {
-        "question": "___ you speak English?",
-        "options": ["Do", "Does", "Is", "Are"],
-        "correct": 0
+      "question": "Gapni to‘g‘ri tuzing:",
+      "options": ["He", "doesn't", "play", "tennis"],
+      "correct": [0, 1, 2, 3],
+      "level": "oson"
     },
     {
-        "question": "We ___ TV in the evening.",
-        "options": ["watch", "watches", "watching", "watched"],
-        "correct": 0
+      "question": "Quyidagi so‘zlarni tartib bilan joylashtiring:",
+      "options": ["We", "often", "visit", "our grandparents"],
+      "correct": [0, 1, 2, 3],
+      "level": "oson"
     },
     {
-        "question": "My mother ___ delicious cakes.",
-        "options": ["make", "makes", "making", "made"],
-        "correct": 1
+      "question": "To‘g‘ri tartibni tanlang:",
+      "options": ["The sun", "rises", "in the east"],
+      "correct": [0, 1, 2],
+      "level": "oson"
     },
     {
-        "question": "The sun ___ in the east.",
-        "options": ["rise", "rises", "rising", "rose"],
-        "correct": 1
+      "question": "Gap tuzilishini tanlang:",
+      "options": ["She", "always", "arrives", "on time"],
+      "correct": [0, 1, 2, 3],
+      "level": "oson"
     },
     {
-        "question": "Cats ___ milk.",
-        "options": ["love", "loves", "loving", "loved"],
-        "correct": 0
+      "question": "To‘g‘ri javobni belgilang:",
+      "options": ["I", "don't", "like", "horror movies"],
+      "correct": [0, 1, 2, 3],
+      "level": "oson"
     },
     {
-        "question": "She ___ her homework every day.",
-        "options": ["do", "does", "doing", "done"],
-        "correct": 1
+      "question": "So‘z bo‘laklarini to‘g‘ri joylashtiring:",
+      "options": ["He", "teaches", "mathematics", "at university"],
+      "correct": [0, 1, 2, 3],
+      "level": "oson"
     },
     {
-        "question": "I ___ breakfast at 7 am.",
-        "options": ["have", "has", "having", "had"],
-        "correct": 0
+      "question": "Tartib bilan to‘g‘ri joylashtiring:",
+      "options": ["They", "watch", "TV", "after dinner"],
+      "correct": [0, 1, 2, 3],
+      "level": "oson"
     },
     {
-        "question": "Water ___ at 100 degrees Celsius.",
-        "options": ["boil", "boils", "boiling", "boiled"],
-        "correct": 1
+      "question": "Quyidagi gapni to‘g‘ri tartibda tuzing:",
+      "options": ["My brother", "plays", "football", "on weekends"],
+      "correct": [0, 1, 2, 3],
+      "level": "murakkab"
     },
     {
-        "question": "My parents ___ in a small village.",
-        "options": ["live", "lives", "living", "lived"],
-        "correct": 0
+      "question": "Gap bo‘laklarini to‘g‘ri tartibda joylashtiring:",
+      "options": ["She", "never", "eats", "fast food"],
+      "correct": [0, 1, 2, 3],
+      "level": "murakkab"
     },
     {
-        "question": "___ your brother work here?",
-        "options": ["Do", "Does", "Is", "Are"],
-        "correct": 1
+      "question": "To‘g‘ri ketma-ketlikni tanlang:",
+      "options": ["Water", "boils", "at 100 degrees Celsius"],
+      "correct": [0, 1, 2],
+      "level": "murakkab"
     },
     {
-        "question": "This shop ___ at 9 o'clock every morning.",
-        "options": ["open", "opens", "opening", "opened"],
-        "correct": 1
+      "question": "Gapni to‘g‘ri tuzing:",
+      "options": ["We", "don't", "speak", "French"],
+      "correct": [0, 1, 2, 3],
+      "level": "murakkab"
     },
     {
-        "question": "Birds ___ in the sky.",
-        "options": ["fly", "flies", "flying", "flew"],
-        "correct": 0
+      "question": "Quyidagi so‘zlarni tartib bilan joylashtiring:",
+      "options": ["The bus", "leaves", "at 8:30", "every morning"],
+      "correct": [0, 1, 2, 3],
+      "level": "murakkab"
     },
     {
-        "question": "She ___ three languages fluently.",
-        "options": ["speak", "speaks", "speaking", "spoken"],
-        "correct": 1
+      "question": "To‘g‘ri tartibni tanlang:",
+      "options": ["I", "usually", "go", "to bed", "at 11 p.m."],
+      "correct": [0, 1, 2, 3, 4],
+      "level": "murakkab"
     },
     {
-        "question": "We ___ our grandparents every weekend.",
-        "options": ["visit", "visits", "visiting", "visited"],
-        "correct": 0
+      "question": "Gap tuzilishini tanlang:",
+      "options": ["He", "works", "as a doctor"],
+      "correct": [0, 1, 2],
+      "level": "murakkab"
     },
     {
-        "question": "The train ___ at 5:30 pm.",
-        "options": ["leave", "leaves", "leaving", "left"],
-        "correct": 1
+      "question": "To‘g‘ri javobni belgilang:",
+      "options": ["They", "don't", "watch", "TV", "very often"],
+      "correct": [0, 1, 2, 3, 4],
+      "level": "murakkab"
     },
     {
-        "question": "___ they know the answer?",
-        "options": ["Do", "Does", "Is", "Are"],
-        "correct": 0
+      "question": "So‘z bo‘laklarini to‘g‘ri joylashtiring:",
+      "options": ["She", "reads", "a book", "every night"],
+      "correct": [0, 1, 2, 3],
+      "level": "murakkab"
     },
     {
-        "question": "My sister ___ as a nurse.",
-        "options": ["work", "works", "working", "worked"],
-        "correct": 1
+      "question": "Tartib bilan to‘g‘ri joylashtiring:",
+      "options": ["We", "have", "lunch", "at 1 o'clock"],
+      "correct": [0, 1, 2, 3],
+      "level": "murakkab"
+    },
+    {
+      "question": "Quyidagi gapni to‘g‘ri tartibda tuzing:",
+      "options": ["The Earth", "revolves", "around the Sun"],
+      "correct": [0, 1, 2],
+      "level": "qiyin"
+    },
+    {
+      "question": "Gap bo‘laklarini to‘g‘ri tartibda joylashtiring:",
+      "options": ["He", "doesn't", "smoke"],
+      "correct": [0, 1, 2],
+      "level": "qiyin"
+    },
+    {
+      "question": "To‘g‘ri ketma-ketlikni tanlang:",
+      "options": ["I", "take", "a shower", "every morning"],
+      "correct": [0, 1, 2, 3],
+      "level": "qiyin"
+    },
+    {
+      "question": "Gapni to‘g‘ri tuzing:",
+      "options": ["She", "speaks", "three languages"],
+      "correct": [0, 1, 2],
+      "level": "qiyin"
+    },
+    {
+      "question": "Quyidagi so‘zlarni tartib bilan joylashtiring:",
+      "options": ["They", "don't", "like", "cold weather"],
+      "correct": [0, 1, 2, 3],
+      "level": "qiyin"
+    },
+    {
+      "question": "To‘g‘ri tartibni tanlang:",
+      "options": ["My sister", "studies", "at university"],
+      "correct": [0, 1, 2],
+      "level": "qiyin"
+    },
+    {
+      "question": "Gap tuzilishini tanlang:",
+      "options": ["We", "often", "go", "for a walk", "in the park"],
+      "correct": [0, 1, 2, 3, 4],
+      "level": "qiyin"
+    },
+    {
+      "question": "To‘g‘ri javobni belgilang:",
+      "options": ["He", "doesn't", "drink", "coffee"],
+      "correct": [0, 1, 2, 3],
+      "level": "qiyin"
+    },
+    {
+      "question": "So‘z bo‘laklarini to‘g‘ri joylashtiring:",
+      "options": ["The shop", "opens", "at 9 a.m."],
+      "correct": [0, 1, 2],
+      "level": "qiyin"
+    },
+    {
+      "question": "Tartib bilan to‘g‘ri joylashtiring:",
+      "options": ["I", "always", "brush", "my teeth", "before bed"],
+      "correct": [0, 1, 2, 3, 4],
+      "level": "qiyin"
     }
-]
+  ]
 ,
-"present_continuous": [
+  "present_continuous": [
     {
-        "question": "She ___ a book now.",
-        "options": ["read", "reads", "is reading", "reading"],
-        "correct": 2
+      "question": "She ___ a book now.",
+      "options": ["read", "reads", "is reading", "reading"],
+      "correct": 2,
+      "level": "easy"
     },
     {
-        "question": "They ___ football at the moment.",
-        "options": ["play", "plays", "are playing", "playing"],
-        "correct": 2
+      "question": "They ___ football at the moment.",
+      "options": ["play", "plays", "are playing", "playing"],
+      "correct": 2,
+      "level": "easy"
     },
     {
-        "question": "Look! It ___.",
-        "options": ["rain", "rains", "is raining", "raining"],
-        "correct": 2
+      "question": "Look! It ___.",
+      "options": ["rain", "rains", "is raining", "raining"],
+      "correct": 2,
+      "level": "easy"
     },
     {
-        "question": "What ___ you ___ now?",
-        "options": ["do, do", "are, doing", "is, doing", "does, do"],
-        "correct": 1
+      "question": "What ___ you ___ now?",
+      "options": ["do, do", "are, doing", "is, doing", "does, do"],
+      "correct": 1,
+      "level": "easy"
     },
     {
-        "question": "The children ___ TV now.",
-        "options": ["watch", "watches", "are watching", "watching"],
-        "correct": 2
+      "question": "The children ___ TV now.",
+      "options": ["watch", "watches", "are watching", "watching"],
+      "correct": 2,
+      "level": "easy"
     },
     {
-        "question": "Listen! Someone ___.",
-        "options": ["sing", "sings", "is singing", "singing"],
-        "correct": 2
+      "question": "Listen! Someone ___.",
+      "options": ["sing", "sings", "is singing", "singing"],
+      "correct": 2,
+      "level": "easy"
     },
     {
-        "question": "She ___ her homework now.",
-        "options": ["do", "does", "is doing", "doing"],
-        "correct": 2
+      "question": "She ___ her homework now.",
+      "options": ["do", "does", "is doing", "doing"],
+      "correct": 2,
+      "level": "easy"
     },
     {
-        "question": "They ___ to London next week.",
-        "options": ["travel", "travels", "are traveling", "traveling"],
-        "correct": 2
+      "question": "They ___ to London next week.",
+      "options": ["travel", "travels", "are traveling", "traveling"],
+      "correct": 2,
+      "level": "easy"
     },
     {
-        "question": "I ___ for my exam these days.",
-        "options": ["study", "studies", "am studying", "studying"],
-        "correct": 2
+      "question": "I ___ for my exam these days.",
+      "options": ["study", "studies", "am studying", "studying"],
+      "correct": 2,
+      "level": "easy"
     },
     {
-        "question": "Why ___ you ___?",
-        "options": ["do, cry", "are, crying", "is, crying", "does, cry"],
-        "correct": 1
+      "question": "Why ___ you ___?",
+      "options": ["do, cry", "are, crying", "is, crying", "does, cry"],
+      "correct": 1,
+      "level": "easy"
     },
     {
-        "question": "The baby ___ right now.",
-        "options": ["sleep", "sleeps", "is sleeping", "sleeping"],
-        "correct": 2
+      "question": "The baby ___ right now.",
+      "options": ["sleep", "sleeps", "is sleeping", "sleeping"],
+      "correct": 2,
+      "level": "medium"
     },
     {
-        "question": "We ___ dinner at the moment.",
-        "options": ["have", "has", "are having", "having"],
-        "correct": 2
+      "question": "We ___ dinner at the moment.",
+      "options": ["have", "has", "are having", "having"],
+      "correct": 2,
+      "level": "medium"
     },
     {
-        "question": "The students ___ for the test.",
-        "options": ["prepare", "prepares", "are preparing", "preparing"],
-        "correct": 2
+      "question": "The students ___ for the test.",
+      "options": ["prepare", "prepares", "are preparing", "preparing"],
+      "correct": 2,
+      "level": "medium"
     },
     {
-        "question": "Where ___ you ___ these days?",
-        "options": ["do, live", "are, living", "is, living", "does, live"],
-        "correct": 1
+      "question": "Where ___ you ___ these days?",
+      "options": ["do, live", "are, living", "is, living", "does, live"],
+      "correct": 1,
+      "level": "medium"
     },
     {
-        "question": "My phone ___ at the moment.",
-        "options": ["not work", "doesn't work", "isn't working", "not working"],
-        "correct": 2
+      "question": "My phone ___ at the moment.",
+      "options": ["not work", "doesn't work", "isn't working", "not working"],
+      "correct": 2,
+      "level": "medium"
     },
     {
-        "question": "The workers ___ the road this week.",
-        "options": ["repair", "repairs", "are repairing", "repairing"],
-        "correct": 2
+      "question": "The workers ___ the road this week.",
+      "options": ["repair", "repairs", "are repairing", "repairing"],
+      "correct": 2,
+      "level": "medium"
     },
     {
-        "question": "Look! The dog ___ with the children.",
-        "options": ["play", "plays", "is playing", "playing"],
-        "correct": 2
+      "question": "Look! The dog ___ with the children.",
+      "options": ["play", "plays", "is playing", "playing"],
+      "correct": 2,
+      "level": "medium"
     },
     {
-        "question": "I ___ to the radio while cooking.",
-        "options": ["listen", "listens", "am listening", "listening"],
-        "correct": 2
+      "question": "I ___ to the radio while cooking.",
+      "options": ["listen", "listens", "am listening", "listening"],
+      "correct": 2,
+      "level": "medium"
     },
     {
-        "question": "They ___ a new house these days.",
-        "options": ["build", "builds", "are building", "building"],
-        "correct": 2
+      "question": "They ___ a new house these days.",
+      "options": ["build", "builds", "are building", "building"],
+      "correct": 2,
+      "level": "medium"
     },
     {
-        "question": "Why ___ he ___ so fast?",
-        "options": ["do, run", "is, running", "does, run", "are, running"],
-        "correct": 1
+      "question": "Why ___ he ___ so fast?",
+      "options": ["do, run", "is, running", "does, run", "are, running"],
+      "correct": 1,
+      "level": "medium"
+    },
+    {
+      "question": "By this time tomorrow, I ___ to New York.",
+      "options": ["fly", "will fly", "am flying", "will be flying"],
+      "correct": 3,
+      "level": "hard"
+    },
+    {
+      "question": "This time next week, we ___ on the beach.",
+      "options": ["lie", "will lie", "are lying", "will be lying"],
+      "correct": 3,
+      "level": "hard"
+    },
+    {
+      "question": "Don't call at 8 PM - I ___ my online class then.",
+      "options": ["have", "am having", "will have", "will be having"],
+      "correct": 3,
+      "level": "hard"
+    },
+    {
+      "question": "While you ___ dinner tonight, I ___ my presentation.",
+      "options": ["prepare, will practice", "are preparing, will be practicing", "prepare, am practicing", "are preparing, practice"],
+      "correct": 1,
+      "level": "hard"
+    },
+    {
+      "question": "At midnight last night, I ___ still ___ my assignment.",
+      "options": ["am, working", "was, working", "was, worked", "am, worked"],
+      "correct": 1,
+      "level": "hard"
+    },
+    {
+      "question": "She ___ her degree when the pandemic started.",
+      "options": ["is completing", "was completing", "completed", "completes"],
+      "correct": 1,
+      "level": "hard"
+    },
+    {
+      "question": "The team ___ on this project since January.",
+      "options": ["works", "is working", "has been working", "worked"],
+      "correct": 2,
+      "level": "hard"
+    },
+    {
+      "question": "I ___ TV when suddenly the lights went out.",
+      "options": ["watch", "watched", "was watching", "am watching"],
+      "correct": 2,
+      "level": "hard"
+    },
+    {
+      "question": "They ___ dinner when we arrived.",
+      "options": ["have", "had", "were having", "are having"],
+      "correct": 2,
+      "level": "hard"
+    },
+    {
+      "question": "What ___ you ___ when I called you yesterday?",
+      "options": ["do, do", "were, doing", "did, do", "are, doing"],
+      "correct": 1,
+      "level": "hard"
     }
-]
+  ] 
 ,
+
+
+
+
+    
 "past_simple": [
     {
         "question": "She ___ to Paris last year.",
