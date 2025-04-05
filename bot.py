@@ -1,5 +1,6 @@
 import asyncio
 import random
+import time
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
@@ -279,58 +280,6 @@ quizzes = {
         "correct": 1
     }
 ],
-"p_verb_5" : [
-        {
-            "question": "\"Attack on\" birikmasining ma'nosi qanday?",
-            "options": ["Qatnashmoq", "Hujum qilish", "Ishonmoq"],
-            "correct": 1
-        },
-        {
-            "question": "\"Attend to\" qanday ma'noni anglatadi?",
-            "options": ["Asoslanmoq", "Qatnashmoq", "Yalinmoq"],
-            "correct": 1
-        },
-        {
-            "question": "\"(Un)aware of\" qanday tarjima qilinadi?",
-            "options": ["Xabardor", "Asoslanmoq", "Boshlamoq"],
-            "correct": 0
-        },
-        {
-            "question": "\"Bad at\" qanday ma'noni anglatadi?",
-            "options": ["Borasa yomon", "Yomon munosabatda bo‘lmoq", "Xabardor"],
-            "correct": 0
-        },
-        {
-            "question": "\"Bad to\" iborasining to‘g‘ri tarjimasi qaysi?",
-            "options": ["Yomon munosabatda bo‘lmoq", "Hujum qilish", "Ishonmoq"],
-            "correct": 0
-        },
-        {
-            "question": "\"Base on\" iborasining ma'nosi qanday?",
-            "options": ["Asoslanmoq", "Boshqa narsa", "Yalinmoq"],
-            "correct": 0
-        },
-        {
-            "question": "\"Basis for\" qanday tarjima qilinadi?",
-            "options": ["Xabardor", "Asos", "Ishonmoq"],
-            "correct": 1
-        },
-        {
-            "question": "\"Beg for\" iborasining tarjimasi qanday?",
-            "options": ["Yalinmoq", "Asoslanmoq", "Qatnashmoq"],
-            "correct": 0
-        },
-        {
-            "question": "\"Begin with\" qanday ma'noni anglatadi?",
-            "options": ["Yalinmoq", "Boshlamoq", "Xabardor"],
-            "correct": 1
-        },
-        {
-            "question": "\"Believe in\" qanday tarjima qilinadi?",
-            "options": ["Hujum qilish", "Ishonmoq", "Yomon munosabatda bo‘lmoq"],
-            "correct": 1
-        }
-    ],  
 "irregular_verbs_1": [
     {
         "question": "Bo‘lmoq",
@@ -1477,168 +1426,109 @@ quizzes = {
     }
   ]
 ,
-
-
-
-
-
-
-
-
-
     
 "present_simple": [
     {
-      "question": "Quyidagi gapni to‘g‘ri tartibda tuzing:",
-      "options": ["She", "works", "in a hospital"],
-      "correct": [0, 1, 2]
+        "question": "She ___ to school every day.",
+        "options": ["go", "goes", "going", "gone"],
+        "correct": 1
     },
     {
-      "question": "Gap bo‘laklarini to‘g‘ri tartibda joylashtiring:",
-      "options": ["They", "usually", "drink", "tea", "in the morning"],
-      "correct": [0, 1, 2, 3, 4]
+        "question": "They ___ football on Sundays.",
+        "options": ["play", "plays", "playing", "played"],
+        "correct": 0
     },
     {
-      "question": "To‘g‘ri ketma-ketlikni tanlang:",
-      "options": ["My parents", "live", "in Tashkent"],
-      "correct": [0, 1, 2]
+        "question": "He ___ not like coffee.",
+        "options": ["do", "does", "doing", "done"],
+        "correct": 1
     },
     {
-      "question": "Gapni to‘g‘ri tuzing:",
-      "options": ["He", "doesn't", "play", "tennis"],
-      "correct": [0, 1, 2, 3]
+        "question": "___ you speak English?",
+        "options": ["Do", "Does", "Is", "Are"],
+        "correct": 0
     },
     {
-      "question": "Quyidagi so‘zlarni tartib bilan joylashtiring:",
-      "options": ["We", "often", "visit", "our grandparents"],
-      "correct": [0, 1, 2, 3]
+        "question": "We ___ TV in the evening.",
+        "options": ["watch", "watches", "watching", "watched"],
+        "correct": 0
     },
     {
-      "question": "To‘g‘ri tartibni tanlang:",
-      "options": ["The sun", "rises", "in the east"],
-      "correct": [0, 1, 2]
+        "question": "My mother ___ delicious cakes.",
+        "options": ["make", "makes", "making", "made"],
+        "correct": 1
     },
     {
-      "question": "Gap tuzilishini tanlang:",
-      "options": ["She", "always", "arrives", "on time"],
-      "correct": [0, 1, 2, 3]
+        "question": "The sun ___ in the east.",
+        "options": ["rise", "rises", "rising", "rose"],
+        "correct": 1
     },
     {
-      "question": "To‘g‘ri javobni belgilang:",
-      "options": ["I", "don't", "like", "horror movies"],
-      "correct": [0, 1, 2, 3]
+        "question": "Cats ___ milk.",
+        "options": ["love", "loves", "loving", "loved"],
+        "correct": 0
     },
     {
-      "question": "So‘z bo‘laklarini to‘g‘ri joylashtiring:",
-      "options": ["He", "teaches", "mathematics", "at university"],
-      "correct": [0, 1, 2, 3]
+        "question": "She ___ her homework every day.",
+        "options": ["do", "does", "doing", "done"],
+        "correct": 1
     },
     {
-      "question": "Tartib bilan to‘g‘ri joylashtiring:",
-      "options": ["They", "watch", "TV", "after dinner"],
-      "correct": [0, 1, 2, 3]
+        "question": "I ___ breakfast at 7 am.",
+        "options": ["have", "has", "having", "had"],
+        "correct": 0
     },
     {
-      "question": "Quyidagi gapni to‘g‘ri tartibda tuzing:",
-      "options": ["My brother", "plays", "football", "on weekends"],
-      "correct": [0, 1, 2, 3]
+        "question": "Water ___ at 100 degrees Celsius.",
+        "options": ["boil", "boils", "boiling", "boiled"],
+        "correct": 1
     },
     {
-      "question": "Gap bo‘laklarini to‘g‘ri tartibda joylashtiring:",
-      "options": ["She", "never", "eats", "fast food"],
-      "correct": [0, 1, 2, 3]
+        "question": "My parents ___ in a small village.",
+        "options": ["live", "lives", "living", "lived"],
+        "correct": 0
     },
     {
-      "question": "To‘g‘ri ketma-ketlikni tanlang:",
-      "options": ["Water", "boils", "at 100 degrees Celsius"],
-      "correct": [0, 1, 2]
+        "question": "___ your brother work here?",
+        "options": ["Do", "Does", "Is", "Are"],
+        "correct": 1
     },
     {
-      "question": "Gapni to‘g‘ri tuzing:",
-      "options": ["We", "don't", "speak", "French"],
-      "correct": [0, 1, 2, 3]
+        "question": "This shop ___ at 9 o'clock every morning.",
+        "options": ["open", "opens", "opening", "opened"],
+        "correct": 1
     },
     {
-      "question": "Quyidagi so‘zlarni tartib bilan joylashtiring:",
-      "options": ["The bus", "leaves", "at 8:30", "every morning"],
-      "correct": [0, 1, 2, 3]
+        "question": "Birds ___ in the sky.",
+        "options": ["fly", "flies", "flying", "flew"],
+        "correct": 0
     },
     {
-      "question": "To‘g‘ri tartibni tanlang:",
-      "options": ["I", "usually", "go", "to bed", "at 11 p.m."],
-      "correct": [0, 1, 2, 3, 4]
+        "question": "She ___ three languages fluently.",
+        "options": ["speak", "speaks", "speaking", "spoken"],
+        "correct": 1
     },
     {
-      "question": "Gap tuzilishini tanlang:",
-      "options": ["He", "works", "as a doctor"],
-      "correct": [0, 1, 2]
+        "question": "We ___ our grandparents every weekend.",
+        "options": ["visit", "visits", "visiting", "visited"],
+        "correct": 0
     },
     {
-      "question": "To‘g‘ri javobni belgilang:",
-      "options": ["They", "don't", "watch", "TV", "very often"],
-      "correct": [0, 1, 2, 3, 4]
+        "question": "The train ___ at 5:30 pm.",
+        "options": ["leave", "leaves", "leaving", "left"],
+        "correct": 1
     },
     {
-      "question": "So‘z bo‘laklarini to‘g‘ri joylashtiring:",
-      "options": ["She", "reads", "a book", "every night"],
-      "correct": [0, 1, 2, 3]
+        "question": "___ they know the answer?",
+        "options": ["Do", "Does", "Is", "Are"],
+        "correct": 0
     },
     {
-      "question": "Tartib bilan to‘g‘ri joylashtiring:",
-      "options": ["We", "have", "lunch", "at 1 o'clock"],
-      "correct": [0, 1, 2, 3]
-    },
-    {
-      "question": "Quyidagi gapni to‘g‘ri tartibda tuzing:",
-      "options": ["The Earth", "revolves", "around the Sun"],
-      "correct": [0, 1, 2]
-    },
-    {
-      "question": "Gap bo‘laklarini to‘g‘ri tartibda joylashtiring:",
-      "options": ["He", "doesn't", "smoke"],
-      "correct": [0, 1, 2]
-    },
-    {
-      "question": "To‘g‘ri ketma-ketlikni tanlang:",
-      "options": ["I", "take", "a shower", "every morning"],
-      "correct": [0, 1, 2, 3]
-    },
-    {
-      "question": "Gapni to‘g‘ri tuzing:",
-      "options": ["She", "speaks", "three languages"],
-      "correct": [0, 1, 2]
-    },
-    {
-      "question": "Quyidagi so‘zlarni tartib bilan joylashtiring:",
-      "options": ["They", "don't", "like", "cold weather"],
-      "correct": [0, 1, 2, 3]
-    },
-    {
-      "question": "To‘g‘ri tartibni tanlang:",
-      "options": ["My sister", "studies", "at university"],
-      "correct": [0, 1, 2]
-    },
-    {
-      "question": "Gap tuzilishini tanlang:",
-      "options": ["We", "often", "go", "for a walk", "in the park"],
-      "correct": [0, 1, 2, 3, 4]
-    },
-    {
-      "question": "To‘g‘ri javobni belgilang:",
-      "options": ["He", "doesn't", "drink", "coffee"],
-      "correct": [0, 1, 2, 3]
-    },
-    {
-      "question": "So‘z bo‘laklarini to‘g‘ri joylashtiring:",
-      "options": ["The shop", "opens", "at 9 a.m."],
-      "correct": [0, 1, 2]
-    },
-    {
-      "question": "Tartib bilan to‘g‘ri joylashtiring:",
-      "options": ["I", "always", "brush", "my teeth", "before bed"],
-      "correct": [0, 1, 2, 3, 4]
+        "question": "My sister ___ as a nurse.",
+        "options": ["work", "works", "working", "worked"],
+        "correct": 1
     }
-  ]
+]
 ,
 "present_continuous": [
     {
@@ -1743,17 +1633,6 @@ quizzes = {
     }
 ]
 ,
-
-
-
-
-
-
-
-
-
-
-
 "past_simple": [
     {
         "question": "She ___ to Paris last year.",
@@ -1960,19 +1839,6 @@ quizzes = {
     }
 ]
 ,
-
-
-
-
-
-
-
-
-
-
-
-
-
 "future_simple": [
     {
         "question": "She ___ to London next month.",
@@ -2178,13 +2044,6 @@ quizzes = {
         "correct": 2
     }
 ]
-
-
-
-
-
-
-
 }
 # Foydalanuvchi ma'lumotlari
 user_data = {}
@@ -2289,8 +2148,11 @@ async def show_tenses_menu(message: types.Message):
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="⏳ Present Simple"), KeyboardButton(text="⏳ Present Continuous")],
+            [KeyboardButton(text="⏳ Present Perfect"), KeyboardButton(text="⏳ Present Perfect Cont.")],
             [KeyboardButton(text="⏳ Past Simple"), KeyboardButton(text="⏳ Past Continuous")],
+            [KeyboardButton(text="⏳ Past Perfect"), KeyboardButton(text="⏳ Past Perfect Cont.")],
             [KeyboardButton(text="⏳ Future Simple"), KeyboardButton(text="⏳ Future Continuous")],
+            [KeyboardButton(text="⏳ Future Perfect"), KeyboardButton(text="⏳ Future Perfect Cont.")],
             [KeyboardButton(text="♻️ Barcha Tenses")],
             [KeyboardButton(text="⬅️ Ortga")],
         ],
@@ -2301,13 +2163,19 @@ async def show_tenses_menu(message: types.Message):
         "⏳ English Tenses testlaridan birini tanlang:\n\n"
         "📌 *Present tenses:*\n"
         "1️⃣ Present Simple - Oddiy hozirgi zamon\n"
-        "2️⃣ Present Continuous - Davom etayotgan hozirgi zamon\n\n"
+        "2️⃣ Present Continuous - Davom etayotgan hozirgi zamon\n"
+        "3️⃣ Present Perfect - Tugallangan hozirgi zamon\n"
+        "4️⃣ Present Perfect Continuous - Tugallangan davomli zamon\n\n"
         "📌 *Past tenses:*\n"
-        "3️⃣ Past Simple - Oddiy o'tgan zamon\n"
-        "4️⃣ Past Continuous - Davom etgan o'tgan zamon\n\n"
+        "5️⃣ Past Simple - Oddiy o'tgan zamon\n"
+        "6️⃣ Past Continuous - Davom etgan o'tgan zamon\n"
+        "7️⃣ Past Perfect - Tugallangan o'tgan zamon\n"
+        "8️⃣ Past Perfect Continuous - Tugallangan davomli o'tgan zamon\n\n"
         "📌 *Future tenses:*\n"
-        "5️⃣ Future Simple - Oddiy kelasi zamon\n"
-        "6️⃣ Future Continuous - Davom etadigan kelasi zamon\n\n"
+        "9️⃣ Future Simple - Oddiy kelasi zamon\n"
+        "🔟 Future Continuous - Davom etadigan kelasi zamon\n"
+        "1️⃣1️⃣ Future Perfect - Tugallangan kelasi zamon\n"
+        "1️⃣2️⃣ Future Perfect Continuous - Tugallangan davomli kelasi zamon\n\n"
         "♻️ - *Barcha zamonlar aralash*\n"
         "⬅️ *Ortga qaytish*",
         reply_markup=keyboard,
@@ -2596,161 +2464,255 @@ async def show_ratings(message: types.Message):
     
     await message.answer(result, parse_mode="Markdown")
 
-
 @dp.message(lambda message: message.text in [
     "🧠❤️👀 State Verbs", 
     "📜 P verb 1", "📜 P verb 2", "📜 P verb 3", "📜 P verb 4",
-    "🌟 I verb 1", "🌟 I verb 2", "🌟 I verb 3", "🌟 I verb 4", "🌟 I verb 5", "🌟 I verb 6","🌟 I verb All",
-    "⏳ Present Simple", "⏳ Present Continuous",
-    "⏳ Past Simple", "⏳ Past Continuous",
-    "⏳ Future Simple", "⏳ Future Continuous",
+    "🌟 I verb 1", "🌟 I verb 2", "🌟 I verb 3", "🌟 I verb 4", "🌟 I verb 5", "🌟 I verb 6", "🌟 I verb All",
+    "⏳ Present Simple", "⏳ Present Continuous", "⏳ Present Perfect", "⏳ Present Perfect Cont.",
+    "⏳ Past Simple", "⏳ Past Continuous", "⏳ Past Perfect", "⏳ Past Perfect Cont.",
+    "⏳ Future Simple", "⏳ Future Continuous", "⏳ Future Perfect", "⏳ Future Perfect Cont.",
     "♻️ Barcha Tenses", "♻️ Barcha Preposition Verbs", "♻️ Barcha Irregular Verbs"
 ])
 async def start_quiz(message: types.Message):
-    user_id = message.from_user.id
-    subjects_map = {
-        "🧠❤️👀 State Verbs": "state",
-        "📜 P verb 1": "p_verb_1",
-        "📜 P verb 2": "p_verb_2",
-        "📜 P verb 3": "p_verb_3",
-        "📜 P verb 4": "p_verb_4",
-        "🌟 I verb 1": "irregular_verbs_1",
-        "🌟 I verb 2": "irregular_verbs_2",
-        "🌟 I verb 3": "irregular_verbs_3",
-        "🌟 I verb 4": "irregular_verbs_4",
-        "🌟 I verb 5": "irregular_verbs_5",
-        "🌟 I verb 6": "irregular_verbs_6",
-        "🌟 I verb All": "irregular_verbs_all",
-        "⏳ Present Simple": "present_simple",
-        "⏳ Present Continuous": "present_continuous",
-        "⏳ Past Simple": "past_simple",
-        "⏳ Past Continuous": "past_continuous",
-        "⏳ Future Simple": "future_simple",
-        "⏳ Future Continuous": "future_continuous",
-        "♻️ Barcha Tenses": "all_tenses",
-        "♻️ Barcha Preposition Verbs": "all_preposition_verbs",
-        "♻️ Barcha Irregular Verbs": "all_irregular_verbs"
-    }
-    
-    subject = subjects_map.get(message.text)
-    if not subject:
-        await message.answer("❌ Xatolik yuz berdi!")
-        return
-    
-    if user_id not in user_data:
-        user_data[user_id] = {
-            "subjects": {},
-            "score": 0,
-            "current_question": {},
-            "all_quizzes": [],
-            "current_poll": None
-        }
-    
-    if subject not in user_data[user_id]["subjects"]:
-        user_data[user_id]["subjects"][subject] = {
-            "correct": 0,
-            "wrong": 0,
-            "total": 0,
-            "current_index": 0
-        }
-    
-    if subject in quizzes:
-        user_data[user_id]["all_quizzes"] = quizzes[subject].copy()
-    
-    await message.answer(f"📢 {message.text} testi boshlandi!")
-    await send_next_question(user_id, subject, message.text)
-
-async def send_next_question(user_id, subject, quiz_name):
-    if user_id not in user_data:
-        return
-    
-    user_info = user_data[user_id]
-    questions = user_info.get("all_quizzes", [])
-    subject_info = user_info["subjects"][subject]
-    
-    if subject_info["current_index"] >= len(questions):
-        result_text = (
-            f"🎉 {quiz_name} testi tugadi!\n"
-            f"✅ To'g'ri javoblar: {subject_info['correct']}\n"
-            f"❌ Noto'g'ri javoblar: {subject_info['wrong']}\n"
-            f"📊 Jami savollar: {subject_info['total']}"
-        )
-        await bot.send_message(user_id, result_text)
-        
-        ratings[user_id] = user_info["score"]
-        
-        sorted_ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
-        user_rank = next((idx for idx, (uid, _) in enumerate(sorted_ratings, 1) if uid == user_id), None)
-        await bot.send_message(user_id, f"📊 Reytingdagi o'rningiz: {user_rank}")
-        
-        subject_info.update({"total": 0, "correct": 0, "wrong": 0, "current_index": 0})
-        return
-    
-    question_data = questions[subject_info["current_index"]]
-    shuffled_options = question_data["options"].copy()
-    correct_answer = shuffled_options[question_data["correct"]]
-    random.shuffle(shuffled_options)
-    new_correct_index = shuffled_options.index(correct_answer)
-    
-    user_info["current_poll"] = {
-        "poll_id": None,
-        "subject": subject,
-        "correct_option": new_correct_index,
-        "question_index": subject_info["current_index"],
-        "quiz_name": quiz_name
-    }
-    
     try:
+        user_id = message.from_user.id
+        subjects_map = {
+            "🧠❤️👀 State Verbs": "state",
+            "📜 P verb 1": "p_verb_1",
+            "📜 P verb 2": "p_verb_2",
+            "📜 P verb 3": "p_verb_3",
+            "📜 P verb 4": "p_verb_4",
+            "🌟 I verb 1": "irregular_verbs_1",
+            "🌟 I verb 2": "irregular_verbs_2",
+            "🌟 I verb 3": "irregular_verbs_3",
+            "🌟 I verb 4": "irregular_verbs_4",
+            "🌟 I verb 5": "irregular_verbs_5",
+            "🌟 I verb 6": "irregular_verbs_6",
+            "🌟 I verb All": "irregular_verbs_all",
+            "⏳ Present Simple": "present_simple",
+            "⏳ Present Continuous": "present_continuous",
+            "⏳ Present Perfect": "present_perfect",
+            "⏳ Present Perfect Cont.": "present_perfect_cont",
+            "⏳ Past Simple": "past_simple",
+            "⏳ Past Continuous": "past_continuous",
+            "⏳ Past Perfect": "past_perfect",
+            "⏳ Past Perfect Cont.": "past_perfect_cont",
+            "⏳ Future Simple": "future_simple",
+            "⏳ Future Continuous": "future_continuous",
+            "⏳ Future Perfect": "future_perfect",
+            "⏳ Future Perfect Cont.": "future_perfect_cont",
+            "♻️ Barcha Tenses": "all_tenses",
+            "♻️ Barcha Preposition Verbs": "all_preposition_verbs",
+            "♻️ Barcha Irregular Verbs": "all_irregular_verbs"
+        }
+        
+        subject = subjects_map.get(message.text)
+        if not subject:
+            await message.answer("❌ Xatolik yuz berdi! Tanlov noto'g'ri.")
+            return
+        
+        # Initialize user data if not exists
+        if user_id not in user_data:
+            user_data[user_id] = {
+                "subjects": {},
+                "score": 0,
+                "current_question": {},
+                "all_quizzes": [],
+                "current_poll": None,
+                "start_time": None
+            }
+        
+        # Initialize subject data if not exists
+        if subject not in user_data[user_id]["subjects"]:
+            user_data[user_id]["subjects"][subject] = {
+                "correct": 0,
+                "wrong": 0,
+                "total": 0,
+                "current_index": 0,
+                "attempts": 0
+            }
+        
+        # Reset quiz progress if starting new quiz
+        user_data[user_id]["all_quizzes"] = quizzes[subject].copy()
+        user_data[user_id]["subjects"][subject]["current_index"] = 0
+        user_data[user_id]["subjects"][subject]["attempts"] += 1
+        user_data[user_id]["start_time"] = time.time()
+        
+        await message.answer(
+            f"📢 {message.text} testi boshlandi!\n\n"
+            f"ℹ️ Har bir savolga 1 daqiqa vaqt beriladi!\n"
+            f"🔢 Jami savollar: {len(quizzes[subject])} ta",
+            reply_markup=types.ReplyKeyboardRemove()
+        )
+        await send_next_question(user_id, subject, message.text)
+        
+    except KeyError:
+        await message.answer("❌ Ushbu test hozircha mavjud emas!")
+    except Exception as e:
+        logging.error(f"Error in start_quiz: {e}")
+        await message.answer("❌ Testni boshlashda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.")
+
+async def send_next_question(user_id: int, subject: str, quiz_name: str):
+    try:
+        # Validate user data
+        if user_id not in user_data:
+            await bot.send_message(user_id, "❌ Foydalanuvchi ma'lumotlari topilmadi!")
+            return
+        
+        user_info = user_data[user_id]
+        questions = user_info.get("all_quizzes", [])
+        subject_info = user_info["subjects"][subject]
+        
+        # Check if quiz is completed
+        if subject_info["current_index"] >= len(questions):
+            await show_quiz_results(user_id, subject, quiz_name, subject_info)
+            return
+        
+        question_data = questions[subject_info["current_index"]]
+        
+        # Validate question data
+        if not question_data or "options" not in question_data or "correct" not in question_data:
+            await bot.send_message(user_id, "❌ Savol formati noto'g'ri!")
+            return
+        
+        # Prepare options and shuffle
+        shuffled_options = question_data["options"].copy()
+        correct_answer = shuffled_options[question_data["correct"]]
+        random.shuffle(shuffled_options)
+        new_correct_index = shuffled_options.index(correct_answer)
+        
+        # Store current poll data
+        user_info["current_poll"] = {
+            "poll_id": None,
+            "subject": subject,
+            "correct_option": new_correct_index,
+            "question_index": subject_info["current_index"],
+            "quiz_name": quiz_name,
+            "start_time": time.time()
+        }
+        
+        # Send the poll question with timer
         poll_msg = await bot.send_poll(
             chat_id=user_id,
             question=question_data["question"],
             options=shuffled_options,
             type="quiz",
             correct_option_id=new_correct_index,
-            is_anonymous=False
+            is_anonymous=False,
+            open_period=60  # 1 minute time limit
         )
+        
         user_info["current_poll"]["poll_id"] = poll_msg.poll.id
+        
     except Exception as e:
-        print(f"Poll yuborishda xato: {e}")
+        logging.error(f"Error in send_next_question: {e}")
         await bot.send_message(user_id, "❌ Savol yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.")
+
+async def show_quiz_results(user_id: int, subject: str, quiz_name: str, subject_info: dict):
+    try:
+        # Calculate time taken
+        time_taken = int(time.time() - user_data[user_id]["start_time"])
+        minutes = time_taken // 60
+        seconds = time_taken % 60
+        
+        # Calculate accuracy percentage
+        accuracy = 0
+        if subject_info['total'] > 0:
+            accuracy = (subject_info['correct'] / subject_info['total']) * 100
+        
+        # Prepare result message
+        result_text = (
+            f"🎉 {quiz_name} testi tugadi!\n\n"
+            f"✅ To'g'ri javoblar: {subject_info['correct']}\n"
+            f"❌ Noto'g'ri javoblar: {subject_info['wrong']}\n"
+            f"📊 Jami savollar: {subject_info['total']}\n"
+            f"💯 Aniqlik: {accuracy:.1f}%\n"
+            f"⏱ Sarflangan vaqt: {minutes} min {seconds} sec\n\n"
+            f"🔢 Urinishlar soni: {subject_info.get('attempts', 1)}"
+        )
+        
+        await bot.send_message(user_id, result_text)
+        
+        # Update ratings
+        ratings[user_id] = user_data[user_id]["score"]
+        sorted_ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
+        user_rank = next((idx for idx, (uid, _) in enumerate(sorted_ratings, 1) if uid == user_id), 0)
+        
+        await bot.send_message(
+            user_id,
+            f"🏆 Reytingdagi o'rningiz: {user_rank}\n"
+            f"👥 Jami ishtirokchilar: {len(sorted_ratings)}"
+        )
+        
+        # Reset quiz progress
+        subject_info.update({
+            "total": 0,
+            "correct": 0,
+            "wrong": 0,
+            "current_index": 0
+        })
+        
+    except Exception as e:
+        logging.error(f"Error in show_quiz_results: {e}")
+        await bot.send_message(user_id, "❌ Natijalarni ko'rsatishda xatolik yuz berdi.")
 
 @dp.poll_answer()
 async def handle_poll_answer(poll_answer: types.PollAnswer):
-    user_id = poll_answer.user.id
-    if user_id not in user_data:
-        return
-    
-    user_info = user_data[user_id]
-    if "current_poll" not in user_info:
-        return
-    
-    poll_data = user_info["current_poll"]
-    selected_option = poll_answer.option_ids[0] if poll_answer.option_ids else None
-    
-    if selected_option is None:
-        return
-    
-    subject = poll_data["subject"]
-    correct_option = poll_data["correct_option"]
-    question_index = poll_data["question_index"]
-    quiz_name = poll_data["quiz_name"]
-    
-    if selected_option == correct_option:
-        user_info["subjects"][subject]["correct"] += 1
-        user_info["score"] += 1
-        feedback = "✅ To'g'ri javob!"
-    else:
+    try:
+        user_id = poll_answer.user.id
+        
+        # Validate user data
+        if user_id not in user_data:
+            return
+        
+        user_info = user_data[user_id]
+        if "current_poll" not in user_info:
+            return
+        
+        poll_data = user_info["current_poll"]
+        
+        # Check if answer is too late (after 1 minute)
+        if time.time() - poll_data.get("start_time", 0) > 65:  # 5 second buffer
+            await bot.send_message(user_id, "⏰ Vaqt tugadi! Keyingi savolga o'tamiz.")
+            user_info["subjects"][poll_data["subject"]]["wrong"] += 1
+            user_info["subjects"][poll_data["subject"]]["total"] += 1
+            user_info["subjects"][poll_data["subject"]]["current_index"] += 1
+            await send_next_question(user_id, poll_data["subject"], poll_data["quiz_name"])
+            return
+        
+        # Validate answer
+        if not poll_answer.option_ids:
+            return
+        
+        selected_option = poll_answer.option_ids[0]
+        subject = poll_data["subject"]
+        correct_option = poll_data["correct_option"]
+        question_index = poll_data["question_index"]
+        quiz_name = poll_data["quiz_name"]
+        
+        # Get current question data
         question_data = user_info["all_quizzes"][question_index]
         correct_answer = question_data["options"][question_data["correct"]]
-        feedback = f"❌ Noto'g'ri javob! To'g'ri javob: {correct_answer}"
-        user_info["subjects"][subject]["wrong"] += 1
-    
-    user_info["subjects"][subject]["total"] += 1
-    user_info["subjects"][subject]["current_index"] += 1
-    
-    await bot.send_message(user_id, feedback)
-    await send_next_question(user_id, subject, quiz_name)
-
+        
+        # Update scores
+        if selected_option == correct_option:
+            user_info["subjects"][subject]["correct"] += 1
+            user_info["score"] += 1
+            feedback = "✅ To'g'ri javob!"
+        else:
+            feedback = f"❌ Noto'g'ri javob! To'g'ri javob: {correct_answer}"
+            user_info["subjects"][subject]["wrong"] += 1
+        
+        user_info["subjects"][subject]["total"] += 1
+        user_info["subjects"][subject]["current_index"] += 1
+        
+        await bot.send_message(user_id, feedback)
+        await send_next_question(user_id, subject, quiz_name)
+        
+    except Exception as e:
+        logging.error(f"Error in handle_poll_answer: {e}")
+        if user_id in user_data:
+            await bot.send_message(user_id, "❌ Javoblarni qayta ishlashda xatolik yuz berdi.")
 
 # Contact admin handler
 @dp.message(F.text == "📞 Adminga murojaat")
@@ -2772,32 +2734,49 @@ async def user_to_admin(message: Message):
             f"📅 Sana: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n"
         )
         
+        # Prepare reply markup
+        reply_markup = types.InlineKeyboardMarkup().add(
+            types.InlineKeyboardButton(
+                text="✏️ Javob yozish",
+                callback_data=f"reply_{message.from_user.id}"
+            )
+        )
+        
         # Forward different message types to admin
         if message.text:
             caption = f"{user_info}📝 Xabar: {message.text}"
             for admin_id in ADMIN_IDS:
-                await bot.send_message(admin_id, caption, reply_markup=types.ForceReply())
+                await bot.send_message(admin_id, caption, reply_markup=reply_markup)
         
         elif message.photo:
             caption = f"{user_info}📷 Rasm"
             for admin_id in ADMIN_IDS:
-                await bot.send_photo(admin_id, message.photo[-1].file_id, 
-                                   caption=caption, 
-                                   reply_markup=types.ForceReply())
+                await bot.send_photo(
+                    admin_id, 
+                    message.photo[-1].file_id, 
+                    caption=caption, 
+                    reply_markup=reply_markup
+                )
         
         elif message.video:
             caption = f"{user_info}🎥 Video"
             for admin_id in ADMIN_IDS:
-                await bot.send_video(admin_id, message.video.file_id, 
-                                   caption=caption, 
-                                   reply_markup=types.ForceReply())
+                await bot.send_video(
+                    admin_id, 
+                    message.video.file_id, 
+                    caption=caption, 
+                    reply_markup=reply_markup
+                )
         
         elif message.document:
             caption = f"{user_info}📄 Fayl: {message.document.file_name}"
             for admin_id in ADMIN_IDS:
-                await bot.send_document(admin_id, message.document.file_id, 
-                                      caption=caption, 
-                                      reply_markup=types.ForceReply())
+                await bot.send_document(
+                    admin_id, 
+                    message.document.file_id, 
+                    caption=caption, 
+                    reply_markup=reply_markup
+                )
         
         await message.answer("✅ Xabaringiz adminlarga yuborildi. Javobni kuting.")
     
@@ -2805,11 +2784,42 @@ async def user_to_admin(message: Message):
         logging.error(f"Xabar yuborishda xato: {e}")
         await message.answer("❌ Xabar yuborishda xatolik yuz berdi. Iltimos, keyinroq urunib ko'ring.")
 
-# Admin reply handler
+# Admin reply callback handler
+@dp.callback_query(F.data.startswith("reply_"))
+async def process_admin_reply(callback: types.CallbackQuery):
+    try:
+        user_id = int(callback.data.split("_")[1])
+        await callback.message.answer(
+            f"✍️ Foydalanuvchi {user_id} ga javob yozing:",
+            reply_markup=types.ForceReply()
+        )
+        await callback.answer()
+    except Exception as e:
+        logging.error(f"Admin reply callback error: {e}")
+        await callback.answer("❌ Xatolik yuz berdi!", show_alert=True)
+
+# Admin reply message handler
 @dp.message(F.reply_to_message, F.from_user.id.in_(ADMIN_IDS))
 async def admin_to_user(message: Message):
     try:
-        # Extract original message text
+        # Check if this is a reply to a user message
+        if message.reply_to_message.reply_markup:
+            for row in message.reply_to_message.reply_markup.inline_keyboard:
+                for button in row:
+                    if button.callback_data and button.callback_data.startswith("reply_"):
+                        user_id = int(button.callback_data.split("_")[1])
+                        
+                        # Send reply to user
+                        reply_text = (
+                            "📩 Admin javobi:\n\n"
+                            f"{message.text}\n\n"
+                            "💬 Savolingiz bo'lsa, yana yozishingiz mumkin."
+                        )
+                        await bot.send_message(user_id, reply_text)
+                        await message.answer("✅ Javob foydalanuvchiga yuborildi.")
+                        return
+        
+        # Fallback to original method if not a callback reply
         original_msg = message.reply_to_message.text or message.reply_to_message.caption
         
         if original_msg and "👤 Foydalanuvchi:" in original_msg:
@@ -2829,7 +2839,6 @@ async def admin_to_user(message: Message):
     except Exception as e:
         logging.error(f"Javob yuborishda xato: {e}")
         await message.answer("❌ Javob yuborishda xatolik. Foydalanuvchi ID topilmadi.")
-
 # Admin paneli
 @dp.message(Command("admin"))
 async def admin_panel(message: types.Message):
