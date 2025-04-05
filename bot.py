@@ -2886,6 +2886,7 @@ async def handle_poll_answer(poll_answer: types.PollAnswer):
         if user_id in user_data:
             await bot.send_message(user_id, "❌ Javoblarni qayta ishlashda xatolik yuz berdi.")
 
+
 # Contact admin handler
 @dp.message(F.text == "📞 Adminga murojaat")
 async def contact_admin(message: Message):
@@ -2906,49 +2907,32 @@ async def user_to_admin(message: Message):
             f"📅 Sana: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n"
         )
         
-        # Prepare reply markup
-        reply_markup = types.InlineKeyboardMarkup().add(
-            types.InlineKeyboardButton(
-                text="✏️ Javob yozish",
-                callback_data=f"reply_{message.from_user.id}"
-            )
-        )
-        
         # Forward different message types to admin
         if message.text:
             caption = f"{user_info}📝 Xabar: {message.text}"
             for admin_id in ADMIN_IDS:
-                await bot.send_message(admin_id, caption, reply_markup=reply_markup)
+                await bot.send_message(admin_id, caption, reply_markup=types.ForceReply())
         
         elif message.photo:
             caption = f"{user_info}📷 Rasm"
             for admin_id in ADMIN_IDS:
-                await bot.send_photo(
-                    admin_id, 
-                    message.photo[-1].file_id, 
-                    caption=caption, 
-                    reply_markup=reply_markup
-                )
+                await bot.send_photo(admin_id, message.photo[-1].file_id, 
+                                   caption=caption, 
+                                   reply_markup=types.ForceReply())
         
         elif message.video:
             caption = f"{user_info}🎥 Video"
             for admin_id in ADMIN_IDS:
-                await bot.send_video(
-                    admin_id, 
-                    message.video.file_id, 
-                    caption=caption, 
-                    reply_markup=reply_markup
-                )
+                await bot.send_video(admin_id, message.video.file_id, 
+                                   caption=caption, 
+                                   reply_markup=types.ForceReply())
         
         elif message.document:
             caption = f"{user_info}📄 Fayl: {message.document.file_name}"
             for admin_id in ADMIN_IDS:
-                await bot.send_document(
-                    admin_id, 
-                    message.document.file_id, 
-                    caption=caption, 
-                    reply_markup=reply_markup
-                )
+                await bot.send_document(admin_id, message.document.file_id, 
+                                      caption=caption, 
+                                      reply_markup=types.ForceReply())
         
         await message.answer("✅ Xabaringiz adminlarga yuborildi. Javobni kuting.")
     
@@ -2956,42 +2940,11 @@ async def user_to_admin(message: Message):
         logging.error(f"Xabar yuborishda xato: {e}")
         await message.answer("❌ Xabar yuborishda xatolik yuz berdi. Iltimos, keyinroq urunib ko'ring.")
 
-# Admin reply callback handler
-@dp.callback_query(F.data.startswith("reply_"))
-async def process_admin_reply(callback: types.CallbackQuery):
-    try:
-        user_id = int(callback.data.split("_")[1])
-        await callback.message.answer(
-            f"✍️ Foydalanuvchi {user_id} ga javob yozing:",
-            reply_markup=types.ForceReply()
-        )
-        await callback.answer()
-    except Exception as e:
-        logging.error(f"Admin reply callback error: {e}")
-        await callback.answer("❌ Xatolik yuz berdi!", show_alert=True)
-
-# Admin reply message handler
+# Admin reply handler
 @dp.message(F.reply_to_message, F.from_user.id.in_(ADMIN_IDS))
 async def admin_to_user(message: Message):
     try:
-        # Check if this is a reply to a user message
-        if message.reply_to_message.reply_markup:
-            for row in message.reply_to_message.reply_markup.inline_keyboard:
-                for button in row:
-                    if button.callback_data and button.callback_data.startswith("reply_"):
-                        user_id = int(button.callback_data.split("_")[1])
-                        
-                        # Send reply to user
-                        reply_text = (
-                            "📩 Admin javobi:\n\n"
-                            f"{message.text}\n\n"
-                            "💬 Savolingiz bo'lsa, yana yozishingiz mumkin."
-                        )
-                        await bot.send_message(user_id, reply_text)
-                        await message.answer("✅ Javob foydalanuvchiga yuborildi.")
-                        return
-        
-        # Fallback to original method if not a callback reply
+        # Extract original message text
         original_msg = message.reply_to_message.text or message.reply_to_message.caption
         
         if original_msg and "👤 Foydalanuvchi:" in original_msg:
@@ -3011,6 +2964,7 @@ async def admin_to_user(message: Message):
     except Exception as e:
         logging.error(f"Javob yuborishda xato: {e}")
         await message.answer("❌ Javob yuborishda xatolik. Foydalanuvchi ID topilmadi.")
+
 # Admin paneli
 @dp.message(Command("admin"))
 async def admin_panel(message: types.Message):
