@@ -2187,6 +2187,8 @@ quizzes = {
 
 }
 
+user_data = {}
+ratings = {}
 
 @dp.message(Command("start"))
 async def start(message: types.Message):
