@@ -1478,7 +1478,7 @@ quizzes = {
   ]
 ,
     
-"present_simple": [
+" present_simple": [
     {
       "question": "Quyidagi gapni to‘g‘ri tartibda tuzing:",
       "options": ["She", "works", "in a hospital"],
