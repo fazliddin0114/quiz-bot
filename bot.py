@@ -1478,7 +1478,7 @@ quizzes = {
   ]
 ,
     
-" present_simple": [
+"present_simple": [
     {
       "question": "Quyidagi gapni to‘g‘ri tartibda tuzing:",
       "options": ["She", "works", "in a hospital"],
@@ -1734,6 +1734,17 @@ quizzes = {
     }
 ]
 ,
+
+
+
+
+
+
+
+
+
+
+
 "past_simple": [
     {
         "question": "She ___ to Paris last year.",
@@ -1940,6 +1951,19 @@ quizzes = {
     }
 ]
 ,
+
+
+
+
+
+
+
+
+
+
+
+
+
 "future_simple": [
     {
         "question": "She ___ to London next month.",
@@ -2145,6 +2169,13 @@ quizzes = {
         "correct": 2
     }
 ]
+
+
+
+
+
+
+
 }
 # Foydalanuvchi ma'lumotlari
 user_data = {}
@@ -2249,32 +2280,53 @@ async def show_irregular_verbs(message: types.Message):
 async def show_tenses_menu(message: types.Message):
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
-            [KeyboardButton(text="⏳ Present Simple"), KeyboardButton(text="⏳ Present Continuous")],
-            [KeyboardButton(text="⏳ Past Simple"), KeyboardButton(text="⏳ Past Continuous")],
-            [KeyboardButton(text="⏳ Future Simple"), KeyboardButton(text="⏳ Future Continuous")],
-            [KeyboardButton(text="♻️ Barcha Tenses")],
-            [KeyboardButton(text="⬅️ Ortga")],
+            # Present Tenses Row
+            [KeyboardButton(text="🟢 Present Simple"), KeyboardButton(text="🟢 Present Continuous")],
+            [KeyboardButton(text="🟢 Present Perfect"), KeyboardButton(text="🟢 Present Perfect Cont.")],
+            
+            # Past Tenses Row
+            [KeyboardButton(text="🔴 Past Simple"), KeyboardButton(text="🔴 Past Continuous")],
+            [KeyboardButton(text="🔴 Past Perfect"), KeyboardButton(text="🔴 Past Perfect Cont.")],
+            
+            # Future Tenses Row
+            [KeyboardButton(text="🔵 Future Simple"), KeyboardButton(text="🔵 Future Continuous")],
+            [KeyboardButton(text="🔵 Future Perfect"), KeyboardButton(text="🔵 Future Perfect Cont.")],
+            
+            # Mixed and Special Options
+            [KeyboardButton(text="🔄 All Tenses Mixed")],
+            [KeyboardButton(text="📊 Tenses Comparison")],
+            [KeyboardButton(text="⬅️ Back to Main Menu")],
         ],
         resize_keyboard=True
     )
 
     await message.answer(
-        "⏳ English Tenses testlaridan birini tanlang:\n\n"
-        "📌 *Present tenses:*\n"
-        "1️⃣ Present Simple - Oddiy hozirgi zamon\n"
-        "2️⃣ Present Continuous - Davom etayotgan hozirgi zamon\n\n"
-        "📌 *Past tenses:*\n"
-        "3️⃣ Past Simple - Oddiy o'tgan zamon\n"
-        "4️⃣ Past Continuous - Davom etgan o'tgan zamon\n\n"
-        "📌 *Future tenses:*\n"
-        "5️⃣ Future Simple - Oddiy kelasi zamon\n"
-        "6️⃣ Future Continuous - Davom etadigan kelasi zamon\n\n"
-        "♻️ - *Barcha zamonlar aralash*\n"
-        "⬅️ *Ortga qaytish*",
+        "⏳ *English Tenses - Choose a Category:*\n\n"
+        "🎯 *Present Tenses:*\n"
+        "🟢 Present Simple - Regular actions/facts\n"
+        "🟢 Present Continuous - Happening now\n"
+        "🟢 Present Perfect - Completed actions\n"
+        "🟢 Present Perfect Cont. - Ongoing completed\n\n"
+        
+        "📜 *Past Tenses:*\n"
+        "🔴 Past Simple - Completed actions\n"
+        "🔴 Past Continuous - Past ongoing\n"
+        "🔴 Past Perfect - Before past actions\n"
+        "🔴 Past Perfect Cont. - Ongoing before past\n\n"
+        
+        "🔮 *Future Tenses:*\n"
+        "🔵 Future Simple - Predictions/decisions\n"
+        "🔵 Future Continuous - Future ongoing\n"
+        "🔵 Future Perfect - Completed by future\n"
+        "🔵 Future Perfect Cont. - Ongoing until future\n\n"
+        
+        "💡 *Additional Options:*\n"
+        "🔄 All Tenses Mixed - Random mixed practice\n"
+        "📊 Tenses Comparison - Compare similar tenses\n\n"
+        "⬅️ Return to main menu",
         reply_markup=keyboard,
         parse_mode="Markdown"
     )
-
 @dp.message(lambda message: message.text == "📚 English Lessons")
 async def show_english_lessons(message: types.Message):
     keyboard = ReplyKeyboardMarkup(
@@ -2541,7 +2593,7 @@ async def show_ratings(message: types.Message):
         return
     
     sorted_ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
-    result = "🏆 *Top 10 Reyting:*\n\n"
+    result = "🏆 *Top 15 Reyting:*\n\n"
     
     for idx, (user_id, score) in enumerate(sorted_ratings[:15], 1):
         try:
@@ -2558,158 +2610,302 @@ async def show_ratings(message: types.Message):
 @dp.message(lambda message: message.text in [
     "🧠❤️👀 State Verbs", 
     "📜 P verb 1", "📜 P verb 2", "📜 P verb 3", "📜 P verb 4", "📜 P verb 5",
-    "🌟 I verb 1", "🌟 I verb 2", "🌟 I verb 3", "🌟 I verb 4", "🌟 I verb 5", "🌟 I verb 6","🌟 I verb All",
-    "⏳ Present Simple", "⏳ Present Continuous",
-    "⏳ Past Simple", "⏳ Past Continuous",
-    "⏳ Future Simple", "⏳ Future Continuous",
-    
-    "♻️ Barcha Tenses", "♻️ Barcha Preposition Verbs", "♻️ Barcha Irregular Verbs"
+    "🌟 I verb 1", "🌟 I verb 2", "🌟 I verb 3", "🌟 I verb 4", "🌟 I verb 5", "🌟 I verb 6", "🌟 I verb All",
+    "⏳ Present Simple", "⏳ Present Continuous", "⏳ Present Perfect", "⏳ Present Perfect Cont.",
+    "⏳ Past Simple", "⏳ Past Continuous", "⏳ Past Perfect", "⏳ Past Perfect Cont.",
+    "⏳ Future Simple", "⏳ Future Continuous", "⏳ Future Perfect", "⏳ Future Perfect Cont.",
+    "♻️ Barcha Tenses", "♻️ Barcha Preposition Verbs", "♻️ Barcha Irregular Verbs",
+    "📊 Test natijalari", "🔄 Testni qayta boshlash", "❌ Testni to'xtatish"
 ])
-async def start_quiz(message: types.Message):
+async def handle_quiz_actions(message: types.Message):
     user_id = message.from_user.id
-    subjects_map = {
-        "🧠❤️👀 State Verbs": "state",
-        "📜 P verb 1": "p_verb_1",
-        "📜 P verb 2": "p_verb_2",
-        "📜 P verb 3": "p_verb_3",
-        "📜 P verb 4": "p_verb_4",
-        "📜 P verb 5": "p_verb_5",
-        "🌟 I verb 1": "irregular_verbs_1",
-        "🌟 I verb 2": "irregular_verbs_2",
-        "🌟 I verb 3": "irregular_verbs_3",
-        "🌟 I verb 4": "irregular_verbs_4",
-        "🌟 I verb 5": "irregular_verbs_5",
-        "🌟 I verb 6": "irregular_verbs_6",
-        "🌟 I verb All": "irregular_verbs_all",
-        "⏳ Present Simple": "present_simple",
-        "⏳ Present Continuous": "present_continuous",
-        "⏳ Past Simple": "past_simple",
-        "⏳ Past Continuous": "past_continuous",
-        "⏳ Future Simple": "future_simple",
-        "⏳ Future Continuous": "future_continuous",
-        "♻️ Barcha Tenses": "all_tenses",
-        "♻️ Barcha Preposition Verbs": "all_preposition_verbs",
-        "♻️ Barcha Irregular Verbs": "all_irregular_verbs"
-    }
     
-    subject = subjects_map.get(message.text)
-    if not subject:
-        await message.answer("❌ Xatolik yuz berdi!")
+    # New action buttons
+    if message.text == "📊 Test natijalari":
+        await show_current_results(user_id)
+        return
+    elif message.text == "🔄 Testni qayta boshlash":
+        await restart_quiz(user_id)
+        return
+    elif message.text == "❌ Testni to'xtatish":
+        await stop_quiz(user_id)
         return
     
+    # Existing quiz subjects
+    subjects_map = {
+        "🧠❤️👀 State Verbs": {"id": "state", "name": "State Verbs"},
+        "📜 P verb 1": {"id": "p_verb_1", "name": "Preposition Verbs 1"},
+        "📜 P verb 2": {"id": "p_verb_2", "name": "Preposition Verbs 2"},
+        "📜 P verb 3": {"id": "p_verb_3", "name": "Preposition Verbs 3"},
+        "📜 P verb 4": {"id": "p_verb_4", "name": "Preposition Verbs 4"},
+        "📜 P verb 5": {"id": "p_verb_5", "name": "Preposition Verbs 5"},
+        "🌟 I verb 1": {"id": "irregular_verbs_1", "name": "Irregular Verbs 1-20"},
+        "🌟 I verb 2": {"id": "irregular_verbs_2", "name": "Irregular Verbs 21-40"},
+        "🌟 I verb 3": {"id": "irregular_verbs_3", "name": "Irregular Verbs 41-60"},
+        "🌟 I verb 4": {"id": "irregular_verbs_4", "name": "Irregular Verbs 61-80"},
+        "🌟 I verb 5": {"id": "irregular_verbs_5", "name": "Irregular Verbs 81-100"},
+        "🌟 I verb 6": {"id": "irregular_verbs_6", "name": "Irregular Verbs 101-120"},
+        "🌟 I verb All": {"id": "irregular_verbs_all", "name": "All Irregular Verbs"},
+        "⏳ Present Simple": {"id": "present_simple", "name": "Present Simple"},
+        "⏳ Present Continuous": {"id": "present_continuous", "name": "Present Continuous"},
+        "⏳ Present Perfect": {"id": "present_perfect", "name": "Present Perfect"},
+        "⏳ Present Perfect Cont.": {"id": "present_perfect_cont", "name": "Present Perfect Continuous"},
+        "⏳ Past Simple": {"id": "past_simple", "name": "Past Simple"},
+        "⏳ Past Continuous": {"id": "past_continuous", "name": "Past Continuous"},
+        "⏳ Past Perfect": {"id": "past_perfect", "name": "Past Perfect"},
+        "⏳ Past Perfect Cont.": {"id": "past_perfect_cont", "name": "Past Perfect Continuous"},
+        "⏳ Future Simple": {"id": "future_simple", "name": "Future Simple"},
+        "⏳ Future Continuous": {"id": "future_continuous", "name": "Future Continuous"},
+        "⏳ Future Perfect": {"id": "future_perfect", "name": "Future Perfect"},
+        "⏳ Future Perfect Cont.": {"id": "future_perfect_cont", "name": "Future Perfect Continuous"},
+        "♻️ Barcha Tenses": {"id": "all_tenses", "name": "All Tenses Mixed"},
+        "♻️ Barcha Preposition Verbs": {"id": "all_preposition_verbs", "name": "All Preposition Verbs"},
+        "♻️ Barcha Irregular Verbs": {"id": "all_irregular_verbs", "name": "All Irregular Verbs"}
+    }
+    
+    subject_info = subjects_map.get(message.text)
+    if not subject_info:
+        await message.answer("❌ Xatolik yuz berdi! Tanlov noto'g'ri.")
+        return
+    
+    # Initialize user data if not exists
     if user_id not in user_data:
         user_data[user_id] = {
             "subjects": {},
             "score": 0,
-            "current_question": {},
+            "current_quiz": None,
             "all_quizzes": [],
-            "current_poll": None
+            "current_poll": None,
+            "start_time": datetime.now().isoformat()
         }
     
-    if subject not in user_data[user_id]["subjects"]:
-        user_data[user_id]["subjects"][subject] = {
+    # Initialize subject data if not exists
+    if subject_info["id"] not in user_data[user_id]["subjects"]:
+        user_data[user_id]["subjects"][subject_info["id"]] = {
             "correct": 0,
             "wrong": 0,
             "total": 0,
-            "current_index": 0
+            "current_index": 0,
+            "attempts": 0
         }
     
-    if subject in quizzes:
-        user_data[user_id]["all_quizzes"] = quizzes[subject].copy()
-    
-    await message.answer(f"📢 {message.text} testi boshlandi!")
-    await send_next_question(user_id, subject, message.text)
+    # Load quizzes if available
+    if subject_info["id"] in quizzes:
+        user_data[user_id]["all_quizzes"] = quizzes[subject_info["id"]].copy()
+        user_data[user_id]["current_quiz"] = subject_info["id"]
+        user_data[user_id]["subjects"][subject_info["id"]]["attempts"] += 1
+        
+        # Send quiz start message with instructions
+        start_message = (
+            f"📢 {subject_info['name']} testi boshlandi!\n\n"
+            f"ℹ️ Test {len(quizzes[subject_info['id']])} ta savoldan iborat.\n"
+            f"🕒 Test davomida quyidagi tugmalardan foydalanishingiz mumkin:\n"
+            f"📊 Test natijalari - Hozirgi natijalarni ko'rish\n"
+            f"🔄 Testni qayta boshlash - Testni boshidan boshlash\n"
+            f"❌ Testni to'xtatish - Testni tugatish\n\n"
+            f"💡 Diqqat! Har bir savolga javob berish uchun 60 soniya vaqt beriladi."
+        )
+        
+        keyboard = ReplyKeyboardMarkup(
+            keyboard=[
+                [KeyboardButton(text="📊 Test natijalari")],
+                [KeyboardButton(text="🔄 Testni qayta boshlash"), KeyboardButton(text="❌ Testni to'xtatish")],
+                [KeyboardButton(text="⬅️ Asosiy menyu")]
+            ],
+            resize_keyboard=True
+        )
+        
+        await message.answer(start_message, reply_markup=keyboard)
+        await send_next_question(user_id, subject_info["id"], subject_info["name"])
+    else:
+        await message.answer("❌ Ushbu test uchun savollar topilmadi!")
 
-async def send_next_question(user_id, subject, quiz_name):
+async def send_next_question(user_id, subject_id, quiz_name):
     if user_id not in user_data:
         return
     
     user_info = user_data[user_id]
     questions = user_info.get("all_quizzes", [])
-    subject_info = user_info["subjects"][subject]
+    subject_info = user_info["subjects"][subject_id]
     
+    # Check if quiz is completed
     if subject_info["current_index"] >= len(questions):
-        result_text = (
-            f"🎉 {quiz_name} testi tugadi!\n"
-            f"✅ To'g'ri javoblar: {subject_info['correct']}\n"
-            f"❌ Noto'g'ri javoblar: {subject_info['wrong']}\n"
-            f"📊 Jami savollar: {subject_info['total']}"
-        )
-        await bot.send_message(user_id, result_text)
-        
-        ratings[user_id] = user_info["score"]
-        
-        sorted_ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
-        user_rank = next((idx for idx, (uid, _) in enumerate(sorted_ratings, 1) if uid == user_id), None)
-        await bot.send_message(user_id, f"📊 Reytingdagi o'rningiz: {user_rank}")
-        
-        subject_info.update({"total": 0, "correct": 0, "wrong": 0, "current_index": 0})
+        await complete_quiz(user_id, subject_id, quiz_name)
         return
     
     question_data = questions[subject_info["current_index"]]
-    shuffled_options = question_data["options"].copy()
-    correct_answer = shuffled_options[question_data["correct"]]
-    random.shuffle(shuffled_options)
-    new_correct_index = shuffled_options.index(correct_answer)
     
+    # Create options with emoji indicators
+    options = question_data["options"].copy()
+    correct_answer = options[question_data["correct"]]
+    random.shuffle(options)
+    new_correct_index = options.index(correct_answer)
+    
+    # Add question progress indicator
+    progress = f"({subject_info['current_index']+1}/{len(questions)}) "
+    question_text = progress + question_data["question"]
+    
+    # Store current question info
     user_info["current_poll"] = {
         "poll_id": None,
-        "subject": subject,
+        "subject": subject_id,
         "correct_option": new_correct_index,
         "question_index": subject_info["current_index"],
-        "quiz_name": quiz_name
+        "quiz_name": quiz_name,
+        "question_time": datetime.now().isoformat()
     }
     
     try:
+        # Send poll with timeout
         poll_msg = await bot.send_poll(
             chat_id=user_id,
-            question=question_data["question"],
-            options=shuffled_options,
+            question=question_text,
+            options=options,
             type="quiz",
             correct_option_id=new_correct_index,
-            is_anonymous=False
+            is_anonymous=False,
+            open_period=60  # 60 seconds to answer
         )
         user_info["current_poll"]["poll_id"] = poll_msg.poll.id
+        
+        # Schedule timeout check
+        asyncio.create_task(check_answer_timeout(user_id, poll_msg.poll.id))
     except Exception as e:
         print(f"Poll yuborishda xato: {e}")
         await bot.send_message(user_id, "❌ Savol yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.")
 
-@dp.poll_answer()
-async def handle_poll_answer(poll_answer: types.PollAnswer):
-    user_id = poll_answer.user.id
+async def check_answer_timeout(user_id, poll_id):
+    await asyncio.sleep(60)  # Wait for 60 seconds
+    
+    if user_id in user_data and user_data[user_id].get("current_poll", {}).get("poll_id") == poll_id:
+        user_info = user_data[user_id]
+        poll_data = user_info["current_poll"]
+        
+        # Mark as wrong answer due to timeout
+        user_info["subjects"][poll_data["subject"]]["wrong"] += 1
+        user_info["subjects"][poll_data["subject"]]["total"] += 1
+        user_info["subjects"][poll_data["subject"]]["current_index"] += 1
+        
+        question_data = user_info["all_quizzes"][poll_data["question_index"]]
+        correct_answer = question_data["options"][question_data["correct"]]
+        
+        await bot.send_message(
+            user_id,
+            f"⏳ Vaqt tugadi! To'g'ri javob: {correct_answer}\n"
+            f"Keyingi savolga o'tilmoqda..."
+        )
+        
+        # Send next question
+        await send_next_question(user_id, poll_data["subject"], poll_data["quiz_name"])
+
+async def complete_quiz(user_id, subject_id, quiz_name):
     if user_id not in user_data:
         return
     
     user_info = user_data[user_id]
-    if "current_poll" not in user_info:
+    subject_info = user_info["subjects"][subject_id]
+    
+    # Calculate score and rating
+    correct = subject_info["correct"]
+    wrong = subject_info["wrong"]
+    total = subject_info["total"]
+    percentage = (correct / total) * 100 if total > 0 else 0
+    
+    # Determine rating emoji
+    if percentage >= 90:
+        rating_emoji = "🏆 A'lo"
+    elif percentage >= 70:
+        rating_emoji = "👍 Yaxshi"
+    elif percentage >= 50:
+        rating_emoji = "😐 Qoniqarli"
+    else:
+        rating_emoji = "😔 Qoniqarsiz"
+    
+    # Prepare result message
+    result_text = (
+        f"🎉 {quiz_name} testi tugadi!\n\n"
+        f"📊 Natijalaringiz:\n"
+        f"✅ To'g'ri javoblar: {correct}\n"
+        f"❌ Noto'g'ri javoblar: {wrong}\n"
+        f"📈 Foiz: {percentage:.1f}% - {rating_emoji}\n\n"
+        f"🔄 Testni qayta ishlash uchun /{subject_id} buyrug'idan foydalanishingiz mumkin."
+    )
+    
+    # Update ratings
+    ratings[user_id] = user_info["score"]
+    sorted_ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
+    user_rank = next((idx for idx, (uid, _) in enumerate(sorted_ratings, 1) if uid == user_id), None)
+    
+    if user_rank:
+        result_text += f"\n\n🏅 Umumiy reytingda {user_rank}-o'rindasiz!"
+    
+    # Reset current quiz
+    user_info["current_poll"] = None
+    user_info["current_quiz"] = None
+    
+    # Send results and return to main menu
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="🧠❤️👀 State Verbs"), KeyboardButton(text="📚 English Lessons")],
+            [KeyboardButton(text="📜 Preposition Verbs"), KeyboardButton(text="🌟 Irregular Verbs")],
+            [KeyboardButton(text="⏳ English Tenses"), KeyboardButton(text="👤 Profil")],
+            [KeyboardButton(text="📈 Reyting"), KeyboardButton(text="📞 Adminga murojaat")]
+        ],
+        resize_keyboard=True
+    )
+    
+    await bot.send_message(user_id, result_text, reply_markup=keyboard)
+
+async def show_current_results(user_id):
+    if user_id not in user_data or not user_data[user_id].get("current_poll"):
+        await bot.send_message(user_id, "🔴 Hozircha test ishlamayapti!")
         return
     
+    user_info = user_data[user_id]
     poll_data = user_info["current_poll"]
-    selected_option = poll_answer.option_ids[0] if poll_answer.option_ids else None
+    subject_info = user_info["subjects"][poll_data["subject"]]
     
-    if selected_option is None:
+    progress_text = (
+        f"📌 Test nomi: {poll_data['quiz_name']}\n"
+        f"📊 Progress: {poll_data['question_index']+1}/{len(user_info['all_quizzes'])}\n"
+        f"✅ To'g'ri javoblar: {subject_info['correct']}\n"
+        f"❌ Noto'g'ri javoblar: {subject_info['wrong']}\n"
+        f"🔢 Jami savollar: {subject_info['total']}\n\n"
+        f"ℹ️ Testni davom ettirish uchun keyingi savolga javob bering."
+    )
+    
+    await bot.send_message(user_id, progress_text)
+
+async def restart_quiz(user_id):
+    if user_id not in user_data or not user_data[user_id].get("current_poll"):
+        await bot.send_message(user_id, "🔴 Hozircha test ishlamayapti!")
         return
     
-    subject = poll_data["subject"]
-    correct_option = poll_data["correct_option"]
-    question_index = poll_data["question_index"]
+    user_info = user_data[user_id]
+    poll_data = user_info["current_poll"]
+    
+    # Reset quiz progress
+    user_info["subjects"][poll_data["subject"]].update({
+        "current_index": 0,
+        "correct": 0,
+        "wrong": 0,
+        "total": 0
+    })
+    
+    await bot.send_message(user_id, f"🔄 {poll_data['quiz_name']} testi qayta boshlanmoqda...")
+    await send_next_question(user_id, poll_data["subject"], poll_data["quiz_name"])
+
+async def stop_quiz(user_id):
+    if user_id not in user_data or not user_data[user_id].get("current_poll"):
+        await bot.send_message(user_id, "🔴 Hozircha test ishlamayapti!")
+        return
+    
+    user_info = user_data[user_id]
+    poll_data = user_info["current_poll"]
     quiz_name = poll_data["quiz_name"]
     
-    if selected_option == correct_option:
-        user_info["subjects"][subject]["correct"] += 1
-        user_info["score"] += 1
-        feedback = "✅ To'g'ri javob!"
-    else:
-        question_data = user_info["all_quizzes"][question_index]
-        correct_answer = question_data["options"][question_data["correct"]]
-        feedback = f"❌ Noto'g'ri javob! To'g'ri javob: {correct_answer}"
-        user_info["subjects"][subject]["wrong"] += 1
-    
-    user_info["subjects"][subject]["total"] += 1
-    user_info["subjects"][subject]["current_index"] += 1
-    
-    await bot.send_message(user_id, feedback)
-    await send_next_question(user_id, subject, quiz_name)
+    # Complete quiz with current results
+    await complete_quiz(user_id, poll_data["subject"], quiz_name)
 
 
 # Contact admin handler
