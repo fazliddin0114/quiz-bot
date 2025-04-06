@@ -9,16 +9,15 @@ from aiogram import types, F
 import logging
 from datetime import datetime
 
-
 # BotFather tomonidan berilgan token
-import os
-from dotenv import load_dotenv
+TOKEN = "7267797063:AAGBVPXJ0Nm5c0k3Xb9W3nXqZN0J7l9k48Y"  # Bu yerga haqiqiy tokenni qo'ying
+ADMIN_IDS = [7871012050]  # Admin IDlari
 
-load_dotenv()
+bot = Bot(token=TOKEN)
+dp = Dispatcher()
 
-TOKEN = os.getenv("BOT_TOKEN")
-ADMIN_IDS = list(map(int, os.getenv("ADMIN_IDS").split(","))) if os.getenv("ADMIN_IDS") else []
-# Test savollari
+
+
 quizzes = {
     "state": [
         {"question": "Ko'rmoq/tushunmoq", "options": ["SEE", "LOOK", "NOTICE", "WATCH"], "correct": 0},
