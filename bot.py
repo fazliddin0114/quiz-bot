@@ -11,12 +11,13 @@ from datetime import datetime
 
 
 # BotFather tomonidan berilgan token
-TOKEN = "7267797063:AAHjnlqhlLYU1rEAXf2S1VWLbKrTICagnak"  # Bu yerga haqiqiy tokenni qo'ying
-ADMIN_IDS = [7871012050]  # Admin IDlari
+import os
+from dotenv import load_dotenv
 
-bot = Bot(token=TOKEN)
-dp = Dispatcher()
+load_dotenv()
 
+TOKEN = os.getenv("BOT_TOKEN")
+ADMIN_IDS = list(map(int, os.getenv("ADMIN_IDS").split(","))) if os.getenv("ADMIN_IDS") else []
 # Test savollari
 quizzes = {
     "state": [
