@@ -10,7 +10,7 @@ import logging
 from datetime import datetime
 
 # BotFather tomonidan berilgan token
-TOKEN = "7267797063:AAGBVPXJ0Nm5c0k3Xb9W3nXqZN0J7l9k48Y"  # Bu yerga haqiqiy tokenni qo'ying
+TOKEN = "7267797063:AAFNqt3UXzIY77jTMv85p08Cp57K9WPD4sA"  # Bu yerga haqiqiy tokenni qo'ying
 ADMIN_IDS = [7871012050]  # Admin IDlari
 
 bot = Bot(token=TOKEN)
