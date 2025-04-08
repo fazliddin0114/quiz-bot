@@ -8,6 +8,15 @@ from aiogram.types import Message
 from aiogram import types, F
 import logging
 from datetime import datetime
+from aiogram import Bot, Dispatcher
+from aiogram.enums import ParseMode
+import asyncio
+from aiogram import Router, F, types
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+
+router = Router()
+dp = Dispatcher()
+dp.include_router(router)
 
 # BotFather tomonidan berilgan token
 TOKEN = "7267797063:AAFNqt3UXzIY77jTMv85p08Cp57K9WPD4sA"  # Bu yerga haqiqiy tokenni qo'ying
@@ -17,9 +26,9 @@ bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
 
-
+# Test savollari
 quizzes = {
-    "state": [
+    "state_verbs": [
         {"question": "Ko'rmoq/tushunmoq", "options": ["SEE", "LOOK", "NOTICE", "WATCH"], "correct": 0},
     {"question": "Rohatlanmoq", "options": ["LIKE", "ENJOY", "PREFER", "LOVE"], "correct": 1},
     {"question": "His qilmoq", "options": ["THINK", "FEEL", "EXPECT", "HOPE"], "correct": 1},
@@ -72,7 +81,7 @@ quizzes = {
     {"question": "Umid qilmoq", "options": ["HOPE", "EXPECT", "WISH", "BELIEVE"], "correct": 0},
     {"question": "Keçhirmoq", "options": ["FORGIVE", "FORGET", "IGNORE", "REMEMBER"], "correct": 0}
     ],
-  "p_verb_1":[
+  "preposition_verbs1":[
     {
         "question": "Yo’q bo‘lmoq",
         "options": ["Absent from", "Accompanied by", "According to", "Account for"],
@@ -124,7 +133,7 @@ quizzes = {
         "correct": 2
     }
 ],
-"p_verb_2": [
+"preposition_verbs2": [
     {
         "question": "Ko’nmoq, rozi bo‘lmoq",
         "options": ["Agree to", "Agree on smth", "Agree with smb", "Ahead of"],
@@ -176,7 +185,7 @@ quizzes = {
         "correct": 3
     }
 ],
-    "p_verb_3":[
+    "preposition_verbs3":[
     {
         "question": "Jahl chiqmoq (kimdandir nimadir qilgani uchun)",
         "options": ["Angry with smb for doing smth", "Annoyed with smb about smth", "Anxious about smth", "Apply to smb for smth"],
@@ -228,7 +237,7 @@ quizzes = {
         "correct": 2
     }
 ],
-    "p_verb_4": [
+    "preposition_verbs4": [
     {
         "question": "Bahslashmoq",
         "options": ["Argue with smb about smth", "Arrest smb for smth", "Arrive at", "Arrive in"],
@@ -280,7 +289,323 @@ quizzes = {
         "correct": 1
     }
 ],
-"irregular_verbs_1": [
+
+"preposition_verbs5": [
+    {
+        "question": "Hujum",
+        "options": ["Attack on", "Attack at", "Attack to", "Attack for"],
+        "correct": 0
+    },
+    {
+        "question": "Qatnashmoq",
+        "options": ["Attend to", "Attend for", "Attend at", "Attend with"],
+        "correct": 0
+    },
+    {
+        "question": "Be/boxabar bo'lmoq",
+        "options": ["(Un) aware of", "(Un) aware for", "(Un) aware at", "(Un) aware with"],
+        "correct": 0
+    },
+    {
+        "question": "Borasida yomon",
+        "options": ["Bad at", "Bad in", "Bad for", "Bad to"],
+        "correct": 0
+    },
+    {
+        "question": "Yomon munosabatda bo’lmoq",
+        "options": ["Bad to", "Bad at", "Bad for", "Bad with"],
+        "correct": 0
+    },
+    {
+        "question": "Asoslanmoq",
+        "options": ["Base on", "Base for", "Base at", "Base with"],
+        "correct": 0
+    },
+    {
+        "question": "Asos",
+        "options": ["Basis for", "Basis of", "Basis at", "Basis in"],
+        "correct": 0
+    },
+    {
+        "question": "Yalinmoq",
+        "options": ["Beg for", "Beg to", "Beg at", "Beg with"],
+        "correct": 0
+    },
+    {
+        "question": "Boshlamoq",
+        "options": ["Begin with", "Begin to", "Begin at", "Begin for"],
+        "correct": 0
+    },
+    {
+        "question": "Ishonmoq",
+        "options": ["Believe in", "Believe on", "Believe to", "Believe for"],
+        "correct": 0
+    }
+],
+"preposition_verbs6": [
+    {
+        "question": "Foyda",
+        "options": ["Benefit from", "Benefit to", "Benefit by", "Benefit at"],
+        "correct": 0
+    },
+    {
+        "question": "Pul tikmoq",
+        "options": ["Bet on", "Bet with", "Bet at", "Bet for"],
+        "correct": 0
+    },
+    {
+        "question": "Ehtiyot bo’lmoq",
+        "options": ["Beware of", "Beware at", "Beware for", "Beware with"],
+        "correct": 0
+    },
+    {
+        "question": "Ayblamoq (biror kishiga)",
+        "options": ["(Put the) blame on smb", "Blame smb for smth", "Blame smth on smb", "All of the above"],
+        "correct": 3
+    },
+    {
+        "question": "Ayblamoq (biror narsaga)",
+        "options": ["Blame smb for smth", "Blame smth on smb", "(Put the) blame on smb", "Blame smb for"],
+        "correct": 1
+    },
+    {
+        "question": "Maxtanmoq",
+        "options": ["Boast about/of", "Boast at", "Boast for", "Boast with"],
+        "correct": 0
+    },
+    {
+        "question": "Zerikkan",
+        "options": ["Bored with/of", "Bored from", "Bored by", "Bored at"],
+        "correct": 0
+    },
+    {
+        "question": "Qarzga olmoq",
+        "options": ["Borrow smth from smb", "Borrow smth to smb", "Borrow from smb for smth", "Borrow with smb"],
+        "correct": 0
+    },
+    {
+        "question": "Borasida a’lo",
+        "options": ["Brilliant at", "Brilliant in", "Brilliant for", "Brilliant with"],
+        "correct": 0
+    }
+]
+,
+"preposition_verbs7": [
+    {
+        "question": "Urib olmoq",
+        "options": ["Bump into", "Bump at", "Bump with", "Bump on"],
+        "correct": 0
+    },
+    {
+        "question": "... bilan band",
+        "options": ["Busy with", "Busy for", "Busy about", "Busy on"],
+        "correct": 0
+    },
+    {
+        "question": "To‘xtab o’tmoq (poyezd v.h.z.larga nisbatan)",
+        "options": ["Call at", "Call for", "Call with", "Call on"],
+        "correct": 0
+    },
+    {
+        "question": "Talab qilmoq",
+        "options": ["Call for", "Call on", "Call at", "Call to"],
+        "correct": 0
+    },
+    {
+        "question": "Hamkorlikda ishlamoq",
+        "options": ["Campaign against/for", "Campaign with", "Campaign on", "Campaign to"],
+        "correct": 0
+    },
+    {
+        "question": "...ga layoqatli",
+        "options": ["Capable of", "Capable for", "Capable in", "Capable with"],
+        "correct": 0
+    },
+    {
+        "question": "Qayg’urmoq",
+        "options": ["Care about", "Care for", "Care of", "Care with"],
+        "correct": 0
+    },
+    {
+        "question": "Yoqtirmoq",
+        "options": ["Care for smb", "Care about smb", "Care for smth", "Care on smb"],
+        "correct": 0
+    },
+    {
+        "question": "G’amxo’rlik qilmoq",
+        "options": ["(Take) care of", "Care for", "Care about", "Care with"],
+        "correct": 0
+    },
+    {
+        "question": "Qilishni xohlamoq",
+        "options": ["Care for smth", "Care about smth", "Care with smth", "Care of smth"],
+        "correct": 0
+    }
+]
+,
+
+"preposition_verbs8": [
+    {
+        "question": "Ehtiyotkor",
+        "options": ["Careful of", "Careful about", "Careful with", "Careful for"],
+        "correct": 0
+    },
+    {
+        "question": "E’tiborsiz",
+        "options": ["Careless about", "Careless of", "Careless with", "Careless in"],
+        "correct": 0
+    },
+    {
+        "question": "Sabab",
+        "options": ["Cause of", "Cause for", "Cause at", "Cause with"],
+        "correct": 0
+    },
+    {
+        "question": "Ishonchli",
+        "options": ["Certain of", "Certain about", "Certain in", "Certain for"],
+        "correct": 0
+    },
+    {
+        "question": "...ga o'zgarmoq",
+        "options": ["Change into", "Change for", "Change to", "Change in"],
+        "correct": 0
+    },
+    {
+        "question": "Fazilatli",
+        "options": ["Characteristic of", "Characteristic for", "Characteristic with", "Characteristic about"],
+        "correct": 0
+    },
+    {
+        "question": "To'latmoq",
+        "options": ["Charge for", "Charge to", "Charge at", "Charge with"],
+        "correct": 0
+    },
+    {
+        "question": "Ayblamoq",
+        "options": ["Charge smb with", "Charge smb for", "Charge for smb", "Charge with smb"],
+        "correct": 0
+    },
+    {
+        "question": "Chek",
+        "options": ["Cheque for", "Cheque to", "Cheque at", "Cheque from"],
+        "correct": 0
+    },
+    {
+        "question": "Tanlov",
+        "options": ["Choice between/of", "Choice for", "Choice at", "Choice with"],
+        "correct": 0
+    }
+],
+
+"preposition_verbs9": [
+    {
+        "question": "...da aqlli",
+        "options": ["Clever at", "Clever in", "Clever with", "Clever for"],
+        "correct": 0
+    },
+    {
+        "question": "...ga yaqin",
+        "options": ["Close to", "Close with", "Close at", "Close in"],
+        "correct": 0
+    },
+    {
+        "question": "Hamkorlikda ishlamoq",
+        "options": ["Collaborate with", "Collaborate for", "Collaborate on", "Collaborate at"],
+        "correct": 0
+    },
+    {
+        "question": "To‘qnashmoq",
+        "options": ["Collide with", "Collide on", "Collide for", "Collide at"],
+        "correct": 0
+    },
+    {
+        "question": "Fikr bildirmoq",
+        "options": ["Comment on", "Comment about", "Comment for", "Comment with"],
+        "correct": 0
+    },
+    {
+        "question": "Aloqa qilmoq",
+        "options": ["Communicate with", "Communicate to", "Communicate for", "Communicate at"],
+        "correct": 0
+    },
+    {
+        "question": "Taqqoslamoq",
+        "options": ["Compare with/to", "Compare to", "Compare with", "Compare on"],
+        "correct": 0
+    },
+    {
+        "question": "Taqqoslash",
+        "options": ["Comparison between", "Comparison of", "Comparison to", "Comparison with"],
+        "correct": 0
+    },
+    {
+        "question": "Shikoyat qilmoq/nolimoq",
+        "options": ["Complain of", "Complain about", "Complain for", "Complain with"],
+        "correct": 0
+    },
+    {
+        "question": "Norozilik bildirmoq",
+        "options": ["Complain to smb about smth", "Complain about smth to smb", "Complain of smb", "Complain for smb"],
+        "correct": 0
+    }
+],
+"preposition_verbs10": [
+    {
+        "question": "Xushomad qilmoq/maqtamoq",
+        "options": ["Compliment smb on", "Compliment smb for", "Compliment smb with", "Compliment smb to"],
+        "correct": 0
+    },
+    {
+        "question": "Bo’ysunmoq",
+        "options": ["Comply with", "Comply to", "Comply for", "Comply at"],
+        "correct": 0
+    },
+    {
+        "question": "Yashirmoq",
+        "options": ["Conceal smth from smb", "Conceal smth for smb", "Conceal smb from smth", "Conceal smb with smth"],
+        "correct": 0
+    },
+    {
+        "question": "Diqqatni jamlamoq",
+        "options": ["Concentrate on", "Concentrate in", "Concentrate for", "Concentrate at"],
+        "correct": 0
+    },
+    {
+        "question": "Ishonch",
+        "options": ["(Have) confidence in smb", "(Have) confidence on smb", "(Have) confidence for smb", "(Have) confidence with smb"],
+        "correct": 0
+    },
+    {
+        "question": "Ikkilanmoq",
+        "options": ["Confusion over", "Confusion about", "Confusion with", "Confusion for"],
+        "correct": 0
+    },
+    {
+        "question": "Tabriklamoq",
+        "options": ["Congratulate smb on smth", "Congratulate smb for smth", "Congratulate smb about smth", "Congratulate smb with smth"],
+        "correct": 0
+    },
+    {
+        "question": "Aloqa",
+        "options": ["Connection between", "Connection for", "Connection to", "Connection at"],
+        "correct": 0
+    },
+    {
+        "question": "...bilan aloqadorlikda",
+        "options": ["In connection with", "In connection to", "In connection for", "In connection on"],
+        "correct": 0
+    },
+    {
+        "question": "...sezadigan",
+        "options": ["Conscious of", "Conscious about", "Conscious for", "Conscious in"],
+        "correct": 0
+    }
+],
+
+
+
+
+"irregular_verbs1": [
     {
         "question": "Bo‘lmoq",
         "options": ["be - was/were - been", "beat - beat - beaten", "become - became - become", "begin - began - begun"],
@@ -383,7 +708,7 @@ quizzes = {
     }
 ]
 ,
-    "irregular_verbs_2": [
+    "irregular_verbs2": [
     {
         "question": "Bitim tuzmoq",
         "options": ["deal - dealt - dealt", "dig - dug - dug", "do - did - done", "draw - drew - drawn"],
@@ -486,7 +811,7 @@ quizzes = {
     }
 ]
 ,
-"irregular_verbs_3": [
+"irregular_verbs3": [
     {
         "question": "Ketmoq, bormoq",
         "options": ["go - went - gone", "grow - grew - grown", "hang - hung - hung", "hear - heard - heard"],
@@ -589,7 +914,7 @@ quizzes = {
     }
 ]
 ,
-"irregular_verbs_4": [
+"irregular_verbs4": [
     {
         "question": "Qilmoq, yasamoq",
         "options": ["make – made – made", "mean – meant – meant", "meet – met – met", "pay – paid – paid"],
@@ -692,7 +1017,7 @@ quizzes = {
     }
 ]
 ,
-"irregular_verbs_5": [
+"irregular_verbs5": [
     {
         "question": "Turmoq",
         "options": ["stand – stood – stood", "steal – stole – stolen", "stick – stuck – stuck", "sting – stung – stung"],
@@ -800,7 +1125,7 @@ quizzes = {
     }
 ]
     ,
-    "irregular_verbs_6": [
+    "irregular_verbs6": [
     {
         "question": "Yozmoq",
         "options": ["write – wrote – written", "arise – arose – arisen", "awake – awoke – awoken", "bear – bore – borne"],
@@ -1426,809 +1751,3402 @@ quizzes = {
     }
   ]
 ,
-    
-
-
-
-
-
-
+ 
 
   "present_simple": [
     {
-      "question": "Quyidagi gapni to‘g‘ri tartibda tuzing:",
-      "options": ["She", "works", "in a hospital"],
-      "correct": [0, 1, 2],
-      "level": "oson"
+      "question": "Gap qismlarini raqamlar tartibida joylashtiring: \"1=She\", \"2=works\", \"3=in a hospital\"",
+      "numbered_options": {
+        "1": "She",
+        "2": "works",
+        "3": "in a hospital"
+      },
+      "options": ["1,2,3", "3,2,1", "2,1,3"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Subject + Verb + Place"
     },
     {
-      "question": "Gap bo‘laklarini to‘g‘ri tartibda joylashtiring:",
-      "options": ["They", "usually", "drink", "tea", "in the morning"],
-      "correct": [0, 1, 2, 3, 4],
-      "level": "oson"
+      "question": "Gap qismlarini tartiblang: \"1=They\", \"2=play\", \"3=football\", \"4=every weekend\"",
+      "numbered_options": {
+        "1": "They",
+        "2": "play",
+        "3": "football",
+        "4": "every weekend"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Subject + Verb + Object + Time"
     },
     {
-      "question": "To‘g‘ri ketma-ketlikni tanlang:",
-      "options": ["My parents", "live", "in Tashkent"],
-      "correct": [0, 1, 2],
-      "level": "oson"
+      "question": "To'g'ri tartibni tanlang: \"1=The sun\", \"2=rises\", \"3=in the east\"",
+      "numbered_options": {
+        "1": "The sun",
+        "2": "rises",
+        "3": "in the east"
+      },
+      "options": ["1,2,3", "3,1,2", "2,3,1"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Universal truths"
     },
     {
-      "question": "Gapni to‘g‘ri tuzing:",
-      "options": ["He", "doesn't", "play", "tennis"],
-      "correct": [0, 1, 2, 3],
-      "level": "oson"
+      "question": "Gap tuzing: \"1=We\", \"2=don't\", \"3=eat\", \"4=meat\"",
+      "numbered_options": {
+        "1": "We",
+        "2": "don't",
+        "3": "eat",
+        "4": "meat"
+      },
+      "options": ["1,2,3,4", "4,2,3,1", "2,1,3,4"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Negative form"
     },
     {
-      "question": "Quyidagi so‘zlarni tartib bilan joylashtiring:",
-      "options": ["We", "often", "visit", "our grandparents"],
-      "correct": [0, 1, 2, 3],
-      "level": "oson"
+      "question": "Tartiblang: \"1=My teacher\", \"2=speaks\", \"3=English\", \"4=very well\"",
+      "numbered_options": {
+        "1": "My teacher",
+        "2": "speaks",
+        "3": "English",
+        "4": "very well"
+      },
+      "options": ["1,2,3,4", "4,2,3,1", "3,1,2,4"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Subject + Verb + Object + Manner"
     },
     {
-      "question": "To‘g‘ri tartibni tanlang:",
-      "options": ["The sun", "rises", "in the east"],
-      "correct": [0, 1, 2],
-      "level": "oson"
+      "question": "Gap qismlarini joylashtiring: \"1=Children\", \"2=like\", \"3=ice cream\"",
+      "numbered_options": {
+        "1": "Children",
+        "2": "like",
+        "3": "ice cream"
+      },
+      "options": ["1,2,3", "3,2,1", "2,1,3"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Subject + Verb + Object"
     },
     {
-      "question": "Gap tuzilishini tanlang:",
-      "options": ["She", "always", "arrives", "on time"],
-      "correct": [0, 1, 2, 3],
-      "level": "oson"
+      "question": "To'g'ri tartib: \"1=He\", \"2=goes\", \"3=to school\", \"4=by bus\"",
+      "numbered_options": {
+        "1": "He",
+        "2": "goes",
+        "3": "to school",
+        "4": "by bus"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Subject + Verb + Place + Transport"
     },
     {
-      "question": "To‘g‘ri javobni belgilang:",
-      "options": ["I", "don't", "like", "horror movies"],
-      "correct": [0, 1, 2, 3],
-      "level": "oson"
+      "question": "Gap tuzing: \"1=I\", \"2=always\", \"3=do\", \"4=my homework\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "always",
+        "3": "do",
+        "4": "my homework"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Adverb position"
     },
     {
-      "question": "So‘z bo‘laklarini to‘g‘ri joylashtiring:",
-      "options": ["He", "teaches", "mathematics", "at university"],
-      "correct": [0, 1, 2, 3],
-      "level": "oson"
+      "question": "Tartiblang: \"1=The train\", \"2=arrives\", \"3=at 9 AM\"",
+      "numbered_options": {
+        "1": "The train",
+        "2": "arrives",
+        "3": "at 9 AM"
+      },
+      "options": ["1,2,3", "3,2,1", "2,1,3"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Timetable events"
     },
     {
-      "question": "Tartib bilan to‘g‘ri joylashtiring:",
-      "options": ["They", "watch", "TV", "after dinner"],
-      "correct": [0, 1, 2, 3],
-      "level": "oson"
+      "question": "Gap qismlarini joylashtiring: \"1=You\", \"2=need\", \"3=a visa\", \"4=to travel\"",
+      "numbered_options": {
+        "1": "You",
+        "2": "need",
+        "3": "a visa",
+        "4": "to travel"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,4,3"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Subject + Verb + Object + Infinitive"
+    },
+
+    {
+      "question": "Gap tuzing: \"1=She\", \"2=rarely\", \"3=watches\", \"4=TV\", \"5=in the evening\"",
+      "numbered_options": {
+        "1": "She",
+        "2": "rarely",
+        "3": "watches",
+        "4": "TV",
+        "5": "in the evening"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Frequency adverbs"
     },
     {
-      "question": "Quyidagi gapni to‘g‘ri tartibda tuzing:",
-      "options": ["My brother", "plays", "football", "on weekends"],
-      "correct": [0, 1, 2, 3],
-      "level": "murakkab"
+      "question": "Tartiblang: \"1=Does\", \"2=your brother\", \"3=work\", \"4=in Tashkent\"",
+      "numbered_options": {
+        "1": "Does",
+        "2": "your brother",
+        "3": "work",
+        "4": "in Tashkent"
+      },
+      "options": ["1,2,3,4", "2,1,3,4", "4,3,2,1"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Yes/No questions"
     },
     {
-      "question": "Gap bo‘laklarini to‘g‘ri tartibda joylashtiring:",
-      "options": ["She", "never", "eats", "fast food"],
-      "correct": [0, 1, 2, 3],
-      "level": "murakkab"
+      "question": "Gap qismlarini joylashtiring: \"1=What\", \"2=do\", \"3=you\", \"4=do\", \"5=on weekends\"",
+      "numbered_options": {
+        "1": "What",
+        "2": "do",
+        "3": "you",
+        "4": "do",
+        "5": "on weekends"
+      },
+      "options": ["1,2,3,4,5", "3,2,1,4,5", "5,4,3,2,1"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Wh- questions"
     },
     {
-      "question": "To‘g‘ri ketma-ketlikni tanlang:",
-      "options": ["Water", "boils", "at 100 degrees Celsius"],
-      "correct": [0, 1, 2],
-      "level": "murakkab"
+      "question": "To'g'ri tartib: \"1=My parents\", \"2=don't\", \"3=speak\", \"4=French\"",
+      "numbered_options": {
+        "1": "My parents",
+        "2": "don't",
+        "3": "speak",
+        "4": "French"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Negative form (plural)"
     },
     {
-      "question": "Gapni to‘g‘ri tuzing:",
-      "options": ["We", "don't", "speak", "French"],
-      "correct": [0, 1, 2, 3],
-      "level": "murakkab"
+      "question": "Gap tuzing: \"1=How often\", \"2=do\", \"3=you\", \"4=visit\", \"5=your grandparents\"",
+      "numbered_options": {
+        "1": "How often",
+        "2": "do",
+        "3": "you",
+        "4": "visit",
+        "5": "your grandparents"
+      },
+      "options": ["1,2,3,4,5", "3,2,1,4,5", "5,4,3,2,1"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Frequency questions"
     },
     {
-      "question": "Quyidagi so‘zlarni tartib bilan joylashtiring:",
-      "options": ["The bus", "leaves", "at 8:30", "every morning"],
-      "correct": [0, 1, 2, 3],
-      "level": "murakkab"
+      "question": "Tartiblang: \"1=The meeting\", \"2=starts\", \"3=at 3 PM\", \"4=sharp\"",
+      "numbered_options": {
+        "1": "The meeting",
+        "2": "starts",
+        "3": "at 3 PM",
+        "4": "sharp"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Scheduled events"
     },
     {
-      "question": "To‘g‘ri tartibni tanlang:",
-      "options": ["I", "usually", "go", "to bed", "at 11 p.m."],
-      "correct": [0, 1, 2, 3, 4],
-      "level": "murakkab"
+      "question": "Gap qismlarini joylashtiring: \"1=Why\", \"2=does\", \"3=he\", \"4=need\", \"5=a new phone\"",
+      "numbered_options": {
+        "1": "Why",
+        "2": "does",
+        "3": "he",
+        "4": "need",
+        "5": "a new phone"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "3,2,1,4,5"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Reason questions"
     },
     {
-      "question": "Gap tuzilishini tanlang:",
-      "options": ["He", "works", "as a doctor"],
-      "correct": [0, 1, 2],
-      "level": "murakkab"
+      "question": "To'g'ri tartib: \"1=This shop\", \"2=doesn't\", \"3=sell\", \"4=electronics\"",
+      "numbered_options": {
+        "1": "This shop",
+        "2": "doesn't",
+        "3": "sell",
+        "4": "electronics"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Negative (3rd person)"
     },
     {
-      "question": "To‘g‘ri javobni belgilang:",
-      "options": ["They", "don't", "watch", "TV", "very often"],
-      "correct": [0, 1, 2, 3, 4],
-      "level": "murakkab"
+      "question": "Gap tuzing: \"1=Where\", \"2=do\", \"3=your friends\", \"4=live\"",
+      "numbered_options": {
+        "1": "Where",
+        "2": "do",
+        "3": "your friends",
+        "4": "live"
+      },
+      "options": ["1,2,3,4", "3,2,1,4", "4,3,2,1"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Place questions"
     },
     {
-      "question": "So‘z bo‘laklarini to‘g‘ri joylashtiring:",
-      "options": ["She", "reads", "a book", "every night"],
-      "correct": [0, 1, 2, 3],
-      "level": "murakkab"
+      "question": "Tartiblang: \"1=The bus\", \"2=doesn't\", \"3=stop\", \"4=here\", \"5=after midnight\"",
+      "numbered_options": {
+        "1": "The bus",
+        "2": "doesn't",
+        "3": "stop",
+        "4": "here",
+        "5": "after midnight"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Negative + time limitation"
+    },
+
+    {
+      "question": "Gap tuzing: \"1=By the time\", \"2=we arrive\", \"3=the movie\", \"4=will have\", \"5=already started\"",
+      "numbered_options": {
+        "1": "By the time",
+        "2": "we arrive",
+        "3": "the movie",
+        "4": "will have",
+        "5": "already started"
+      },
+      "options": ["1,2,3,4,5", "3,4,5,1,2", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Future perfect"
     },
     {
-      "question": "Tartib bilan to‘g‘ri joylashtiring:",
-      "options": ["We", "have", "lunch", "at 1 o'clock"],
-      "correct": [0, 1, 2, 3],
-      "level": "murakkab"
+      "question": "Tartiblang: \"1=Had\", \"2=you\", \"3=ever\", \"4=visited\", \"5=Samarkand\", \"6=before 2020\"",
+      "numbered_options": {
+        "1": "Had",
+        "2": "you",
+        "3": "ever",
+        "4": "visited",
+        "5": "Samarkand",
+        "6": "before 2020"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Past perfect question"
     },
     {
-      "question": "Quyidagi gapni to‘g‘ri tartibda tuzing:",
-      "options": ["The Earth", "revolves", "around the Sun"],
-      "correct": [0, 1, 2],
-      "level": "qiyin"
+      "question": "Gap qismlarini joylashtiring: \"1=The report\", \"2=is being\", \"3=prepared\", \"4=by the team\", \"5=right now\"",
+      "numbered_options": {
+        "1": "The report",
+        "2": "is being",
+        "3": "prepared",
+        "4": "by the team",
+        "5": "right now"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Present continuous passive"
     },
     {
-      "question": "Gap bo‘laklarini to‘g‘ri tartibda joylashtiring:",
-      "options": ["He", "doesn't", "smoke"],
-      "correct": [0, 1, 2],
-      "level": "qiyin"
+      "question": "To'g'ri tartib: \"1=Not only\", \"2=does she\", \"3=speak\", \"4=English\", \"5=but also\", \"6=French\"",
+      "numbered_options": {
+        "1": "Not only",
+        "2": "does she",
+        "3": "speak",
+        "4": "English",
+        "5": "but also",
+        "6": "French"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Inversion with not only"
     },
     {
-      "question": "To‘g‘ri ketma-ketlikni tanlang:",
-      "options": ["I", "take", "a shower", "every morning"],
-      "correct": [0, 1, 2, 3],
-      "level": "qiyin"
+      "question": "Gap tuzing: \"1=Were\", \"2=you\", \"3=to visit\", \"4=Uzbekistan\", \"5=what\", \"6=would you\", \"7=see first\"",
+      "numbered_options": {
+        "1": "Were",
+        "2": "you",
+        "3": "to visit",
+        "4": "Uzbekistan",
+        "5": "what",
+        "6": "would you",
+        "7": "see first"
+      },
+      "options": ["1,2,3,4,5,6,7", "7,6,5,4,3,2,1", "5,6,7,1,2,3,4"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Were + infinitive conditional"
     },
     {
-      "question": "Gapni to‘g‘ri tuzing:",
-      "options": ["She", "speaks", "three languages"],
-      "correct": [0, 1, 2],
-      "level": "qiyin"
+      "question": "Tartiblang: \"1=Hardly\", \"2=had\", \"3=I\", \"4=arrived\", \"5=when\", \"6=the phone\", \"7=rang\"",
+      "numbered_options": {
+        "1": "Hardly",
+        "2": "had",
+        "3": "I",
+        "4": "arrived",
+        "5": "when",
+        "6": "the phone",
+        "7": "rang"
+      },
+      "options": ["1,2,3,4,5,6,7", "7,6,5,4,3,2,1", "3,2,1,4,5,6,7"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Inversion with hardly"
     },
     {
-      "question": "Quyidagi so‘zlarni tartib bilan joylashtiring:",
-      "options": ["They", "don't", "like", "cold weather"],
-      "correct": [0, 1, 2, 3],
-      "level": "qiyin"
+      "question": "Gap qismlarini joylashtiring: \"1=Such\", \"2=was\", \"3=the noise\", \"4=that\", \"5=we\", \"6=couldn't\", \"7=sleep\"",
+      "numbered_options": {
+        "1": "Such",
+        "2": "was",
+        "3": "the noise",
+        "4": "that",
+        "5": "we",
+        "6": "couldn't",
+        "7": "sleep"
+      },
+      "options": ["1,2,3,4,5,6,7", "7,6,5,4,3,2,1", "3,2,1,4,5,6,7"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Such...that structure"
     },
     {
-      "question": "To‘g‘ri tartibni tanlang:",
-      "options": ["My sister", "studies", "at university"],
-      "correct": [0, 1, 2],
-      "level": "qiyin"
+      "question": "To'g'ri tartib: \"1=No sooner\", \"2=had\", \"3=she\", \"4=left\", \"5=than\", \"6=it\", \"7=started\", \"8=raining\"",
+      "numbered_options": {
+        "1": "No sooner",
+        "2": "had",
+        "3": "she",
+        "4": "left",
+        "5": "than",
+        "6": "it",
+        "7": "started",
+        "8": "raining"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "3,2,1,4,5,6,7,8"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "No sooner...than"
     },
     {
-      "question": "Gap tuzilishini tanlang:",
-      "options": ["We", "often", "go", "for a walk", "in the park"],
-      "correct": [0, 1, 2, 3, 4],
-      "level": "qiyin"
+      "question": "Gap tuzing: \"1=Only\", \"2=when\", \"3=the teacher\", \"4=explained\", \"5=the rule\", \"6=did I\", \"7=understand\", \"8=it\"",
+      "numbered_options": {
+        "1": "Only",
+        "2": "when",
+        "3": "the teacher",
+        "4": "explained",
+        "5": "the rule",
+        "6": "did I",
+        "7": "understand",
+        "8": "it"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "3,4,5,1,2,6,7,8"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Inversion with only"
     },
     {
-      "question": "To‘g‘ri javobni belgilang:",
-      "options": ["He", "doesn't", "drink", "coffee"],
-      "correct": [0, 1, 2, 3],
-      "level": "qiyin"
-    },
-    {
-      "question": "So‘z bo‘laklarini to‘g‘ri joylashtiring:",
-      "options": ["The shop", "opens", "at 9 a.m."],
-      "correct": [0, 1, 2],
-      "level": "qiyin"
-    },
-    {
-      "question": "Tartib bilan to‘g‘ri joylashtiring:",
-      "options": ["I", "always", "brush", "my teeth", "before bed"],
-      "correct": [0, 1, 2, 3, 4],
-      "level": "qiyin"
+      "question": "Tartiblang: \"1=Under no circumstances\", \"2=should\", \"3=you\", \"4=open\", \"5=this door\", \"6=during\", \"7=an emergency\"",
+      "numbered_options": {
+        "1": "Under no circumstances",
+        "2": "should",
+        "3": "you",
+        "4": "open",
+        "5": "this door",
+        "6": "during",
+        "7": "an emergency"
+      },
+      "options": ["1,2,3,4,5,6,7", "7,6,5,4,3,2,1", "3,2,1,4,5,6,7"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Negative adverbial inversion"
     }
-  ]
+  ],
+  "metadata": {
+    "total_questions": 30,
+    "levels": {
+      "easy": 10,
+      "normal": 10,
+      "hard": 10
+    },
+    "grammar_points_covered": [
+      "Present Simple",
+      "Present Continuous",
+      "Present Perfect",
+      "Past Perfect",
+      "Future Perfect",
+      "Passive Voice",
+      "Conditionals",
+      "Inversion",
+      "Question Forms"
+    ],
+    "recommended_time": "20-30 minutes"
+  }
+
+ 
+
+
 ,
+ "present_continuous": [
+    {
+      "question": "Gap qismlarini tartiblang (emphatic form): \"1=I\", \"2=AM\", \"3=TELLING\", \"4=you\", \"5=the truth\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "AM",
+        "3": "TELLING",
+        "4": "you",
+        "5": "the truth"
+      },
+      "options": ["1,2,3,4,5", "1,3,2,4,5", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Emphatic present continuous",
+      "hint": "Stress on auxiliary verb for emphasis"
+    },
+    {
+      "question": "Tartiblang (double action): \"1=While\", \"2=she\", \"3=is cooking\", \"4=dinner\", \"5=her husband\", \"6=is watching\", \"7=TV\"",
+      "numbered_options": {
+        "1": "While",
+        "2": "she",
+        "3": "is cooking",
+        "4": "dinner",
+        "5": "her husband",
+        "6": "is watching",
+        "7": "TV"
+      },
+      "options": ["1,2,3,4,5,6,7", "5,6,7,1,2,3,4", "1,5,6,7,2,3,4"],
+      "correct": 0,
+      "grammar_point": "Parallel actions",
+      "hint": "Two simultaneous actions with while"
+    },
+    {
+      "question": "Gap tuzing (changing meaning verb): \"1=He\", \"2=is being\", \"3=very\", \"4=careful\", \"5=with\", \"6=that antique\"",
+      "numbered_options": {
+        "1": "He",
+        "2": "is being",
+        "3": "very",
+        "4": "careful",
+        "5": "with",
+        "6": "that antique"
+      },
+      "options": ["1,2,3,4,5,6", "1,3,4,5,6,2", "2,1,3,4,5,6"],
+      "correct": 0,
+      "grammar_point": "Stative verb with continuous",
+      "hint": "'Be' in continuous shows temporary behavior"
+    },
+    {
+      "question": "Joylashtiring (future arrangement): \"1=This\", \"2=time\", \"3=next week\", \"4=we\", \"5='re flying\", \"6=to\", \"7=Paris\"",
+      "numbered_options": {
+        "1": "This",
+        "2": "time",
+        "3": "next week",
+        "4": "we",
+        "5": "'re flying",
+        "6": "to",
+        "7": "Paris"
+      },
+      "options": ["1,2,3,4,5,6,7", "4,5,6,7,1,2,3", "3,1,2,4,5,6,7"],
+      "correct": 0,
+      "grammar_point": "Fixed future arrangements",
+      "hint": "Present continuous for scheduled future events"
+    },
+    {
+      "question": "Tartiblang (complaint): \"1=That child\", \"2=is constantly\", \"3=interrupting\", \"4=the\", \"5=teacher\"",
+      "numbered_options": {
+        "1": "That child",
+        "2": "is constantly",
+        "3": "interrupting",
+        "4": "the",
+        "5": "teacher"
+      },
+      "options": ["1,2,3,4,5", "1,3,2,4,5", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Annoying habits",
+      "hint": "Adverbs of frequency + continuous for irritation"
+    },
+    {
+      "question": "Gap tuzing (passive): \"1=A new bridge\", \"2=is being\", \"3=built\", \"4=across\", \"5=the river\"",
+      "numbered_options": {
+        "1": "A new bridge",
+        "2": "is being",
+        "3": "built",
+        "4": "across",
+        "5": "the river"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Present continuous passive",
+      "hint": "Object + is being + past participle"
+    },
+    {
+      "question": "Joylashtiring (negative question): \"1=Why\", \"2=isn't\", \"3=the\", \"4=computer\", \"5=working\", \"6=properly\"",
+      "numbered_options": {
+        "1": "Why",
+        "2": "isn't",
+        "3": "the",
+        "4": "computer",
+        "5": "working",
+        "6": "properly"
+      },
+      "options": ["1,2,3,4,5,6", "3,4,5,6,1,2", "2,3,4,5,1,6"],
+      "correct": 0,
+      "grammar_point": "Negative questions",
+      "hint": "Wh- word + isn't + subject + -ing form"
+    },
+    {
+      "question": "Tartiblang (state verb exception): \"1=I\", \"2='m\", \"3=seeing\", \"4=the\", \"5=doctor\", \"6=tomorrow\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "'m",
+        "3": "seeing",
+        "4": "the",
+        "5": "doctor",
+        "6": "tomorrow"
+      },
+      "options": ["1,2,3,4,5,6", "4,5,1,2,3,6", "6,5,4,3,2,1"],
+      "correct": 0,
+      "grammar_point": "State verbs in continuous",
+      "hint": "'See' can be continuous for planned meetings"
+    },
+    {
+      "question": "Gap tuzing (question tag): \"1=You\", \"2='re\", \"3=not\", \"4=listening\", \"5=to\", \"6=me\", \"7=are you\"",
+      "numbered_options": {
+        "1": "You",
+        "2": "'re",
+        "3": "not",
+        "4": "listening",
+        "5": "to",
+        "6": "me",
+        "7": "are you"
+      },
+      "options": ["1,2,3,4,5,6,7", "1,2,4,5,6,3,7", "7,6,5,4,3,2,1"],
+      "correct": 0,
+      "grammar_point": "Question tags",
+      "hint": "Negative statement + positive tag"
+    },
+    {
+      "question": "Joylashtiring (mixed tenses): \"1=While\", \"2=we\", \"3='re discussing\", \"4=this\", \"5=the situation\", \"6=is getting\", \"7=worse\"",
+      "numbered_options": {
+        "1": "While",
+        "2": "we",
+        "3": "'re discussing",
+        "4": "this",
+        "5": "the situation",
+        "6": "is getting",
+        "7": "worse"
+      },
+      "options": ["1,2,3,4,5,6,7", "5,6,7,1,2,3,4", "2,3,4,1,5,6,7"],
+      "correct": 0,
+      "grammar_point": "Background action + development",
+      "hint": "Continuous for both parallel and changing situations"
+    }
+  ],
+  "metadata": {
+    "difficulty_features": {
+      "complex_structures": ["Passive voice", "Question tags", "Negative questions"],
+      "special_cases": ["State verbs", "Emphatic forms", "Future meaning"],
+      "sentence_length": "7-8 parts",
+      "cognitive_load": "High (requires analyzing multiple grammar points)"
+    },
+    "scoring": {
+      "points_per_question": 3,
+      "bonus_points": {
+        "explain_grammar": "+1",
+        "identify_exception": "+1"
+      }
+    }
+  }
+,
+
+ "present_perfect": [
+    {
+      "question": "Tartiblang: \"1=I\", \"2=have\", \"3=visited\", \"4=France\", \"5=before\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "have",
+        "3": "visited",
+        "4": "France",
+        "5": "before"
+      },
+      "options": ["1,2,3,4,5", "2,1,3,4,5", "3,4,1,2,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect"
+    },
+    {
+      "question": "Tartiblang: \"1=She\", \"2=has\", \"3=finished\", \"4=her homework\"",
+      "numbered_options": {
+        "1": "She",
+        "2": "has",
+        "3": "finished",
+        "4": "her homework"
+      },
+      "options": ["1,2,3,4", "2,1,4,3", "3,4,1,2"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect"
+    },
+    {
+      "question": "Tartiblang: \"1=They\", \"2=have\", \"3=never\", \"4=seen\", \"5=a lion\"",
+      "numbered_options": {
+        "1": "They",
+        "2": "have",
+        "3": "never",
+        "4": "seen",
+        "5": "a lion"
+      },
+      "options": ["1,2,3,4,5", "4,3,2,1,5", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect"
+    },
+    {
+      "question": "Tartiblang: \"1=He\", \"2=has\", \"3=already\", \"4=eaten\", \"5=lunch\"",
+      "numbered_options": {
+        "1": "He",
+        "2": "has",
+        "3": "already",
+        "4": "eaten",
+        "5": "lunch"
+      },
+      "options": ["1,2,3,4,5", "2,1,4,3,5", "3,5,2,1,4"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect"
+    },
+    {
+      "question": "Tartiblang: \"1=We\", \"2=have\", \"3=completed\", \"4=the project\"",
+      "numbered_options": {
+        "1": "We",
+        "2": "have",
+        "3": "completed",
+        "4": "the project"
+      },
+      "options": ["1,2,3,4", "2,1,4,3", "3,4,1,2"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect"
+    },
+    {
+      "question": "Tartiblang: \"1=You\", \"2=have\", \"3=visited\", \"4=London\", \"5=twice\"",
+      "numbered_options": {
+        "1": "You",
+        "2": "have",
+        "3": "visited",
+        "4": "London",
+        "5": "twice"
+      },
+      "options": ["1,2,3,4,5", "2,3,1,5,4", "3,4,1,2,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect"
+    },
+    {
+      "question": "Tartiblang: \"1=They\", \"2=have\", \"3=worked\", \"4=here\", \"5=for a year\"",
+      "numbered_options": {
+        "1": "They",
+        "2": "have",
+        "3": "worked",
+        "4": "here",
+        "5": "for a year"
+      },
+      "options": ["1,2,3,4,5", "2,1,4,3,5", "4,3,1,2,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect"
+    },
+    {
+      "question": "Tartiblang: \"1=She\", \"2=has\", \"3=traveled\", \"4=to Asia\"",
+      "numbered_options": {
+        "1": "She",
+        "2": "has",
+        "3": "traveled",
+        "4": "to Asia"
+      },
+      "options": ["1,2,3,4", "2,3,1,4", "3,4,1,2"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect"
+    },
+    {
+      "question": "Tartiblang: \"1=We\", \"2=have\", \"3=seen\", \"4=that movie\"",
+      "numbered_options": {
+        "1": "We",
+        "2": "have",
+        "3": "seen",
+        "4": "that movie"
+      },
+      "options": ["1,2,3,4", "2,1,4,3", "3,4,1,2"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect"
+    },
+    {
+      "question": "Tartiblang: \"1=I\", \"2=have\", \"3=started\", \"4=my own business\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "have",
+        "3": "started",
+        "4": "my own business"
+      },
+      "options": ["1,2,3,4", "2,3,1,4", "3,4,1,2"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect"
+    }
+  ],
+   "present_perfect_cont": [
+    {
+      "question": "Tartiblang: \"1=I\", \"2=have\", \"3=been\", \"4=studying\", \"5=English\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "have",
+        "3": "been",
+        "4": "studying",
+        "5": "English"
+      },
+      "options": ["1,2,3,4,5", "2,1,3,5,4", "3,4,1,2,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect Continuous"
+    },
+    {
+      "question": "Tartiblang: \"1=She\", \"2=has\", \"3=been\", \"4=working\", \"5=here\"",
+      "numbered_options": {
+        "1": "She",
+        "2": "has",
+        "3": "been",
+        "4": "working",
+        "5": "here"
+      },
+      "options": ["1,2,3,4,5", "3,4,1,2,5", "2,1,4,3,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect Continuous"
+    },
+    {
+      "question": "Tartiblang: \"1=They\", \"2=have\", \"3=been\", \"4=waiting\", \"5=for you\"",
+      "numbered_options": {
+        "1": "They",
+        "2": "have",
+        "3": "been",
+        "4": "waiting",
+        "5": "for you"
+      },
+      "options": ["1,2,3,4,5", "3,5,2,1,4", "4,1,2,3,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect Continuous"
+    },
+    {
+      "question": "Tartiblang: \"1=He\", \"2=has\", \"3=been\", \"4=running\", \"5=a marathon\"",
+      "numbered_options": {
+        "1": "He",
+        "2": "has",
+        "3": "been",
+        "4": "running",
+        "5": "a marathon"
+      },
+      "options": ["1,2,3,4,5", "2,1,4,3,5", "4,3,1,2,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect Continuous"
+    },
+    {
+      "question": "Tartiblang: \"1=We\", \"2=have\", \"3=been\", \"4=working\", \"5=together\"",
+      "numbered_options": {
+        "1": "We",
+        "2": "have",
+        "3": "been",
+        "4": "working",
+        "5": "together"
+      },
+      "options": ["1,2,3,4,5", "2,1,4,3,5", "3,5,1,4,2"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect Continuous"
+    },
+    {
+      "question": "Tartiblang: \"1=You\", \"2=have\", \"3=been\", \"4=playing\", \"5=soccer\"",
+      "numbered_options": {
+        "1": "You",
+        "2": "have",
+        "3": "been",
+        "4": "playing",
+        "5": "soccer"
+      },
+      "options": ["1,2,3,4,5", "3,1,4,2,5", "2,5,1,3,4"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect Continuous"
+    },
+    {
+      "question": "Tartiblang: \"1=They\", \"2=have\", \"3=been\", \"4=learning\", \"5=Spanish\"",
+      "numbered_options": {
+        "1": "They",
+        "2": "have",
+        "3": "been",
+        "4": "learning",
+        "5": "Spanish"
+      },
+      "options": ["1,2,3,4,5", "2,1,5,4,3", "3,4,1,2,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect Continuous"
+    },
+    {
+      "question": "Tartiblang: \"1=She\", \"2=has\", \"3=been\", \"4=reading\", \"5=a book\"",
+      "numbered_options": {
+        "1": "She",
+        "2": "has",
+        "3": "been",
+        "4": "reading",
+        "5": "a book"
+      },
+      "options": ["1,2,3,4,5", "2,1,4,3,5", "3,5,1,2,4"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect Continuous"
+    },
+    {
+      "question": "Tartiblang: \"1=I\", \"2=have\", \"3=been\", \"4=watching\", \"5=TV\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "have",
+        "3": "been",
+        "4": "watching",
+        "5": "TV"
+      },
+      "options": ["1,2,3,4,5", "2,1,4,3,5", "3,4,1,2,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect Continuous"
+    },
+    {
+      "question": "Tartiblang: \"1=We\", \"2=have\", \"3=been\", \"4=discussing\", \"5=the project\"",
+      "numbered_options": {
+        "1": "We",
+        "2": "have",
+        "3": "been",
+        "4": "discussing",
+        "5": "the project"
+      },
+      "options": ["1,2,3,4,5", "2,4,1,3,5", "3,1,2,4,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Present Perfect Continuous"
+    }
+  ],
+
+
+
   "present_continuous": [
     {
-      "question": "She ___ a book now.",
-      "options": ["read", "reads", "is reading", "reading"],
-      "correct": 2,
-      "level": "easy"
+      "question": "Gap tuzing (holiday plans): \"1=We\", \"2=are visiting\", \"3=our\", \"4=grandparents\", \"5=this weekend\"",
+      "numbered_options": {
+        "1": "We", "2": "are visiting", "3": "our", "4": "grandparents", "5": "this weekend"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Future arrangements",
+      "hint": "Present continuous for scheduled plans"
     },
     {
-      "question": "They ___ football at the moment.",
-      "options": ["play", "plays", "are playing", "playing"],
-      "correct": 2,
-      "level": "easy"
+      "question": "Tartiblang (current activity): \"1=Right now\", \"2=the students\", \"3=are preparing\", \"4=for\", \"5=their exams\"",
+      "numbered_options": {
+        "1": "Right now", "2": "the students", "3": "are preparing", "4": "for", "5": "their exams"
+      },
+      "options": ["1,2,3,4,5", "2,3,4,5,1", "3,2,1,4,5"],
+      "correct": 0,
+      "grammar_point": "Current actions",
+      "hint": "Time marker 'right now' indicates ongoing activity"
     },
     {
-      "question": "Look! It ___.",
-      "options": ["rain", "rains", "is raining", "raining"],
-      "correct": 2,
-      "level": "easy"
+      "question": "Gap tuzing (passive): \"1=A new law\", \"2=is being\", \"3=discussed\", \"4=in\", \"5=parliament\", \"6=this week\"",
+      "numbered_options": {
+        "1": "A new law", "2": "is being", "3": "discussed", "4": "in", "5": "parliament", "6": "this week"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "grammar_point": "Present continuous passive",
+      "hint": "Object + is being + past participle"
     },
     {
-      "question": "What ___ you ___ now?",
-      "options": ["do, do", "are, doing", "is, doing", "does, do"],
-      "correct": 1,
-      "level": "easy"
+      "question": "Joylashtiring (double action): \"1=While\", \"2=I\", \"3=am cooking\", \"4=dinner\", \"5=my husband\", \"6=is setting\", \"7=the table\"",
+      "numbered_options": {
+        "1": "While", "2": "I", "3": "am cooking", "4": "dinner", "5": "my husband", "6": "is setting", "7": "the table"
+      },
+      "options": ["1,2,3,4,5,6,7", "5,6,7,1,2,3,4", "2,3,4,1,5,6,7"],
+      "correct": 0,
+      "grammar_point": "Simultaneous actions",
+      "hint": "'While' shows two parallel ongoing actions"
     },
     {
-      "question": "The children ___ TV now.",
-      "options": ["watch", "watches", "are watching", "watching"],
-      "correct": 2,
-      "level": "easy"
+      "question": "Tartiblang (emphatic negative): \"1=I\", \"2=AM NOT\", \"3=EXAGGERATING\", \"4=when\", \"5=I say\", \"6=this\", \"7=is critical\"",
+      "numbered_options": {
+        "1": "I", "2": "AM NOT", "3": "EXAGGERATING", "4": "when", "5": "I say", "6": "this", "7": "is critical"
+      },
+      "options": ["1,2,3,4,5,6,7", "4,5,6,7,1,2,3", "2,1,3,4,5,6,7"],
+      "correct": 0,
+      "grammar_point": "Emphatic negation",
+      "hint": "Capitalized auxiliary shows strong emphasis"
     },
     {
-      "question": "Listen! Someone ___.",
-      "options": ["sing", "sings", "is singing", "singing"],
-      "correct": 2,
-      "level": "easy"
-    },
-    {
-      "question": "She ___ her homework now.",
-      "options": ["do", "does", "is doing", "doing"],
-      "correct": 2,
-      "level": "easy"
-    },
-    {
-      "question": "They ___ to London next week.",
-      "options": ["travel", "travels", "are traveling", "traveling"],
-      "correct": 2,
-      "level": "easy"
-    },
-    {
-      "question": "I ___ for my exam these days.",
-      "options": ["study", "studies", "am studying", "studying"],
-      "correct": 2,
-      "level": "easy"
-    },
-    {
-      "question": "Why ___ you ___?",
-      "options": ["do, cry", "are, crying", "is, crying", "does, cry"],
-      "correct": 1,
-      "level": "easy"
-    },
-    {
-      "question": "The baby ___ right now.",
-      "options": ["sleep", "sleeps", "is sleeping", "sleeping"],
-      "correct": 2,
-      "level": "medium"
-    },
-    {
-      "question": "We ___ dinner at the moment.",
-      "options": ["have", "has", "are having", "having"],
-      "correct": 2,
-      "level": "medium"
-    },
-    {
-      "question": "The students ___ for the test.",
-      "options": ["prepare", "prepares", "are preparing", "preparing"],
-      "correct": 2,
-      "level": "medium"
-    },
-    {
-      "question": "Where ___ you ___ these days?",
-      "options": ["do, live", "are, living", "is, living", "does, live"],
-      "correct": 1,
-      "level": "medium"
-    },
-    {
-      "question": "My phone ___ at the moment.",
-      "options": ["not work", "doesn't work", "isn't working", "not working"],
-      "correct": 2,
-      "level": "medium"
-    },
-    {
-      "question": "The workers ___ the road this week.",
-      "options": ["repair", "repairs", "are repairing", "repairing"],
-      "correct": 2,
-      "level": "medium"
-    },
-    {
-      "question": "Look! The dog ___ with the children.",
-      "options": ["play", "plays", "is playing", "playing"],
-      "correct": 2,
-      "level": "medium"
-    },
-    {
-      "question": "I ___ to the radio while cooking.",
-      "options": ["listen", "listens", "am listening", "listening"],
-      "correct": 2,
-      "level": "medium"
-    },
-    {
-      "question": "They ___ a new house these days.",
-      "options": ["build", "builds", "are building", "building"],
-      "correct": 2,
-      "level": "medium"
-    },
-    {
-      "question": "Why ___ he ___ so fast?",
-      "options": ["do, run", "is, running", "does, run", "are, running"],
-      "correct": 1,
-      "level": "medium"
-    },
-    {
-      "question": "By this time tomorrow, I ___ to New York.",
-      "options": ["fly", "will fly", "am flying", "will be flying"],
-      "correct": 3,
-      "level": "hard"
-    },
-    {
-      "question": "This time next week, we ___ on the beach.",
-      "options": ["lie", "will lie", "are lying", "will be lying"],
-      "correct": 3,
-      "level": "hard"
-    },
-    {
-      "question": "Don't call at 8 PM - I ___ my online class then.",
-      "options": ["have", "am having", "will have", "will be having"],
-      "correct": 3,
-      "level": "hard"
-    },
-    {
-      "question": "While you ___ dinner tonight, I ___ my presentation.",
-      "options": ["prepare, will practice", "are preparing, will be practicing", "prepare, am practicing", "are preparing, practice"],
-      "correct": 1,
-      "level": "hard"
-    },
-    {
-      "question": "At midnight last night, I ___ still ___ my assignment.",
-      "options": ["am, working", "was, working", "was, worked", "am, worked"],
-      "correct": 1,
-      "level": "hard"
-    },
-    {
-      "question": "She ___ her degree when the pandemic started.",
-      "options": ["is completing", "was completing", "completed", "completes"],
-      "correct": 1,
-      "level": "hard"
-    },
-    {
-      "question": "The team ___ on this project since January.",
-      "options": ["works", "is working", "has been working", "worked"],
-      "correct": 2,
-      "level": "hard"
-    },
-    {
-      "question": "I ___ TV when suddenly the lights went out.",
-      "options": ["watch", "watched", "was watching", "am watching"],
-      "correct": 2,
-      "level": "hard"
-    },
-    {
-      "question": "They ___ dinner when we arrived.",
-      "options": ["have", "had", "were having", "are having"],
-      "correct": 2,
-      "level": "hard"
-    },
-    {
-      "question": "What ___ you ___ when I called you yesterday?",
-      "options": ["do, do", "were, doing", "did, do", "are, doing"],
-      "correct": 1,
-      "level": "hard"
+      "question": "Gap tuzing (mixed tenses): \"1=As\", \"2=we\", \"3=are speaking\", \"4=the situation\", \"5=is becoming\", \"6=more\", \"7=complicated\"",
+      "numbered_options": {
+        "1": "As", "2": "we", "3": "are speaking", "4": "the situation", "5": "is becoming", "6": "more", "7": "complicated"
+      },
+      "options": ["1,2,3,4,5,6,7", "4,5,6,7,1,2,3", "2,3,1,4,5,6,7"],
+      "correct": 0,
+      "grammar_point": "Background + development",
+      "hint": "Continuous for both ongoing action and changing state"
     }
-  ] 
-,
+  ],
 
-
-
-
-    
-"past_simple": [
-    {
-        "question": "She ___ to Paris last year.",
-        "options": ["go", "goes", "went", "gone"],
-        "correct": 2
+   "present_perfect": [
+       {
+      "question": "Gap tuzing (experience): \"1=I\", \"2=have visited\", \"3=Paris\", \"4=twice\"",
+      "numbered_options": {
+        "1": "I", "2": "have visited", "3": "Paris", "4": "twice"
+      },
+      "options": ["1,2,3,4", "3,2,1,4", "2,1,3,4"],
+      "correct": 0,
+      "grammar_point": "Life experiences",
+      "hint": "Subject + have + past participle"
     },
     {
-        "question": "They ___ a new car yesterday.",
-        "options": ["buy", "buys", "bought", "buying"],
-        "correct": 2
+      "question": "Tartiblang (recent action): \"1=She\", \"2=has just\", \"3=finished\", \"4=her homework\"",
+      "numbered_options": {
+        "1": "She", "2": "has just", "3": "finished", "4": "her homework"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "grammar_point": "Recent actions",
+      "hint": "'just' indicates very recent completion"
     },
     {
-        "question": "He ___ his homework an hour ago.",
-        "options": ["finish", "finishes", "finished", "finishing"],
-        "correct": 2
+      "question": "Gap tuzing (unfinished time): \"1=We\", \"2=have had\", \"3=three meetings\", \"4=this week\"",
+      "numbered_options": {
+        "1": "We", "2": "have had", "3": "three meetings", "4": "this week"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "grammar_point": "Unfinished time periods",
+      "hint": "This week is still continuing"
     },
     {
-        "question": "___ you see that movie last night?",
-        "options": ["Do", "Does", "Did", "Are"],
-        "correct": 2
+      "question": "Tartiblang (result): \"1=He\", \"2=has lost\", \"3=his\", \"4=passport\"",
+      "numbered_options": {
+        "1": "He", "2": "has lost", "3": "his", "4": "passport"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "grammar_point": "Present results",
+      "hint": "The loss affects the present situation"
     },
     {
-        "question": "We ___ dinner at 8 pm yesterday.",
-        "options": ["have", "has", "had", "having"],
-        "correct": 2
+      "question": "Gap tuzing (never): \"1=I\", \"2=have never\", \"3=tried\", \"4=sushi\"",
+      "numbered_options": {
+        "1": "I", "2": "have never", "3": "tried", "4": "sushi"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "grammar_point": "Negative experiences",
+      "hint": "'never' goes between auxiliary and main verb"
     },
     {
-        "question": "The sun ___ at 6 am yesterday.",
-        "options": ["rise", "rises", "rose", "rising"],
-        "correct": 2
+      "question": "Gap tuzing (duration): \"1=They\", \"2=have lived\", \"3=here\", \"4=since\", \"5=2010\"",
+      "numbered_options": {
+        "1": "They", "2": "have lived", "3": "here", "4": "since", "5": "2010"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Duration from past to present",
+      "hint": "'since' for starting point in the past"
     },
     {
-        "question": "She ___ her keys this morning.",
-        "options": ["lose", "loses", "lost", "losing"],
-        "correct": 2
+      "question": "Tartiblang (yet): \"1=Have\", \"2=you\", \"3=finished\", \"4=the report\", \"5=yet\"",
+      "numbered_options": {
+        "1": "Have", "2": "you", "3": "finished", "4": "the report", "5": "yet"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Questions with 'yet'",
+      "hint": "'yet' typically comes at the end in questions"
     },
     {
-        "question": "I ___ a letter to my friend last week.",
-        "options": ["write", "writes", "wrote", "written"],
-        "correct": 2
+      "question": "Gap tuzing (already): \"1=She\", \"2=has already\", \"3=seen\", \"4=that movie\"",
+      "numbered_options": {
+        "1": "She", "2": "has already", "3": "seen", "4": "that movie"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "grammar_point": "'already' position",
+      "hint": "'already' goes between auxiliary and main verb"
     },
     {
-        "question": "They ___ home late last night.",
-        "options": ["come", "comes", "came", "coming"],
-        "correct": 2
+      "question": "Tartiblang (recent change): \"1=The prices\", \"2=have\", \"3=gone up\", \"4=significantly\"",
+      "numbered_options": {
+        "1": "The prices", "2": "have", "3": "gone up", "4": "significantly"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "grammar_point": "Recent changes",
+      "hint": "Present perfect for changes happening recently"
     },
     {
-        "question": "He ___ his breakfast quickly.",
-        "options": ["eat", "eats", "ate", "eating"],
-        "correct": 2
+      "question": "Gap tuzing (how long): \"1=How long\", \"2=have\", \"3=you\", \"4=known\", \"5=your best friend\"",
+      "numbered_options": {
+        "1": "How long", "2": "have", "3": "you", "4": "known", "5": "your best friend"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Duration questions",
+      "hint": "'How long' questions often use present perfect"
     },
     {
-        "question": "We ___ very tired after the trip.",
-        "options": ["are", "were", "was", "is"],
-        "correct": 1
+      "question": "Gap tuzing (passive): \"1=This book\", \"2=has been\", \"3=translated\", \"4=into\", \"5=30 languages\"",
+      "numbered_options": {
+        "1": "This book", "2": "has been", "3": "translated", "4": "into", "5": "30 languages"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Present perfect passive",
+      "hint": "Object + has been + past participle"
     },
     {
-        "question": "Shakespeare ___ many famous plays.",
-        "options": ["write", "writes", "wrote", "written"],
-        "correct": 2
+      "question": "Tartiblang (emphasis): \"1=I\", \"2=HAVE\", \"3=told\", \"4=you\", \"5=this\", \"6=many times\"",
+      "numbered_options": {
+        "1": "I", "2": "HAVE", "3": "told", "4": "you", "5": "this", "6": "many times"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "grammar_point": "Emphatic present perfect",
+      "hint": "Capitalized auxiliary shows strong emphasis"
     },
     {
-        "question": "___ they visit you last summer?",
-        "options": ["Do", "Does", "Did", "Are"],
-        "correct": 2
+      "question": "Gap tuzing (first time): \"1=This is\", \"2=the first time\", \"3=I\", \"4=have ever\", \"5=flown\", \"6=in a helicopter\"",
+      "numbered_options": {
+        "1": "This is", "2": "the first time", "3": "I", "4": "have ever", "5": "flown", "6": "in a helicopter"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "grammar_point": "'First time' expressions",
+      "hint": "Present perfect after 'This is the first time'"
     },
     {
-        "question": "The war ___ in 1945.",
-        "options": ["end", "ends", "ended", "ending"],
-        "correct": 2
+      "question": "Tartiblang (mixed tenses): \"1=Although\", \"2=she\", \"3=has lived\", \"4=here\", \"5=for years\", \"6=she\", \"7=doesn't know\", \"8=the city well\"",
+      "numbered_options": {
+        "1": "Although", "2": "she", "3": "has lived", "4": "here", "5": "for years", "6": "she", "7": "doesn't know", "8": "the city well"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "2,3,4,5,1,6,7,8"],
+      "correct": 0,
+      "grammar_point": "Contrast with present perfect",
+      "hint": "Present perfect for duration vs. present simple for current state"
     },
     {
-        "question": "She ___ her arm when she fell.",
-        "options": ["break", "breaks", "broke", "broken"],
-        "correct": 2
-    },
-    {
-        "question": "I ___ my wallet at the restaurant.",
-        "options": ["leave", "leaves", "left", "leaving"],
-        "correct": 2
-    },
-    {
-        "question": "They ___ married in 2010.",
-        "options": ["get", "gets", "got", "gotten"],
-        "correct": 2
-    },
-    {
-        "question": "The phone ___ while I was sleeping.",
-        "options": ["ring", "rings", "rang", "rung"],
-        "correct": 2
-    },
-    {
-        "question": "We ___ a great time at the party.",
-        "options": ["have", "has", "had", "having"],
-        "correct": 2
-    },
-    {
-        "question": "He ___ me a beautiful gift.",
-        "options": ["give", "gives", "gave", "given"],
-        "correct": 2
+      "question": "Gap tuzing (complex): \"1=Not only\", \"2=has\", \"3=he\", \"4=completed\", \"5=the project\", \"6=but he\", \"7=has also\", \"8=exceeded\", \"9=our expectations\"",
+      "numbered_options": {
+        "1": "Not only", "2": "has", "3": "he", "4": "completed", "5": "the project", "6": "but he", "7": "has also", "8": "exceeded", "9": "our expectations"
+      },
+      "options": ["1,2,3,4,5,6,7,8,9", "9,8,7,6,5,4,3,2,1", "2,3,4,5,1,6,7,8,9"],
+      "correct": 0,
+      "grammar_point": "Inversion with present perfect",
+      "hint": "Inversion after 'Not only' (auxiliary before subject)"
     }
-]
-,
-"past_continuous": [
+  ],
+
+  "present_perfect_cont": [
     {
-        "question": "She ___ TV when I called.",
-        "options": ["watch", "watched", "was watching", "were watching"],
-        "correct": 2
+      "question": "Gap tuzing (duration): \"1=I\", \"2=have been working\", \"3=on this\", \"4=project\", \"5=all day\"",
+      "numbered_options": {
+        "1": "I", "2": "have been working", "3": "on this", "4": "project", "5": "all day"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Duration emphasis",
+      "hint": "Subject + have been + verb-ing"
     },
     {
-        "question": "They ___ football at 5 pm yesterday.",
-        "options": ["play", "played", "were playing", "was playing"],
-        "correct": 2
+      "question": "Tartiblang (recent activity): \"1=Her eyes\", \"2=are red\", \"3=she\", \"4=has been\", \"5=crying\"",
+      "numbered_options": {
+        "1": "Her eyes", "2": "are red", "3": "she", "4": "has been", "5": "crying"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "3,4,5,1,2"],
+      "correct": 2,
+      "grammar_point": "Recent activity evidence",
+      "hint": "Present result shows recent continuous activity"
     },
     {
-        "question": "What ___ you ___ when the phone rang?",
-        "options": ["was, doing", "were, doing", "did, do", "do, do"],
-        "correct": 1
+      "question": "Gap tuzing (temporary): \"1=We\", \"2=have been staying\", \"3=at a hotel\", \"4=while\", \"5=our house\", \"6=is being renovated\"",
+      "numbered_options": {
+        "1": "We", "2": "have been staying", "3": "at a hotel", "4": "while", "5": "our house", "6": "is being renovated"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "grammar_point": "Temporary situations",
+      "hint": "Continuous form for temporary arrangements"
     },
     {
-        "question": "I ___ a book when you called.",
-        "options": ["read", "reads", "was reading", "were reading"],
-        "correct": 2
+      "question": "Tartiblang (how long): \"1=How long\", \"2=have\", \"3=you\", \"4=been waiting\", \"5=here\"",
+      "numbered_options": {
+        "1": "How long", "2": "have", "3": "you", "4": "been waiting", "5": "here"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Duration questions",
+      "hint": "Present perfect continuous for 'how long' questions"
     },
     {
-        "question": "The children ___ when the teacher came in.",
-        "options": ["talk", "talks", "were talking", "was talking"],
-        "correct": 2
+      "question": "Gap tuzing (recent focus): \"1=The ground\", \"2=is wet\", \"3=it\", \"4=has been\", \"5=raining\"",
+      "numbered_options": {
+        "1": "The ground", "2": "is wet", "3": "it", "4": "has been", "5": "raining"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "3,4,5,1,2"],
+      "correct": 2,
+      "grammar_point": "Recent activity evidence",
+      "hint": "Present result shows recent continuous action"
+    },
+
+    {
+      "question": "Gap tuzing (annoyance): \"1=He\", \"2=has been\", \"3=using\", \"4=my computer\", \"5=without\", \"6=asking\"",
+      "numbered_options": {
+        "1": "He", "2": "has been", "3": "using", "4": "my computer", "5": "without", "6": "asking"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "grammar_point": "Repeated annoying actions",
+      "hint": "Present perfect continuous for repeated irritating actions"
     },
     {
-        "question": "He ___ his car when the accident happened.",
-        "options": ["drive", "drives", "was driving", "were driving"],
-        "correct": 2
+      "question": "Tartiblang (focus on action): \"1=The scientists\", \"2=have been analyzing\", \"3=the data\", \"4=for\", \"5=months\"",
+      "numbered_options": {
+        "1": "The scientists", "2": "have been analyzing", "3": "the data", "4": "for", "5": "months"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Ongoing activity focus",
+      "hint": "Emphasizes the continuous nature of the activity"
     },
     {
-        "question": "We ___ dinner when the guests arrived.",
-        "options": ["have", "has", "were having", "was having"],
-        "correct": 2
+      "question": "Gap tuzing (recent completion): \"1=I\", \"2=have been\", \"3=cleaning\", \"4=the house\", \"5=all morning\"",
+      "numbered_options": {
+        "1": "I", "2": "have been", "3": "cleaning", "4": "the house", "5": "all morning"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Recently stopped activity",
+      "hint": "Activity may have just finished or may continue"
     },
     {
-        "question": "She ___ a shower when the doorbell rang.",
-        "options": ["take", "takes", "was taking", "were taking"],
-        "correct": 2
+      "question": "Tartiblang (temporary habit): \"1=Lately\", \"2=she\", \"3=has been\", \"4=working\", \"5=late\", \"6=every day\"",
+      "numbered_options": {
+        "1": "Lately", "2": "she", "3": "has been", "4": "working", "5": "late", "6": "every day"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,3,4,5,6,1"],
+      "correct": 0,
+      "grammar_point": "Temporary habits",
+      "hint": "'Lately' indicates recent temporary pattern"
     },
     {
-        "question": "They ___ to music when I saw them.",
-        "options": ["listen", "listens", "were listening", "was listening"],
-        "correct": 2
+      "question": "Gap tuzing (result focus): \"1=Her hands\", \"2=are dirty\", \"3=because\", \"4=she\", \"5=has been\", \"6=gardening\"",
+      "numbered_options": {
+        "1": "Her hands", "2": "are dirty", "3": "because", "4": "she", "5": "has been", "6": "gardening"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "4,5,6,3,1,2"],
+      "correct": 0,
+      "grammar_point": "Visible results",
+      "hint": "Present result of a recent continuous action"
     },
     {
-        "question": "The sun ___ when I woke up.",
-        "options": ["shine", "shines", "was shining", "were shining"],
-        "correct": 2
+      "question": "Gap tuzing (passive): \"1=This theory\", \"2=has been\", \"3=being\", \"4=debated\", \"5=for decades\"",
+      "numbered_options": {
+        "1": "This theory", "2": "has been", "3": "being", "4": "debated", "5": "for decades"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Present perfect continuous passive",
+      "hint": "Object + has been + being + past participle"
     },
     {
-        "question": "I ___ my homework when the lights went out.",
-        "options": ["do", "did", "was doing", "were doing"],
-        "correct": 2
+      "question": "Tartiblang (mixed tenses): \"1=Although\", \"2=he\", \"3=has been\", \"4=studying\", \"5=English\", \"6=for years\", \"7=he\", \"8=still\", \"9=makes\", \"10=basic mistakes\"",
+      "numbered_options": {
+        "1": "Although", "2": "he", "3": "has been", "4": "studying", "5": "English", "6": "for years", "7": "he", "8": "still", "9": "makes", "10": "basic mistakes"
+      },
+      "options": ["1,2,3,4,5,6,7,8,9,10", "10,9,8,7,6,5,4,3,2,1", "2,3,4,5,6,1,7,8,9,10"],
+      "correct": 0,
+      "grammar_point": "Contrast with present simple",
+      "hint": "Continuous duration vs. present state/ability"
     },
     {
-        "question": "The students ___ while the teacher was explaining.",
-        "options": ["talk", "talked", "were talking", "was talking"],
-        "correct": 2
+      "question": "Gap tuzing (emphasis): \"1=I\", \"2=HAVE been\", \"3=trying\", \"4=to call\", \"5=you\", \"6=all day\"",
+      "numbered_options": {
+        "1": "I", "2": "HAVE been", "3": "trying", "4": "to call", "5": "you", "6": "all day"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "grammar_point": "Emphatic form",
+      "hint": "Capitalized auxiliary shows frustration/emphasis"
     },
     {
-        "question": "What ___ you ___ at 8 pm yesterday?",
-        "options": ["were, doing", "was, doing", "did, do", "do, do"],
-        "correct": 0
+      "question": "Tartiblang (complex duration): \"1=Ever since\", \"2=she\", \"3=got\", \"4=promoted\", \"5=she\", \"6=has been\", \"7=working\", \"8=longer hours\"",
+      "numbered_options": {
+        "1": "Ever since", "2": "she", "3": "got", "4": "promoted", "5": "she", "6": "has been", "7": "working", "8": "longer hours"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "2,3,4,1,5,6,7,8"],
+      "correct": 0,
+      "grammar_point": "Duration from past point",
+      "hint": "'Ever since' marks the starting point"
     },
     {
-        "question": "The phone ___ while I was cooking.",
-        "options": ["ring", "rang", "was ringing", "were ringing"],
-        "correct": 2
-    },
-    {
-        "question": "She ___ when I entered the room.",
-        "options": ["cry", "cried", "was crying", "were crying"],
-        "correct": 2
-    },
-    {
-        "question": "We ___ the news when the power failed.",
-        "options": ["watch", "watched", "were watching", "was watching"],
-        "correct": 2
-    },
-    {
-        "question": "The birds ___ when I left home.",
-        "options": ["sing", "sang", "were singing", "was singing"],
-        "correct": 2
-    },
-    {
-        "question": "He ___ a letter when his pen broke.",
-        "options": ["write", "wrote", "was writing", "were writing"],
-        "correct": 2
-    },
-    {
-        "question": "They ___ about their future plans when I joined them.",
-        "options": ["talk", "talked", "were talking", "was talking"],
-        "correct": 2
-    },
-    {
-        "question": "I ___ to work when I met my old friend.",
-        "options": ["walk", "walked", "was walking", "were walking"],
-        "correct": 2
+      "question": "Gap tuzing (interrupted): \"1=We\", \"2=have been\", \"3=discussing\", \"4=the contract\", \"5=but\", \"6=we\", \"7=haven't\", \"8=reached\", \"9=an agreement\", \"10=yet\"",
+      "numbered_options": {
+        "1": "We", "2": "have been", "3": "discussing", "4": "the contract", "5": "but", "6": "we", "7": "haven't", "8": "reached", "9": "an agreement", "10": "yet"
+      },
+      "options": ["1,2,3,4,5,6,7,8,9,10", "10,9,8,7,6,5,4,3,2,1", "2,1,3,4,5,6,7,8,9,10"],
+      "correct": 0,
+      "grammar_point": "Interrupted activity",
+      "hint": "Continuous action that hasn't achieved its goal yet"
     }
-]
-,
-"future_simple": [
+  ],
+
+  "past_simple": [
     {
-        "question": "She ___ to London next month.",
-        "options": ["travel", "travels", "will travel", "is traveling"],
-        "correct": 2
+      "question": "Gap tuzing (regular): \"1=She\", \"2=worked\", \"3=in London\", \"4=last year\"",
+      "numbered_options": {
+        "1": "She", "2": "worked", "3": "in London", "4": "last year"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "grammar_point": "Completed actions",
+      "hint": "Subject + past simple verb"
     },
     {
-        "question": "They ___ a new house next year.",
-        "options": ["buy", "buys", "will buy", "are buying"],
-        "correct": 2
+      "question": "Tartiblang (irregular): \"1=They\", \"2=went\", \"3=to Paris\", \"4=on holiday\"",
+      "numbered_options": {
+        "1": "They", "2": "went", "3": "to Paris", "4": "on holiday"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "grammar_point": "Past events",
+      "hint": "Irregular past form of 'go'"
     },
     {
-        "question": "I think it ___ tomorrow.",
-        "options": ["rain", "rains", "will rain", "is raining"],
-        "correct": 2
+      "question": "Gap tuzing (negative): \"1=I\", \"2=did not\", \"3=see\", \"4=him\", \"5=yesterday\"",
+      "numbered_options": {
+        "1": "I", "2": "did not", "3": "see", "4": "him", "5": "yesterday"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Negative form",
+      "hint": "Did + not + base verb"
     },
     {
-        "question": "___ you help me with this?",
-        "options": ["Do", "Does", "Will", "Are"],
-        "correct": 2
+      "question": "Tartiblang (question): \"1=Did\", \"2=you\", \"3=watch\", \"4=the news\", \"5=last night\"",
+      "numbered_options": {
+        "1": "Did", "2": "you", "3": "watch", "4": "the news", "5": "last night"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Yes/no questions",
+      "hint": "Did + subject + base verb"
     },
     {
-        "question": "We ___ the exam next week.",
-        "options": ["take", "takes", "will take", "are taking"],
-        "correct": 2
+      "question": "Gap tuzing (time marker): \"1=We\", \"2=met\", \"3=in 2010\", \"4=at university\"",
+      "numbered_options": {
+        "1": "We", "2": "met", "3": "in 2010", "4": "at university"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "grammar_point": "Specific past time",
+      "hint": "Past simple with definite time marker"
     },
     {
-        "question": "He ___ 18 next month.",
-        "options": ["be", "is", "will be", "are"],
-        "correct": 2
+      "question": "Gap tuzing (sequence): \"1=First\", \"2=she\", \"3=finished\", \"4=her degree\", \"5=then\", \"6=she\", \"7=got\", \"8=a job\"",
+      "numbered_options": {
+        "1": "First", "2": "she", "3": "finished", "4": "her degree", "5": "then", "6": "she", "7": "got", "8": "a job"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "2,3,4,1,6,7,8,5"],
+      "correct": 0,
+      "grammar_point": "Sequenced actions",
+      "hint": "Past simple for consecutive completed actions"
     },
     {
-        "question": "I promise I ___ late.",
-        "options": ["not be", "won't be", "am not", "not"],
-        "correct": 1
+      "question": "Tartiblang (WH question): \"1=Why\", \"2=did\", \"3=you\", \"4=leave\", \"5=early\", \"6=yesterday\"",
+      "numbered_options": {
+        "1": "Why", "2": "did", "3": "you", "4": "leave", "5": "early", "6": "yesterday"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,3,4,5,6,1"],
+      "correct": 0,
+      "grammar_point": "WH questions",
+      "hint": "WH word + did + subject + base verb"
     },
     {
-        "question": "They ___ at 8 am tomorrow.",
-        "options": ["arrive", "arrives", "will arrive", "are arriving"],
-        "correct": 2
+      "question": "Gap tuzing (habit): \"1=When\", \"2=I\", \"3=was\", \"4=young\", \"5=I\", \"6=played\", \"7=tennis\", \"8=every weekend\"",
+      "numbered_options": {
+        "1": "When", "2": "I", "3": "was", "4": "young", "5": "I", "6": "played", "7": "tennis", "8": "every weekend"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "2,3,4,1,5,6,7,8"],
+      "correct": 0,
+      "grammar_point": "Past habits",
+      "hint": "Past simple for habits that no longer continue"
     },
     {
-        "question": "She ___ a doctor when she grows up.",
-        "options": ["become", "becomes", "will become", "is becoming"],
-        "correct": 2
+      "question": "Tartiblang (storytelling): \"1=Suddenly\", \"2=the lights\", \"3=went\", \"4=out\", \"5=and\", \"6=we\", \"7=heard\", \"8=a strange noise\"",
+      "numbered_options": {
+        "1": "Suddenly", "2": "the lights", "3": "went", "4": "out", "5": "and", "6": "we", "7": "heard", "8": "a strange noise"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "2,3,4,1,6,7,8,5"],
+      "correct": 0,
+      "grammar_point": "Narrative past",
+      "hint": "Past simple for events in a story"
     },
     {
-        "question": "___ you marry me?",
-        "options": ["Do", "Does", "Will", "Are"],
-        "correct": 2
+      "question": "Gap tuzing (state): \"1=They\", \"2=lived\", \"3=in Rome\", \"4=for\", \"5=ten years\", \"6=before moving\"",
+      "numbered_options": {
+        "1": "They", "2": "lived", "3": "in Rome", "4": "for", "5": "ten years", "6": "before moving"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "grammar_point": "Past states",
+      "hint": "Past simple for situations that lasted in the past"
     },
     {
-        "question": "I'm sure you ___ the test.",
-        "options": ["pass", "passes", "will pass", "are passing"],
-        "correct": 2
+      "question": "Gap tuzing (passive): \"1=The letter\", \"2=was\", \"3=sent\", \"4=last week\"",
+      "numbered_options": {
+        "1": "The letter", "2": "was", "3": "sent", "4": "last week"
+      },
+      "options": ["1,2,3,4", "4,3,2,1", "2,1,3,4"],
+      "correct": 0,
+      "grammar_point": "Past passive",
+      "hint": "Object + was/were + past participle"
     },
     {
-        "question": "They ___ probably ___ late.",
-        "options": ["will, be", "are, being", "do, be", "does, be"],
-        "correct": 0
+      "question": "Tartiblang (unreal present): \"1=I\", \"2=wish\", \"3=I\", \"4=knew\", \"5=the answer\"",
+      "numbered_options": {
+        "1": "I", "2": "wish", "3": "I", "4": "knew", "5": "the answer"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Unreal present",
+      "hint": "Past simple after 'wish' for present meaning"
     },
     {
-        "question": "What ___ you ___ after graduation?",
-        "options": ["do, do", "will, do", "are, doing", "does, do"],
-        "correct": 1
+      "question": "Gap tuzing (second conditional): \"1=If\", \"2=you\", \"3=studied\", \"4=more\", \"5=you\", \"6=would pass\", \"7=the exam\"",
+      "numbered_options": {
+        "1": "If", "2": "you", "3": "studied", "4": "more", "5": "you", "6": "would pass", "7": "the exam"
+      },
+      "options": ["1,2,3,4,5,6,7", "7,6,5,4,3,2,1", "2,3,4,1,5,6,7"],
+      "correct": 0,
+      "grammar_point": "Second conditional",
+      "hint": "If + past simple, would + base verb"
     },
     {
-        "question": "The meeting ___ at 3 pm tomorrow.",
-        "options": ["start", "starts", "will start", "is starting"],
-        "correct": 2
+      "question": "Tartiblang (time clause): \"1=After\", \"2=she\", \"3=graduated\", \"4=she\", \"5=traveled\", \"6=around Asia\", \"7=for a year\"",
+      "numbered_options": {
+        "1": "After", "2": "she", "3": "graduated", "4": "she", "5": "traveled", "6": "around Asia", "7": "for a year"
+      },
+      "options": ["1,2,3,4,5,6,7", "7,6,5,4,3,2,1", "2,3,1,4,5,6,7"],
+      "correct": 0,
+      "grammar_point": "Time clauses",
+      "hint": "After + past simple, past simple"
     },
     {
-        "question": "I hope the weather ___ nice for our picnic.",
-        "options": ["is", "will be", "be", "are"],
-        "correct": 1
-    },
-    {
-        "question": "She ___ definitely ___ to the party.",
-        "options": ["will, come", "is, coming", "does, come", "do, come"],
-        "correct": 0
-    },
-    {
-        "question": "We ___ our grandparents this weekend.",
-        "options": ["visit", "visits", "will visit", "are visiting"],
-        "correct": 2
-    },
-    {
-        "question": "The train ___ in ten minutes.",
-        "options": ["leave", "leaves", "will leave", "is leaving"],
-        "correct": 2
-    },
-    {
-        "question": "___ they finish the project on time?",
-        "options": ["Do", "Does", "Will", "Are"],
-        "correct": 2
-    },
-    {
-        "question": "I ___ you as soon as I arrive.",
-        "options": ["call", "calls", "will call", "am calling"],
-        "correct": 2
+      "question": "Gap tuzing (indirect speech): \"1=She\", \"2=said\", \"3=that\", \"4=she\", \"5=loved\", \"6=the concert\"",
+      "numbered_options": {
+        "1": "She", "2": "said", "3": "that", "4": "she", "5": "loved", "6": "the concert"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "grammar_point": "Reported speech",
+      "hint": "Past simple often used in reported speech"
     }
-]
-,
+  ],
+  "past_continuous": [
+    {
+      "question": "Gap tuzing (ongoing action): \"1=At 8 PM\", \"2=yesterday\", \"3=I\", \"4=was watching\", \"5=TV\"",
+      "numbered_options": {
+        "1": "At 8 PM", "2": "yesterday", "3": "I", "4": "was watching", "5": "TV"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "3,4,5,1,2"],
+      "correct": 0,
+      "grammar_point": "Specific time interruption",
+      "hint": "Was/were + verb-ing for ongoing past actions"
+    },
+    {
+      "question": "Tartiblang (parallel actions): \"1=While\", \"2=I\", \"3=was cooking\", \"4=my husband\", \"5=was setting\", \"6=the table\"",
+      "numbered_options": {
+        "1": "While", "2": "I", "3": "was cooking", "4": "my husband", "5": "was setting", "6": "the table"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,3,1,4,5,6"],
+      "correct": 0,
+      "grammar_point": "Simultaneous actions",
+      "hint": "Two ongoing actions connected with 'while'"
+    },
+    {
+      "question": "Gap tuzing (interrupted action): \"1=When\", \"2=you\", \"3=called\", \"4=I\", \"5=was taking\", \"6=a shower\"",
+      "numbered_options": {
+        "1": "When", "2": "you", "3": "called", "4": "I", "5": "was taking", "6": "a shower"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "4,5,6,1,2,3"],
+      "correct": 0,
+      "grammar_point": "Interrupted actions",
+      "hint": "Past simple interrupts past continuous"
+    },
+    {
+      "question": "Tartiblang (background description): \"1=The sun\", \"2=was shining\", \"3=and\", \"4=the birds\", \"5=were singing\"",
+      "numbered_options": {
+        "1": "The sun", "2": "was shining", "3": "and", "4": "the birds", "5": "were singing"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,5,4"],
+      "correct": 0,
+      "grammar_point": "Scene setting",
+      "hint": "Past continuous for background description"
+    },
+    {
+      "question": "Gap tuzing (temporary situation): \"1=In 2010\", \"2=I\", \"3=was living\", \"4=in\", \"5=Madrid\"",
+      "numbered_options": {
+        "1": "In 2010", "2": "I", "3": "was living", "4": "in", "5": "Madrid"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,3,4,5,1"],
+      "correct": 0,
+      "grammar_point": "Temporary past situations",
+      "hint": "Past continuous for temporary living situations"
+    },
+    {
+      "question": "Gap tuzing (polite inquiry): \"1=I\", \"2=was wondering\", \"3=if\", \"4=you\", \"5=could\", \"6=help me\"",
+      "numbered_options": {
+        "1": "I", "2": "was wondering", "3": "if", "4": "you", "5": "could", "6": "help me"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "grammar_point": "Polite questions",
+      "hint": "Past continuous makes requests more polite"
+    },
+    {
+      "question": "Tartiblang (irritation): \"1=He\", \"2=was always\", \"3=complaining\", \"4=about\", \"5=his job\"",
+      "numbered_options": {
+        "1": "He", "2": "was always", "3": "complaining", "4": "about", "5": "his job"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "grammar_point": "Repeated annoying actions",
+      "hint": "Always + past continuous shows irritation"
+    },
+    {
+      "question": "Gap tuzing (changing states): \"1=It\", \"2=was getting\", \"3=darker\", \"4=so\", \"5=we\", \"6=decided\", \"7=to leave\"",
+      "numbered_options": {
+        "1": "It", "2": "was getting", "3": "darker", "4": "so", "5": "we", "6": "decided", "7": "to leave"
+      },
+      "options": ["1,2,3,4,5,6,7", "7,6,5,4,3,2,1", "2,1,3,4,5,6,7"],
+      "correct": 0,
+      "grammar_point": "Changing situations",
+      "hint": "Past continuous for gradual changes"
+    },
+    {
+      "question": "Tartiblang (passive): \"1=The documents\", \"2=were being\", \"3=prepared\", \"4=when\", \"5=the power\", \"6=went out\"",
+      "numbered_options": {
+        "1": "The documents", "2": "were being", "3": "prepared", "4": "when", "5": "the power", "6": "went out"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "grammar_point": "Past continuous passive",
+      "hint": "Was/were being + past participle"
+    },
+    {
+      "question": "Gap tuzing (emphatic): \"1=I\", \"2=WAS\", \"3=NOT\", \"4=sleeping\", \"5=during\", \"6=the lecture\"",
+      "numbered_options": {
+        "1": "I", "2": "WAS", "3": "NOT", "4": "sleeping", "5": "during", "6": "the lecture"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "grammar_point": "Emphatic negation",
+      "hint": "Capitalized auxiliary shows strong denial"
+    },
+    {
+      "question": "Gap tuzing (mixed tenses): \"1=While\", \"2=we\", \"3=were discussing\", \"4=the budget\", \"5=the director\", \"6=interrupted\", \"7=us\", \"8=with urgent news\"",
+      "numbered_options": {
+        "1": "While", "2": "we", "3": "were discussing", "4": "the budget", "5": "the director", "6": "interrupted", "7": "us", "8": "with urgent news"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "2,3,4,1,5,6,7,8"],
+      "correct": 0,
+      "grammar_point": "Background interruption",
+      "hint": "Long background action interrupted by sudden event"
+    },
+    {
+      "question": "Tartiblang (narrative): \"1=As\", \"2=the crowd\", \"3=was cheering\", \"4=the runner\", \"5=was approaching\", \"6=the finish line\", \"7=when\", \"8=he\", \"9=tripped\"",
+      "numbered_options": {
+        "1": "As", "2": "the crowd", "3": "was cheering", "4": "the runner", "5": "was approaching", "6": "the finish line", "7": "when", "8": "he", "9": "tripped"
+      },
+      "options": ["1,2,3,4,5,6,7,8,9", "9,8,7,6,5,4,3,2,1", "2,3,1,4,5,6,7,8,9"],
+      "correct": 0,
+      "grammar_point": "Complex narrative",
+      "hint": "Two parallel actions building tension"
+    },
+    {
+      "question": "Gap tuzing (speculation): \"1=He\", \"2=must have been\", \"3=joking\", \"4=when\", \"5=he\", \"6=said\", \"7=that\"",
+      "numbered_options": {
+        "1": "He", "2": "must have been", "3": "joking", "4": "when", "5": "he", "6": "said", "7": "that"
+      },
+      "options": ["1,2,3,4,5,6,7", "7,6,5,4,3,2,1", "2,1,3,4,5,6,7"],
+      "correct": 0,
+      "grammar_point": "Past deduction",
+      "hint": "Must + have been + verb-ing for past speculation"
+    },
+    {
+      "question": "Tartiblang (time clause): \"1=Just as\", \"2=I\", \"3=was leaving\", \"4=the house\", \"5=the phone\", \"6=rang\"",
+      "numbered_options": {
+        "1": "Just as", "2": "I", "3": "was leaving", "4": "the house", "5": "the phone", "6": "rang"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,3,4,1,5,6"],
+      "correct": 0,
+      "grammar_point": "Precise interruption",
+      "hint": "'Just as' emphasizes exact moment of interruption"
+    },
+    {
+      "question": "Gap tuzing (contrast): \"1=Whereas\", \"2=most students\", \"3=were studying\", \"4=for exams\", \"5=he\", \"6=was spending\", \"7=all his time\", \"8=playing games\"",
+      "numbered_options": {
+        "1": "Whereas", "2": "most students", "3": "were studying", "4": "for exams", "5": "he", "6": "was spending", "7": "all his time", "8": "playing games"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "2,3,4,1,5,6,7,8"],
+      "correct": 0,
+      "grammar_point": "Contrasting actions",
+      "hint": "Parallel actions showing contrast with 'whereas'"
+    }
+  ],
+
+ "past_perfect": [
+    {
+      "question": "Gap tuzing (sequence): \"1=When\", \"2=we\", \"3=arrived\", \"4=the movie\", \"5=had already\", \"6=started\"",
+      "numbered_options": {
+        "1": "When", "2": "we", "3": "arrived", "4": "the movie", "5": "had already", "6": "started"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "4,5,6,1,2,3"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Past-before-past",
+      "hint": "Had + past participle for earlier past action"
+    },
+    {
+      "question": "Tartiblang (regret): \"1=I\", \"2=wish\", \"3=I\", \"4=had studied\", \"5=harder\"",
+      "numbered_options": {
+        "1": "I", "2": "wish", "3": "I", "4": "had studied", "5": "harder"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Unreal past",
+      "hint": "Wish + had + past participle for regrets"
+    },
+    {
+      "question": "Gap tuzing (cause-effect): \"1=She\", \"2=was tired\", \"3=because\", \"4=she\", \"5=hadn't slept\", \"6=well\"",
+      "numbered_options": {
+        "1": "She", "2": "was tired", "3": "because", "4": "she", "5": "hadn't slept", "6": "well"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "4,5,6,3,1,2"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Past reasons",
+      "hint": "Past perfect explains cause of past state"
+    },
+    {
+      "question": "Tartiblang (reported speech): \"1=He\", \"2=said\", \"3=that\", \"4=he\", \"5=had never\", \"6=seen\", \"7=such\", \"8=a beautiful sunset\"",
+      "numbered_options": {
+        "1": "He", "2": "said", "3": "that", "4": "he", "5": "had never", "6": "seen", "7": "such", "8": "a beautiful sunset"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "2,1,3,4,5,6,7,8"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Reported speech",
+      "hint": "Present perfect becomes past perfect in reports"
+    },
+    {
+      "question": "Gap tuzing (time expression): \"1=By\", \"2=the time\", \"3=we\", \"4=got there\", \"5=they\", \"6=had left\"",
+      "numbered_options": {
+        "1": "By", "2": "the time", "3": "we", "4": "got there", "5": "they", "6": "had left"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "5,6,1,2,3,4"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Completion before past point",
+      "hint": "'By the time' often used with past perfect"
+    },
+    {
+      "question": "Gap tuzing (third conditional): \"1=If\", \"2=you\", \"3=had told\", \"4=me earlier\", \"5=I\", \"6=would have\", \"7=helped\"",
+      "numbered_options": {
+        "1": "If", "2": "you", "3": "had told", "4": "me earlier", "5": "I", "6": "would have", "7": "helped"
+      },
+      "options": ["1,2,3,4,5,6,7", "7,6,5,4,3,2,1", "2,3,4,1,5,6,7"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Third conditional",
+      "hint": "If + past perfect, would have + past participle"
+    },
+    {
+      "question": "Tartiblang (double past): \"1=After\", \"2=she\", \"3=had finished\", \"4=her work\", \"5=she\", \"6=went\", \"7=for a walk\"",
+      "numbered_options": {
+        "1": "After", "2": "she", "3": "had finished", "4": "her work", "5": "she", "6": "went", "7": "for a walk"
+      },
+      "options": ["1,2,3,4,5,6,7", "7,6,5,4,3,2,1", "2,3,4,1,5,6,7"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Sequence of past events",
+      "hint": "'After' makes the sequence clear"
+    },
+    {
+      "question": "Gap tuzing (passive): \"1=The documents\", \"2=had been\", \"3=signed\", \"4=before\", \"5=the meeting\", \"6=started\"",
+      "numbered_options": {
+        "1": "The documents", "2": "had been", "3": "signed", "4": "before", "5": "the meeting", "6": "started"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Past perfect passive",
+      "hint": "Had been + past participle"
+    },
+    {
+      "question": "Tartiblang (unreal past): \"1=If only\", \"2=I\", \"3=had known\", \"4=the truth\", \"5=earlier\"",
+      "numbered_options": {
+        "1": "If only", "2": "I", "3": "had known", "4": "the truth", "5": "earlier"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,3,4,5,1"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Regrets",
+      "hint": "'If only' expresses strong regret about past"
+    },
+    {
+      "question": "Gap tuzing (negative): \"1=They\", \"2=hadn't\", \"3=met\", \"4=before\", \"5=the party\"",
+      "numbered_options": {
+        "1": "They", "2": "hadn't", "3": "met", "4": "before", "5": "the party"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Negative past perfect",
+      "hint": "Had not + past participle"
+    },
+    {
+      "question": "Gap tuzing (mixed tenses): \"1=By\", \"2=the time\", \"3=he\", \"4=realized\", \"5=his mistake\", \"6=the damage\", \"7=had already\", \"8=been done\"",
+      "numbered_options": {
+        "1": "By", "2": "the time", "3": "he", "4": "realized", "5": "his mistake", "6": "the damage", "7": "had already", "8": "been done"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "2,1,3,4,5,6,7,8"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Complex sequencing",
+      "hint": "Past simple and past perfect passive combination"
+    },
+    {
+      "question": "Tartiblang (inversion): \"1=Hardly\", \"2=had\", \"3=we\", \"4=left\", \"5=the house\", \"6=when\", \"7=the phone\", \"8=rang\"",
+      "numbered_options": {
+        "1": "Hardly", "2": "had", "3": "we", "4": "left", "5": "the house", "6": "when", "7": "the phone", "8": "rang"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "2,3,4,5,1,6,7,8"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Inversion with adverbs",
+      "hint": "Hardly had subject past participle"
+    },
+    {
+      "question": "Gap tuzing (speculation): \"1=She\", \"2=must have\", \"3=forgotten\", \"4=about\", \"5=the meeting\", \"6=because\", \"7=she\", \"8=hadn't mentioned\", \"9=it all day\"",
+      "numbered_options": {
+        "1": "She", "2": "must have", "3": "forgotten", "4": "about", "5": "the meeting", "6": "because", "7": "she", "8": "hadn't mentioned", "9": "it all day"
+      },
+      "options": ["1,2,3,4,5,6,7,8,9", "9,8,7,6,5,4,3,2,1", "2,1,3,4,5,6,7,8,9"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Past deduction",
+      "hint": "Must have + past participle for logical conclusions"
+    },
+    {
+      "question": "Tartiblang (literary): \"1=Scarcely\", \"2=had\", \"3=the ceremony\", \"4=ended\", \"5=when\", \"6=the protests\", \"7=began\"",
+      "numbered_options": {
+        "1": "Scarcely", "2": "had", "3": "the ceremony", "4": "ended", "5": "when", "6": "the protests", "7": "began"
+      },
+      "options": ["1,2,3,4,5,6,7", "7,6,5,4,3,2,1", "2,3,4,1,5,6,7"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Literary inversion",
+      "hint": "Scarcely + had + subject + past participle"
+    },
+    {
+      "question": "Gap tuzing (time clauses): \"1=No sooner\", \"2=had\", \"3=the judge\", \"4=pronounced\", \"5=the sentence\", \"6=than\", \"7=the defendant\", \"8=appealed\"",
+      "numbered_options": {
+        "1": "No sooner", "2": "had", "3": "the judge", "4": "pronounced", "5": "the sentence", "6": "than", "7": "the defendant", "8": "appealed"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "2,3,4,5,1,6,7,8"],
+      "correct": 0,
+      "level": "hard",
+      "grammar_point": "Fixed expressions",
+      "hint": "No sooner + had + subject + past participle + than"
+    }
+  ],
+
+  "past_perfect_cont": [
+    {
+      "question": "Gap tuzing (duration): \"1=Her eyes\", \"2=were red\", \"3=because\", \"4=she\", \"5=had been\", \"6=crying\"",
+      "numbered_options": {
+        "1": "Her eyes", "2": "were red", "3": "because", "4": "she", "5": "had been", "6": "crying"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "4,5,6,3,1,2"],
+      "correct": 0,
+      "grammar_point": "Past cause-effect",
+      "hint": "Had been + verb-ing for ongoing past actions"
+    },
+    {
+      "question": "Tartiblang (long action): \"1=They\", \"2=had been\", \"3=working\", \"4=on\", \"5=the project\", \"6=for months\"",
+      "numbered_options": {
+        "1": "They", "2": "had been", "3": "working", "4": "on", "5": "the project", "6": "for months"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "grammar_point": "Duration before past",
+      "hint": "Emphasizes duration before another past event"
+    },
+    {
+      "question": "Gap tuzing (tiredness): \"1=I\", \"2=was exhausted\", \"3=because\", \"4=I\", \"5=had been\", \"6=running\"",
+      "numbered_options": {
+        "1": "I", "2": "was exhausted", "3": "because", "4": "I", "5": "had been", "6": "running"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "4,5,6,3,1,2"],
+      "correct": 0,
+      "grammar_point": "Result of past action",
+      "hint": "Continuous action led to past state"
+    },
+    {
+      "question": "Tartiblang (recent activity): \"1=The ground\", \"2=was wet\", \"3=it\", \"4=had been\", \"5=raining\"",
+      "numbered_options": {
+        "1": "The ground", "2": "was wet", "3": "it", "4": "had been", "5": "raining"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "3,4,5,1,2"],
+      "correct": 2,
+      "grammar_point": "Recent past evidence",
+      "hint": "Visible result of recent continuous action"
+    },
+    {
+      "question": "Gap tuzing (interrupted): \"1=She\", \"2=had been\", \"3=reading\", \"4=when\", \"5=the phone\", \"6=rang\"",
+      "numbered_options": {
+        "1": "She", "2": "had been", "3": "reading", "4": "when", "5": "the phone", "6": "rang"
+      },
+      "options": ["1,2,3,4,5,6", "6,5,4,3,2,1", "2,1,3,4,5,6"],
+      "correct": 0,
+      "grammar_point": "Interrupted action",
+      "hint": "Long action interrupted by shorter one"
+    },
+    {
+      "question": "Gap tuzing (passive): \"1=The car\", \"2=had been\", \"3=being\", \"4=repaired\", \"5=for hours\", \"6=before\", \"7=it\", \"8=was ready\"",
+      "numbered_options": {
+        "1": "The car", "2": "had been", "3": "being", "4": "repaired", "5": "for hours", "6": "before", "7": "it", "8": "was ready"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "2,1,3,4,5,6,7,8"],
+      "correct": 0,
+      "grammar_point": "Past perfect continuous passive",
+      "hint": "Had been being + past participle (rare)"
+    },
+    {
+      "question": "Tartiblang (emphasis): \"1=He\", \"2=HAD been\", \"3=working\", \"4=there\", \"5=for decades\", \"6=before\", \"7=they\", \"8=fired him\"",
+      "numbered_options": {
+        "1": "He", "2": "HAD been", "3": "working", "4": "there", "5": "for decades", "6": "before", "7": "they", "8": "fired him"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "2,1,3,4,5,6,7,8"],
+      "correct": 0,
+      "grammar_point": "Emphatic duration",
+      "hint": "Capitalized auxiliary emphasizes unfairness"
+    },
+    {
+      "question": "Gap tuzing (mixed tenses): \"1=Although\", \"2=she\", \"3=had been\", \"4=studying\", \"5=English\", \"6=for years\", \"7=she\", \"8=still\", \"9=struggled\", \"10=with pronunciation\"",
+      "numbered_options": {
+        "1": "Although", "2": "she", "3": "had been", "4": "studying", "5": "English", "6": "for years", "7": "she", "8": "still", "9": "struggled", "10": "with pronunciation"
+      },
+      "options": ["1,2,3,4,5,6,7,8,9,10", "10,9,8,7,6,5,4,3,2,1", "2,3,4,5,6,1,7,8,9,10"],
+      "correct": 0,
+      "grammar_point": "Unexpected result",
+      "hint": "Long preparation didn't lead to expected outcome"
+    },
+    {
+      "question": "Tartiblang (negative): \"1=They\", \"2=hadn't been\", \"3=living\", \"4=there\", \"5=long\", \"6=when\", \"7=the problems\", \"8=started\"",
+      "numbered_options": {
+        "1": "They", "2": "hadn't been", "3": "living", "4": "there", "5": "long", "6": "when", "7": "the problems", "8": "started"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "2,1,3,4,5,6,7,8"],
+      "correct": 0,
+      "grammar_point": "Negative duration",
+      "hint": "Had not been + verb-ing for lack of duration"
+    },
+    {
+      "question": "Gap tuzing (temporary): \"1=Before\", \"2=moving\", \"3=to Paris\", \"4=we\", \"5=had been\", \"6=renting\", \"7=an apartment\", \"8=in Lyon\"",
+      "numbered_options": {
+        "1": "Before", "2": "moving", "3": "to Paris", "4": "we", "5": "had been", "6": "renting", "7": "an apartment", "8": "in Lyon"
+      },
+      "options": ["1,2,3,4,5,6,7,8", "8,7,6,5,4,3,2,1", "4,5,6,7,8,1,2,3"],
+      "correct": 0,
+      "grammar_point": "Temporary past situations",
+      "hint": "Temporary living situation before main past event"
+    },
+    {
+      "question": "Gap tuzing (speculation): \"1=His hands\", \"2=were dirty\", \"3=he\", \"4=must have been\", \"5=working\", \"6=in\", \"7=the garden\"",
+      "numbered_options": {
+        "1": "His hands", "2": "were dirty", "3": "he", "4": "must have been", "5": "working", "6": "in", "7": "the garden"
+      },
+      "options": ["1,2,3,4,5,6,7", "7,6,5,4,3,2,1", "3,4,5,6,7,1,2"],
+      "correct": 0,
+      "grammar_point": "Past deduction",
+      "hint": "Must have been + verb-ing for ongoing past deduction"
+    },
+    {
+      "question": "Tartiblang (literary): \"1=For\", \"2=how many years\", \"3=had\", \"4=the ancient tree\", \"5=been\", \"6=growing\", \"7=there\", \"8=before\", \"9=the storm\", \"10=felled it\"",
+      "numbered_options": {
+        "1": "For", "2": "how many years", "3": "had", "4": "the ancient tree", "5": "been", "6": "growing", "7": "there", "8": "before", "9": "the storm", "10": "felled it"
+      },
+      "options": ["1,2,3,4,5,6,7,8,9,10", "10,9,8,7,6,5,4,3,2,1", "3,4,5,6,7,1,2,8,9,10"],
+      "correct": 0,
+      "grammar_point": "Literary duration",
+      "hint": "Emphasizes long duration before dramatic event"
+    },
+  ],
+  "future_simple_tests" : [
+    {
+        "question": "So'zlarni tartiblang: \"1=They\", \"2=will\", \"3=arrive\", \"4=tomorrow\"",
+        "numbered_options": {
+            "1": "They",
+            "2": "will",
+            "3": "arrive",
+            "4": "tomorrow"
+        },
+        "options": [
+            "1,2,3,4",
+            "4,1,2,3",
+            "1,3,2,4"
+        ],
+        "correct": 0,
+        "level": "easy",
+        "grammar_point": "future_simple"
+    },
+    {
+        "question": "So'zlarni tartiblang: \"1=I\", \"2=will\", \"3=call\", \"4=you\", \"5=later\"",
+        "numbered_options": {
+            "1": "I",
+            "2": "will",
+            "3": "call",
+            "4": "you",
+            "5": "later"
+        },
+        "options": [
+            "1,2,3,4,5",
+            "5,1,2,3,4",
+            "1,3,2,4,5"
+        ],
+        "correct": 0,
+        "level": "easy",
+        "grammar_point": "future_simple"
+    },
+    {
+        "question": "So'zlarni tartiblang: \"1=She\", \"2=will\", \"3=not\", \"4=attend\", \"5=the meeting\"",
+        "numbered_options": {
+            "1": "She",
+            "2": "will",
+            "3": "not",
+            "4": "attend",
+            "5": "the meeting"
+        },
+        "options": [
+            "1,2,3,4,5",
+            "5,1,2,3,4",
+            "1,3,2,4,5"
+        ],
+        "correct": 0,
+        "level": "easy",
+        "grammar_point": "future_simple"
+    },
+    {
+        "question": "So'zlarni tartiblang: \"1=Will\", \"2=you\", \"3=help\", \"4=me\", \"5=with this task?\"",
+        "numbered_options": {
+            "1": "Will",
+            "2": "you",
+            "3": "help",
+            "4": "me",
+            "5": "with this task?"
+        },
+        "options": [
+            "1,2,3,4,5",
+            "5,1,2,3,4",
+            "2,1,3,4,5"
+        ],
+        "correct": 0,
+        "level": "easy",
+        "grammar_point": "future_simple"
+    },
+    {
+        "question": "So'zlarni tartiblang: \"1=By next year\", \"2=they\", \"3=will\", \"4=have\", \"5=a new house\"",
+        "numbered_options": {
+            "1": "By next year",
+            "2": "they",
+            "3": "will",
+            "4": "have",
+            "5": "a new house"
+        },
+        "options": [
+            "1,2,3,4,5",
+            "5,1,2,3,4",
+            "1,3,2,4,5"
+        ],
+        "correct": 0,
+        "level": "medium",
+        "grammar_point": "future_simple"
+    },
+    {
+        "question": "So'zlarni tartiblang: \"1=He\", \"2=will\", \"3=probably\", \"4=be\", \"5=late\"",
+        "numbered_options": {
+            "1": "He",
+            "2": "will",
+            "3": "probably",
+            "4": "be",
+            "5": "late"
+        },
+        "options": [
+            "1,2,3,4,5",
+            "5,1,2,3,4",
+            "1,3,2,4,5"
+        ],
+        "correct": 0,
+        "level": "medium",
+        "grammar_point": "future_simple"
+    },
+    {
+        "question": "So'zlarni tartiblang: \"1=I\", \"2=think\", \"3=it\", \"4=will\", \"5=rain\", \"6=tomorrow\"",
+        "numbered_options": {
+            "1": "I",
+            "2": "think",
+            "3": "it",
+            "4": "will",
+            "5": "rain",
+            "6": "tomorrow"
+        },
+        "options": [
+            "1,2,3,4,5,6",
+            "6,1,2,3,4,5",
+            "1,3,2,4,5,6"
+        ],
+        "correct": 0,
+        "level": "medium",
+        "grammar_point": "future_simple"
+    },
+    {
+        "question": "So'zlarni tartiblang: \"1=She\", \"2=will\", \"3=be\", \"4=20\", \"5=next month\"",
+        "numbered_options": {
+            "1": "She",
+            "2": "will",
+            "3": "be",
+            "4": "20",
+            "5": "next month"
+        },
+        "options": [
+            "1,2,3,4,5",
+            "5,1,2,3,4",
+            "1,3,2,4,5"
+        ],
+        "correct": 0,
+        "level": "easy",
+        "grammar_point": "future_simple"
+    },
+     {
+        "question": "So'zlarni tartiblang: \"1=They\", \"2=will\", \"3=arrive\", \"4=tomorrow\"",
+        "numbered_options": {
+            "1": "They",
+            "2": "will",
+            "3": "arrive",
+            "4": "tomorrow"
+        },
+        "options": [
+            "1,2,3,4",
+            "4,1,2,3",
+            "1,3,2,4"
+        ],
+        "correct": 0,
+        "level": "easy",
+        "grammar_point": "future_simple"
+    },
+    {
+        "question": "So'zlarni tartiblang: \"1=I\", \"2=will\", \"3=call\", \"4=you\", \"5=later\"",
+        "numbered_options": {
+            "1": "I",
+            "2": "will",
+            "3": "call",
+            "4": "you",
+            "5": "later"
+        },
+        "options": [
+            "1,2,3,4,5",
+            "5,1,2,3,4",
+            "1,3,2,4,5"
+        ],
+        "correct": 0,
+        "level": "easy",
+        "grammar_point": "future_simple"
+    },
+    {
+        "question": "So'zlarni tartiblang: \"1=She\", \"2=will\", \"3=not\", \"4=attend\", \"5=the meeting\"",
+        "numbered_options": {
+            "1": "She",
+            "2": "will",
+            "3": "not",
+            "4": "attend",
+            "5": "the meeting"
+        },
+        "options": [
+            "1,2,3,4,5",
+            "5,1,2,3,4",
+            "1,3,2,4,5"
+        ],
+        "correct": 0,
+        "level": "easy",
+        "grammar_point": "future_simple"
+    },
+    {
+        "question": "So'zlarni tartiblang: \"1=Will\", \"2=you\", \"3=help\", \"4=me\", \"5=with this task?\"",
+        "numbered_options": {
+            "1": "Will",
+            "2": "you",
+            "3": "help",
+            "4": "me",
+            "5": "with this task?"
+        },
+        "options": [
+            "1,2,3,4,5",
+            "5,1,2,3,4",
+            "2,1,3,4,5"
+        ],
+        "correct": 0,
+        "level": "easy",
+        "grammar_point": "future_simple"
+    },
+    {
+        "question": "So'zlarni tartiblang: \"1=By next year\", \"2=they\", \"3=will\", \"4=have\", \"5=a new house\"",
+        "numbered_options": {
+            "1": "By next year",
+            "2": "they",
+            "3": "will",
+            "4": "have",
+            "5": "a new house"
+        },
+        "options": [
+            "1,2,3,4,5",
+            "5,1,2,3,4",
+            "1,3,2,4,5"
+        ],
+        "correct": 0,
+        "level": "medium",
+        "grammar_point": "future_simple"
+    },
+    {
+        "question": "So'zlarni tartiblang: \"1=He\", \"2=will\", \"3=probably\", \"4=be\", \"5=late\"",
+        "numbered_options": {
+            "1": "He",
+            "2": "will",
+            "3": "probably",
+            "4": "be",
+            "5": "late"
+        },
+        "options": [
+            "1,2,3,4,5",
+            "5,1,2,3,4",
+            "1,3,2,4,5"
+        ],
+        "correct": 0,
+        "level": "medium",
+        "grammar_point": "future_simple"
+    },
+    {
+        "question": "So'zlarni tartiblang: \"1=I\", \"2=think\", \"3=it\", \"4=will\", \"5=rain\", \"6=tomorrow\"",
+        "numbered_options": {
+            "1": "I",
+            "2": "think",
+            "3": "it",
+            "4": "will",
+            "5": "rain",
+            "6": "tomorrow"
+        },
+        "options": [
+            "1,2,3,4,5,6",
+            "6,1,2,3,4,5",
+            "1,3,2,4,5,6"
+        ],
+        "correct": 0,
+        "level": "medium",
+        "grammar_point": "future_simple"
+    },
+    {
+        "question": "So'zlarni tartiblang: \"1=She\", \"2=will\", \"3=be\", \"4=20\", \"5=next month\"",
+        "numbered_options": {
+            "1": "She",
+            "2": "will",
+            "3": "be",
+            "4": "20",
+            "5": "next month"
+        },
+        "options": [
+            "1,2,3,4,5",
+            "5,1,2,3,4",
+            "1,3,2,4,5"
+        ],
+        "correct": 0,
+        "level": "easy",
+        "grammar_point": "future_simple"
+    },
+      {
+    "question": "So'zlarni tartiblang: \"1=They\", \"2=will\", \"3=arrive\", \"4=tomorrow\"",
+    "numbered_options": {
+      "1": "They",
+      "2": "will",
+      "3": "arrive",
+      "4": "tomorrow"
+    },
+    "options": [
+      "1,2,3,4",
+      "4,1,2,3",
+      "1,3,2,4"
+    ],
+    "correct": 0,
+    "level": "easy",
+    "grammar_point": "future_simple"
+  },
+  {
+    "question": "So'zlarni tartiblang: \"1=I\", \"2=will\", \"3=call\", \"4=you\", \"5=later\"",
+    "numbered_options": {
+      "1": "I",
+      "2": "will",
+      "3": "call",
+      "4": "you",
+      "5": "later"
+    },
+    "options": [
+      "1,2,3,4,5",
+      "5,1,2,3,4",
+      "1,3,2,4,5"
+    ],
+    "correct": 0,
+    "level": "easy",
+    "grammar_point": "future_simple"
+  }
+],
 "future_continuous": [
     {
-        "question": "This time tomorrow, I ___ on the beach.",
-        "options": ["lie", "will lie", "will be lying", "am lying"],
-        "correct": 2
+      "question": "Tartiblang: \"1=This time\", \"2=tomorrow\", \"3=I\", \"4=will be\", \"5=driving\", \"6=to work\"",
+      "numbered_options": {
+        "1": "This time",
+        "2": "tomorrow",
+        "3": "I",
+        "4": "will be",
+        "5": "driving",
+        "6": "to work"
+      },
+      "options": ["1,2,3,4,5,6", "3,4,5,6,1,2", "1,3,4,2,5,6"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_continuous",
+      "hint": "Future continuous: will be + V-ing"
     },
     {
-        "question": "At 8 pm tonight, they ___ dinner.",
-        "options": ["have", "will have", "will be having", "are having"],
-        "correct": 2
+      "question": "Tartiblang: \"1=We\", \"2=will be\", \"3=having\", \"4=dinner\", \"5=at 8 PM\"",
+      "numbered_options": {
+        "1": "We",
+        "2": "will be",
+        "3": "having",
+        "4": "dinner",
+        "5": "at 8 PM"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Scheduled future action",
+      "hint": "Use future continuous for actions in progress at a specific time"
     },
     {
-        "question": "Don't call at 9 - I ___ my favorite show.",
-        "options": ["watch", "will watch", "will be watching", "am watching"],
-        "correct": 2
+      "question": "Tartiblang: \"1=They\", \"2=will be\", \"3=waiting\", \"4=for us\", \"5=when we arrive\"",
+      "numbered_options": {
+        "1": "They",
+        "2": "will be",
+        "3": "waiting",
+        "4": "for us",
+        "5": "when we arrive"
+      },
+      "options": ["1,2,3,4,5", "2,1,3,4,5", "5,1,2,3,4"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "Future ongoing",
+      "hint": "Describe what will be happening at a moment in future"
     },
     {
-        "question": "What ___ you ___ this time next week?",
-        "options": ["will, do", "are, doing", "will, be doing", "do, do"],
-        "correct": 2
+      "question": "Tartiblang: \"1=At this time\", \"2=next year\", \"3=he\", \"4=will be\", \"5=living\", \"6=in Canada\"",
+      "numbered_options": {
+        "1": "At this time",
+        "2": "next year",
+        "3": "he",
+        "4": "will be",
+        "5": "living",
+        "6": "in Canada"
+      },
+      "options": ["1,2,3,4,5,6", "3,4,5,6,1,2", "1,3,4,2,5,6"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Future progress",
+      "hint": "Will be + verb-ing for future events in progress"
     },
     {
-        "question": "She ___ for her exam all day tomorrow.",
-        "options": ["study", "will study", "will be studying", "is studying"],
-        "correct": 2
+      "question": "Tartiblang: \"1=I\", \"2=won't be\", \"3=attending\", \"4=the meeting\", \"5=tomorrow\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "won't be",
+        "3": "attending",
+        "4": "the meeting",
+        "5": "tomorrow"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "1,3,2,4,5"],
+      "correct": 0,
+      "level": "normal",
+      "grammar_point": "Negative future continuous",
+      "hint": "Won’t be + verb-ing = negative future continuous"
+    },
+ {
+      "question": "Tartiblang: \"1=She\", \"2=will be\", \"3=studying\", \"4=at\", \"5=7 PM\"",
+      "numbered_options": {
+        "1": "She",
+        "2": "will be",
+        "3": "studying",
+        "4": "at",
+        "5": "7 PM"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_continuous",
+      "hint": "Will be + verb-ing for action in progress in future"
     },
     {
-        "question": "They ___ to Paris this time next month.",
-        "options": ["fly", "will fly", "will be flying", "are flying"],
-        "correct": 2
+      "question": "Tartiblang: \"1=They\", \"2=will\", \"3=be\", \"4=traveling\", \"5=to Italy\"",
+      "numbered_options": {
+        "1": "They",
+        "2": "will",
+        "3": "be",
+        "4": "traveling",
+        "5": "to Italy"
+      },
+      "options": ["1,2,3,4,5", "2,1,3,4,5", "5,4,3,2,1"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_continuous",
+      "hint": "Future Continuous = will be + V-ing"
     },
     {
-        "question": "We ___ a meeting at 10 am tomorrow.",
-        "options": ["have", "will have", "will be having", "are having"],
-        "correct": 2
+      "question": "Gap tuzing: \"1=I\", \"2=will be\", \"3=waiting\", \"4=for you\", \"5=outside the station\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "will be",
+        "3": "waiting",
+        "4": "for you",
+        "5": "outside the station"
+      },
+      "options": ["1,2,3,4,5", "4,3,2,1,5", "1,3,2,5,4"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous",
+      "hint": "Use 'will be' + V-ing for action at a future time"
     },
     {
-        "question": "He ___ his car at 5 pm tomorrow.",
-        "options": ["wash", "will wash", "will be washing", "is washing"],
-        "correct": 2
+      "question": "Tartiblang: \"1=At this time tomorrow\", \"2=he\", \"3=will be\", \"4=driving\", \"5=to the airport\"",
+      "numbered_options": {
+        "1": "At this time tomorrow",
+        "2": "he",
+        "3": "will be",
+        "4": "driving",
+        "5": "to the airport"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,3,4,5,1"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous",
+      "hint": "An action in progress at a specific time in the future"
     },
     {
-        "question": "The sun ___ when we wake up tomorrow.",
-        "options": ["shine", "will shine", "will be shining", "is shining"],
-        "correct": 2
+      "question": "Gap tuzing: \"1=We\", \"2=won't\", \"3=be\", \"4=attending\", \"5=the meeting\"",
+      "numbered_options": {
+        "1": "We",
+        "2": "won't",
+        "3": "be",
+        "4": "attending",
+        "5": "the meeting"
+      },
+      "options": ["1,2,3,4,5", "2,1,3,4,5", "1,3,2,4,5"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous_negative",
+      "hint": "Negative: won't be + verb-ing"
     },
     {
-        "question": "I ___ TV at this time tomorrow.",
-        "options": ["watch", "will watch", "will be watching", "am watching"],
-        "correct": 2
+      "question": "Tartiblang: \"1=Will\", \"2=you\", \"3=be\", \"4=working\", \"5=late tonight?\"",
+      "numbered_options": {
+        "1": "Will",
+        "2": "you",
+        "3": "be",
+        "4": "working",
+        "5": "late tonight?"
+      },
+      "options": ["1,2,3,4,5", "2,1,3,4,5", "5,4,3,2,1"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_continuous_question",
+      "hint": "Future Continuous Question = Will + subject + be + V-ing?"
     },
     {
-        "question": "At midnight tonight, we ___ soundly.",
-        "options": ["sleep", "will sleep", "will be sleeping", "are sleeping"],
-        "correct": 2
+      "question": "Tartiblang: \"1=By 9 PM\", \"2=they\", \"3=will be\", \"4=watching\", \"5=a movie\"",
+      "numbered_options": {
+        "1": "By 9 PM",
+        "2": "they",
+        "3": "will be",
+        "4": "watching",
+        "5": "a movie"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,3,4,5,1"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous",
+      "hint": "Future time expression often begins the sentence"
     },
     {
-        "question": "This time next year, I ___ at university.",
-        "options": ["study", "will study", "will be studying", "am studying"],
-        "correct": 2
+      "question": "Gap tuzing: \"1=I\", \"2=will\", \"3=not\", \"4=be\", \"5=using\", \"6=the computer\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "will",
+        "3": "not",
+        "4": "be",
+        "5": "using",
+        "6": "the computer"
+      },
+      "options": ["1,2,3,4,5,6", "2,3,4,5,6,1", "1,3,2,4,5,6"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous_negative",
+      "hint": "Negative Future Continuous = will not be + verb-ing"
     },
     {
-        "question": "The workers ___ the road all day tomorrow.",
-        "options": ["repair", "will repair", "will be repairing", "are repairing"],
-        "correct": 2
+      "question": "Tartiblang: \"1=She\", \"2=will be\", \"3=studying\", \"4=at\", \"5=7 PM\"",
+      "numbered_options": {
+        "1": "She",
+        "2": "will be",
+        "3": "studying",
+        "4": "at",
+        "5": "7 PM"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_continuous",
+      "hint": "Will be + verb-ing for action in progress in future"
     },
     {
-        "question": "What ___ she ___ at 3 pm tomorrow?",
-        "options": ["will, do", "is, doing", "will, be doing", "does, do"],
-        "correct": 2
+      "question": "Tartiblang: \"1=They\", \"2=will\", \"3=be\", \"4=traveling\", \"5=to Italy\"",
+      "numbered_options": {
+        "1": "They",
+        "2": "will",
+        "3": "be",
+        "4": "traveling",
+        "5": "to Italy"
+      },
+      "options": ["1,2,3,4,5", "2,1,3,4,5", "5,4,3,2,1"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_continuous",
+      "hint": "Future Continuous = will be + V-ing"
     },
     {
-        "question": "The plane ___ over the Atlantic at this time tomorrow.",
-        "options": ["fly", "will fly", "will be flying", "is flying"],
-        "correct": 2
+      "question": "Gap tuzing: \"1=I\", \"2=will be\", \"3=waiting\", \"4=for you\", \"5=outside the station\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "will be",
+        "3": "waiting",
+        "4": "for you",
+        "5": "outside the station"
+      },
+      "options": ["1,2,3,4,5", "4,3,2,1,5", "1,3,2,5,4"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous",
+      "hint": "Use 'will be' + V-ing for action at a future time"
     },
     {
-        "question": "They ___ their anniversary all evening.",
-        "options": ["celebrate", "will celebrate", "will be celebrating", "are celebrating"],
-        "correct": 2
+      "question": "Tartiblang: \"1=At this time tomorrow\", \"2=he\", \"3=will be\", \"4=driving\", \"5=to the airport\"",
+      "numbered_options": {
+        "1": "At this time tomorrow",
+        "2": "he",
+        "3": "will be",
+        "4": "driving",
+        "5": "to the airport"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,3,4,5,1"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous",
+      "hint": "An action in progress at a specific time in the future"
     },
     {
-        "question": "I ___ for you at the station when your train arrives.",
-        "options": ["wait", "will wait", "will be waiting", "am waiting"],
-        "correct": 2
+      "question": "Gap tuzing: \"1=We\", \"2=won't\", \"3=be\", \"4=attending\", \"5=the meeting\"",
+      "numbered_options": {
+        "1": "We",
+        "2": "won't",
+        "3": "be",
+        "4": "attending",
+        "5": "the meeting"
+      },
+      "options": ["1,2,3,4,5", "2,1,3,4,5", "1,3,2,4,5"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous_negative",
+      "hint": "Negative: won't be + verb-ing"
     },
     {
-        "question": "The kids ___ in the pool all afternoon.",
-        "options": ["swim", "will swim", "will be swimming", "are swimming"],
-        "correct": 2
+      "question": "Tartiblang: \"1=Will\", \"2=you\", \"3=be\", \"4=working\", \"5=late tonight?\"",
+      "numbered_options": {
+        "1": "Will",
+        "2": "you",
+        "3": "be",
+        "4": "working",
+        "5": "late tonight?"
+      },
+      "options": ["1,2,3,4,5", "2,1,3,4,5", "5,4,3,2,1"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_continuous_question",
+      "hint": "Future Continuous Question = Will + subject + be + V-ing?"
     },
     {
-        "question": "At 7 am tomorrow, I ___ to work.",
-        "options": ["drive", "will drive", "will be driving", "am driving"],
-        "correct": 2
+      "question": "Tartiblang: \"1=By 9 PM\", \"2=they\", \"3=will be\", \"4=watching\", \"5=a movie\"",
+      "numbered_options": {
+        "1": "By 9 PM",
+        "2": "they",
+        "3": "will be",
+        "4": "watching",
+        "5": "a movie"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,3,4,5,1"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous",
+      "hint": "Future time expression often begins the sentence"
     },
     {
-        "question": "The chef ___ a special dish for the guests at this time tomorrow.",
-        "options": ["prepare", "will prepare", "will be preparing", "is preparing"],
-        "correct": 2
+      "question": "Gap tuzing: \"1=I\", \"2=will\", \"3=not\", \"4=be\", \"5=using\", \"6=the computer\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "will",
+        "3": "not",
+        "4": "be",
+        "5": "using",
+        "6": "the computer"
+      },
+      "options": ["1,2,3,4,5,6", "2,3,4,5,6,1", "1,3,2,4,5,6"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous_negative",
+      "hint": "Negative Future Continuous = will not be + verb-ing"
+    },
+    {
+      "question": "Tartiblang: \"1=Tomorrow\", \"2=at noon\", \"3=I\", \"4=will be\", \"5=meeting\", \"6=my boss\"",
+      "numbered_options": {
+        "1": "Tomorrow",
+        "2": "at noon",
+        "3": "I",
+        "4": "will be",
+        "5": "meeting",
+        "6": "my boss"
+      },
+      "options": ["1,2,3,4,5,6", "3,4,5,6,1,2", "1,3,4,5,2,6"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous",
+      "hint": "Time expression can come at the beginning"
+    },
+    {
+      "question": "Gap tuzing: \"1=Will\", \"2=they\", \"3=be\", \"4=playing\", \"5=football\", \"6=on Sunday?\"",
+      "numbered_options": {
+        "1": "Will",
+        "2": "they",
+        "3": "be",
+        "4": "playing",
+        "5": "football",
+        "6": "on Sunday?"
+      },
+      "options": ["1,2,3,4,5,6", "2,1,3,4,5,6", "6,5,4,3,2,1"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_continuous_question",
+      "hint": "Yes/No question in future continuous = Will + subject + be + V-ing?"
+    },
+    {
+      "question": "Tartiblang: \"1=You\", \"2=will\", \"3=be\", \"4=using\", \"5=this app\", \"6=every day\"",
+      "numbered_options": {
+        "1": "You",
+        "2": "will",
+        "3": "be",
+        "4": "using",
+        "5": "this app",
+        "6": "every day"
+      },
+      "options": ["1,2,3,4,5,6", "2,1,3,4,5,6", "1,3,2,4,5,6"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_continuous",
+      "hint": "Will be + V-ing"
+    },
+    {
+      "question": "Tartiblang: \"1=Next week\", \"2=he\", \"3=will be\", \"4=working\", \"5=remotely\"",
+      "numbered_options": {
+        "1": "Next week",
+        "2": "he",
+        "3": "will be",
+        "4": "working",
+        "5": "remotely"
+      },
+      "options": ["1,2,3,4,5", "2,3,4,5,1", "1,3,2,4,5"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous",
+      "hint": "Subject + will be + verb-ing"
+    },
+    {
+      "question": "Gap tuzing: \"1=By this time next week\", \"2=we\", \"3=will be\", \"4=relaxing\", \"5=on the beach\"",
+      "numbered_options": {
+        "1": "By this time next week",
+        "2": "we",
+        "3": "will be",
+        "4": "relaxing",
+        "5": "on the beach"
+      },
+      "options": ["1,2,3,4,5", "2,3,4,5,1", "1,3,2,4,5"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous",
+      "hint": "Future continuous for planned actions"
+    },
+    {
+      "question": "Tartiblang: \"1=I\", \"2=will\", \"3=still\", \"4=be\", \"5=sleeping\", \"6=at 6 AM\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "will",
+        "3": "still",
+        "4": "be",
+        "5": "sleeping",
+        "6": "at 6 AM"
+      },
+      "options": ["1,2,3,4,5,6", "2,1,3,4,5,6", "1,2,4,3,5,6"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous",
+      "hint": "'Still' comes before 'be'"
+    },
+    {
+      "question": "Gap tuzing: \"1=We\", \"2=won’t\", \"3=be\", \"4=having\", \"5=a meeting\", \"6=on Friday\"",
+      "numbered_options": {
+        "1": "We",
+        "2": "won’t",
+        "3": "be",
+        "4": "having",
+        "5": "a meeting",
+        "6": "on Friday"
+      },
+      "options": ["1,2,3,4,5,6", "2,1,3,4,5,6", "1,3,2,4,5,6"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_continuous_negative",
+      "hint": "Negative form = won’t be + V-ing"
     }
-]
+    ],
+    "future_perfect": [
+    {
+      "question": "Tartiblang: \"1=By next year\", \"2=they\", \"3=will have\", \"4=completed\", \"5=the project\"",
+      "numbered_options": {
+        "1": "By next year",
+        "2": "they",
+        "3": "will have",
+        "4": "completed",
+        "5": "the project"
+      },
+      "options": ["1,2,3,4,5", "2,3,4,5,1", "3,2,4,5,1"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "Will have + past participle before a future time"
+    },
+    {
+      "question": "Tartiblang: \"1=She\", \"2=will have\", \"3=left\", \"4=before\", \"5=we arrive\"",
+      "numbered_options": {
+        "1": "She",
+        "2": "will have",
+        "3": "left",
+        "4": "before",
+        "5": "we arrive"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "Used to show earlier future action"
+    },
+    {
+      "question": "Tartiblang: \"1=They\", \"2=will have\", \"3=finished\", \"4=the work\", \"5=by Monday\"",
+      "numbered_options": {
+        "1": "They",
+        "2": "will have",
+        "3": "finished",
+        "4": "the work",
+        "5": "by Monday"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "'By + time' indicates deadline"
+    },
+    {
+      "question": "Tartiblang: \"1=By 2026\", \"2=he\", \"3=will have\", \"4=written\", \"5=ten books\"",
+      "numbered_options": {
+        "1": "By 2026",
+        "2": "he",
+        "3": "will have",
+        "4": "written",
+        "5": "ten books"
+      },
+      "options": ["1,2,3,4,5", "2,3,4,5,1", "3,2,4,5,1"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "Future perfect expresses achievement by a future point"
+    },
+    {
+      "question": "Tartiblang: \"1=We\", \"2=will have\", \"3=traveled\", \"4=to three countries\", \"5=by July\"",
+      "numbered_options": {
+        "1": "We",
+        "2": "will have",
+        "3": "traveled",
+        "4": "to three countries",
+        "5": "by July"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_perfect",
+      "hint": "Use 'by' + future time to indicate deadline"
+    },
+    {
+      "question": "Tartiblang: \"1=She\", \"2=will not have\", \"3=finished\", \"4=her homework\", \"5=by then\"",
+      "numbered_options": {
+        "1": "She",
+        "2": "will not have",
+        "3": "finished",
+        "4": "her homework",
+        "5": "by then"
+      },
+      "options": ["1,2,3,4,5", "2,1,3,4,5", "1,3,2,4,5"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "negative_future_perfect",
+      "hint": "Negative: will not have + past participle"
+    },
+    {
+      "question": "Tartiblang: \"1=By midnight\", \"2=they\", \"3=will have\", \"4=gone\", \"5=to bed\"",
+      "numbered_options": {
+        "1": "By midnight",
+        "2": "they",
+        "3": "will have",
+        "4": "gone",
+        "5": "to bed"
+      },
+      "options": ["1,2,3,4,5", "2,3,4,5,1", "3,2,4,5,1"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "Perfect action finished before a future deadline"
+    },
+    {
+      "question": "Tartiblang: \"1=He\", \"2=will have\", \"3=earned\", \"4=his degree\", \"5=by June\"",
+      "numbered_options": {
+        "1": "He",
+        "2": "will have",
+        "3": "earned",
+        "4": "his degree",
+        "5": "by June"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "By + date + will have + verb 3"
+    },
+    {
+      "question": "Tartiblang: \"1=You\", \"2=will have\", \"3=learned\", \"4=a lot\", \"5=by the end of the course\"",
+      "numbered_options": {
+        "1": "You",
+        "2": "will have",
+        "3": "learned",
+        "4": "a lot",
+        "5": "by the end of the course"
+      },
+      "options": ["1,2,3,4,5", "5,4,3,2,1", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_perfect",
+      "hint": "Future perfect for result by course end"
+    },
+    {
+      "question": "Tartiblang: \"1=Will\", \"2=you\", \"3=have\", \"4=completed\", \"5=the report\", \"6=by tomorrow?\"",
+      "numbered_options": {
+        "1": "Will",
+        "2": "you",
+        "3": "have",
+        "4": "completed",
+        "5": "the report",
+        "6": "by tomorrow?"
+      },
+      "options": ["1,2,3,4,5,6", "2,1,3,4,5,6", "1,3,2,4,5,6"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_perfect_question",
+      "hint": "Question: Will + subject + have + past participle"
+    },
+     {
+    "question": "Tartiblang: \"1=They\", \"2=will have\", \"3=built\", \"4=the house\", \"5=by summer\"",
+    "numbered_options": {
+      "1": "They",
+      "2": "will have",
+      "3": "built",
+      "4": "the house",
+      "5": "by summer"
+    },
+    "options": ["1,2,3,4,5", "2,1,3,4,5", "1,3,2,4,5"],
+    "correct": 0,
+    "level": "medium",
+    "grammar_point": "future_perfect",
+    "hint": "They will have + past participle + time marker"
+  },
+  {
+    "question": "Tartiblang: \"1=He\", \"2=won't have\", \"3=finished\", \"4=his shift\", \"5=by 8 o'clock\"",
+    "numbered_options": {
+      "1": "He",
+      "2": "won't have",
+      "3": "finished",
+      "4": "his shift",
+      "5": "by 8 o'clock"
+    },
+    "options": ["1,2,3,4,5", "2,1,3,4,5", "1,3,2,4,5"],
+    "correct": 0,
+    "level": "medium",
+    "grammar_point": "negative_future_perfect",
+    "hint": "Won’t have + past participle = negative form"
+  },
+  {
+    "question": "Tartiblang: \"1=Will\", \"2=she\", \"3=have\", \"4=arrived\", \"5=by the time we leave?\"",
+    "numbered_options": {
+      "1": "Will",
+      "2": "she",
+      "3": "have",
+      "4": "arrived",
+      "5": "by the time we leave?"
+    },
+    "options": ["1,2,3,4,5", "2,1,3,4,5", "1,3,2,4,5"],
+    "correct": 0,
+    "level": "medium",
+    "grammar_point": "future_perfect_question",
+    "hint": "Question format: Will + subject + have + past participle"
+  },
+  {
+    "question": "Tartiblang: \"1=We\", \"2=will have\", \"3=used\", \"4=all the paper\", \"5=before the event starts\"",
+    "numbered_options": {
+      "1": "We",
+      "2": "will have",
+      "3": "used",
+      "4": "all the paper",
+      "5": "before the event starts"
+    },
+    "options": ["1,2,3,4,5", "2,1,3,4,5", "1,3,2,4,5"],
+    "correct": 0,
+    "level": "medium",
+    "grammar_point": "future_perfect",
+    "hint": "Before + event = future deadline"
+  },
+  {
+    "question": "Tartiblang: \"1=By next Friday\", \"2=I\", \"3=will have\", \"4=read\", \"5=the whole book\"",
+    "numbered_options": {
+      "1": "By next Friday",
+      "2": "I",
+      "3": "will have",
+      "4": "read",
+      "5": "the whole book"
+    },
+    "options": ["1,2,3,4,5", "2,3,4,5,1", "3,2,4,5,1"],
+    "correct": 0,
+    "level": "easy",
+    "grammar_point": "future_perfect",
+    "hint": "By + future time = deadline"
+  }
+  ],
+
+
+
+
+
+   "future_perfect": [
+  {
+    "question": "Tartiblang: \"1=I\", \"2=will have\", \"3=finished\", \"4=my work\", \"5=by 5 pm\"",
+    "numbered_options": {
+      "1": "I",
+      "2": "will have",
+      "3": "finished",
+      "4": "my work",
+      "5": "by 5 pm"
+    },
+    "options": ["1,2,3,4,5", "2,1,3,4,5", "1,3,2,4,5"],
+    "correct": 0,
+    "level": "easy",
+    "grammar_point": "future_perfect",
+    "hint": "Subject + will have + past participle + time"
+  },
+  {
+    "question": "Tartiblang: \"1=She\", \"2=will have\", \"3=left\", \"4=the office\", \"5=before you arrive\"",
+    "numbered_options": {
+      "1": "She",
+      "2": "will have",
+      "3": "left",
+      "4": "the office",
+      "5": "before you arrive"
+    },
+    "options": ["1,2,3,4,5", "2,1,3,4,5", "1,3,2,4,5"],
+    "correct": 0,
+    "level": "medium",
+    "grammar_point": "future_perfect",
+    "hint": "Before + event = deadline in future"
+  },
+  {
+    "question": "Tartiblang: \"1=They\", \"2=won't have\", \"3=completed\", \"4=the project\", \"5=by next week\"",
+    "numbered_options": {
+      "1": "They",
+      "2": "won't have",
+      "3": "completed",
+      "4": "the project",
+      "5": "by next week"
+    },
+    "options": ["1,2,3,4,5", "2,1,3,4,5", "1,3,2,4,5"],
+    "correct": 0,
+    "level": "medium",
+    "grammar_point": "negative_future_perfect",
+    "hint": "Negative: won't have + past participle"
+  },
+  {
+    "question": "Tartiblang: \"1=Will\", \"2=you\", \"3=have\", \"4=written\", \"5=the report by Monday?\"",
+    "numbered_options": {
+      "1": "Will",
+      "2": "you",
+      "3": "have",
+      "4": "written",
+      "5": "the report by Monday?"
+    },
+    "options": ["1,2,3,4,5", "2,1,3,4,5", "3,2,1,4,5"],
+    "correct": 0,
+    "level": "medium",
+    "grammar_point": "question_future_perfect",
+    "hint": "Question: Will + subject + have + V3"
+  },
+  {
+    "question": "Tartiblang: \"1=By 2026\", \"2=they\", \"3=will have\", \"4=launched\", \"5=the new product\"",
+    "numbered_options": {
+      "1": "By 2026",
+      "2": "they",
+      "3": "will have",
+      "4": "launched",
+      "5": "the new product"
+    },
+    "options": ["1,2,3,4,5", "2,3,4,5,1", "3,2,4,5,1"],
+    "correct": 0,
+    "level": "easy",
+    "grammar_point": "future_perfect",
+    "hint": "Future deadline: By + year"
+  },
+  {
+    "question": "Tartiblang: \"1=We\", \"2=will have\", \"3=eaten\", \"4=dinner\", \"5=before 9\"",
+    "numbered_options": {
+      "1": "We",
+      "2": "will have",
+      "3": "eaten",
+      "4": "dinner",
+      "5": "before 9"
+    },
+    "options": ["1,2,3,4,5", "2,1,3,4,5", "1,3,2,4,5"],
+    "correct": 0,
+    "level": "easy",
+    "grammar_point": "future_perfect",
+    "hint": "Standard future perfect sentence"
+  },
+  {
+    "question": "Tartiblang: \"1=He\", \"2=won't have\", \"3=returned\", \"4=home\", \"5=by night\"",
+    "numbered_options": {
+      "1": "He",
+      "2": "won't have",
+      "3": "returned",
+      "4": "home",
+      "5": "by night"
+    },
+    "options": ["1,2,3,4,5", "1,3,2,4,5", "2,1,3,4,5"],
+    "correct": 0,
+    "level": "medium",
+    "grammar_point": "negative_future_perfect",
+    "hint": "Won’t have + V3"
+  },
+  {
+    "question": "Tartiblang: \"1=By the time you arrive\", \"2=I\", \"3=will have\", \"4=finished\", \"5=cooking\"",
+    "numbered_options": {
+      "1": "By the time you arrive",
+      "2": "I",
+      "3": "will have",
+      "4": "finished",
+      "5": "cooking"
+    },
+    "options": ["1,2,3,4,5", "2,3,4,5,1", "3,2,4,5,1"],
+    "correct": 0,
+    "level": "medium",
+    "grammar_point": "future_perfect",
+    "hint": "Time clause at beginning"
+  },
+  {
+    "question": "Tartiblang: \"1=The guests\", \"2=will have\", \"3=left\", \"4=before midnight\", \"5=probably\"",
+    "numbered_options": {
+      "1": "The guests",
+      "2": "will have",
+      "3": "left",
+      "4": "before midnight",
+      "5": "probably"
+    },
+    "options": ["1,5,2,3,4", "1,2,3,4,5", "5,1,2,3,4"],
+    "correct": 0,
+    "level": "hard",
+    "grammar_point": "future_perfect_with_adverb",
+    "hint": "Adverb goes before 'will'"
+  },
+  {
+    "question": "Tartiblang: \"1=You\", \"2=will have\", \"3=read\", \"4=all the chapters\", \"5=by the test\"",
+    "numbered_options": {
+      "1": "You",
+      "2": "will have",
+      "3": "read",
+      "4": "all the chapters",
+      "5": "by the test"
+    },
+    "options": ["1,2,3,4,5", "2,1,3,4,5", "1,3,2,4,5"],
+    "correct": 0,
+    "level": "easy",
+    "grammar_point": "future_perfect",
+    "hint": "Will have + past participle + by..."
+  },
+  {
+    "question": "Tartiblang: \"1=She\", \"2=will not have\", \"3=met\", \"4=him\", \"5=until the party\"",
+    "numbered_options": {
+      "1": "She",
+      "2": "will not have",
+      "3": "met",
+      "4": "him",
+      "5": "until the party"
+    },
+    "options": ["1,2,3,4,5", "1,3,2,4,5", "2,1,3,4,5"],
+    "correct": 0,
+    "level": "medium",
+    "grammar_point": "negative_future_perfect",
+    "hint": "Until = similar to by in negative"
+  },
+  {
+    "question": "Tartiblang: \"1=Will\", \"2=they\", \"3=have\", \"4=completed\", \"5=everything on time?\"",
+    "numbered_options": {
+      "1": "Will",
+      "2": "they",
+      "3": "have",
+      "4": "completed",
+      "5": "everything on time?"
+    },
+    "options": ["1,2,3,4,5", "2,1,3,4,5", "3,2,1,4,5"],
+    "correct": 0,
+    "level": "medium",
+    "grammar_point": "future_perfect_question",
+    "hint": "Will + they + have + V3"
+  },
+  {
+    "question": "Tartiblang: \"1=By this time next year\", \"2=I\", \"3=will have\", \"4=graduated\", \"5=from university\"",
+    "numbered_options": {
+      "1": "By this time next year",
+      "2": "I",
+      "3": "will have",
+      "4": "graduated",
+      "5": "from university"
+    },
+    "options": ["1,2,3,4,5", "2,3,4,5,1", "3,2,4,5,1"],
+    "correct": 0,
+    "level": "easy",
+    "grammar_point": "future_perfect",
+    "hint": "By + future time → future perfect"
+  },
+  {
+    "question": "Tartiblang: \"1=We\", \"2=will have\", \"3=visited\", \"4=three cities\", \"5=by next weekend\"",
+    "numbered_options": {
+      "1": "We",
+      "2": "will have",
+      "3": "visited",
+      "4": "three cities",
+      "5": "by next weekend"
+    },
+    "options": ["1,2,3,4,5", "1,3,2,4,5", "2,1,3,4,5"],
+    "correct": 0,
+    "level": "easy",
+    "grammar_point": "future_perfect",
+    "hint": "Standard future perfect sentence"
+  },
+  {
+    "question": "Tartiblang: \"1=They\", \"2=will have\", \"3=built\", \"4=the house\", \"5=by summer\"",
+    "numbered_options": {
+      "1": "They",
+      "2": "will have",
+      "3": "built",
+      "4": "the house",
+      "5": "by summer"
+    },
+    "options": ["1,2,3,4,5", "2,1,3,4,5", "1,3,2,4,5"],
+    "correct": 0,
+    "level": "medium",
+    "grammar_point": "future_perfect",
+    "hint": "They will have + past participle + time marker"
+  }
+],
+
+
+
+
+"future_perfect_cont":
+ [
+    {
+      "question": "Tartiblang: \"1=By this time\", \"2=next year\", \"3=they\", \"4=will have\", \"5=completed\", \"6=the project\"",
+      "numbered_options": {
+        "1": "By this time",
+        "2": "next year",
+        "3": "they",
+        "4": "will have",
+        "5": "completed",
+        "6": "the project"
+      },
+      "options": ["1,2,3,4,5,6", "3,4,5,6,1,2", "1,2,4,3,5,6"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "By [time], subject + will have + V3"
+    },
+    {
+      "question": "Tartiblang: \"1=She\", \"2=will have\", \"3=left\", \"4=before\", \"5=you\", \"6=arrive\"",
+      "numbered_options": {
+        "1": "She",
+        "2": "will have",
+        "3": "left",
+        "4": "before",
+        "5": "you",
+        "6": "arrive"
+      },
+      "options": ["1,2,3,4,5,6", "4,5,6,1,2,3", "2,1,3,4,5,6"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "Future perfect before another future action"
+    },
+    {
+      "question": "Tartiblang: \"1=By 2025\", \"2=scientists\", \"3=will have\", \"4=discovered\", \"5=a cure\"",
+      "numbered_options": {
+        "1": "By 2025",
+        "2": "scientists",
+        "3": "will have",
+        "4": "discovered",
+        "5": "a cure"
+      },
+      "options": ["1,2,3,4,5", "2,3,4,5,1", "1,3,2,4,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "By [year], subject + will have + V3"
+    },
+    {
+      "question": "Tartiblang: \"1=I\", \"2=will have\", \"3=written\", \"4=five reports\", \"5=by tomorrow\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "will have",
+        "3": "written",
+        "4": "five reports",
+        "5": "by tomorrow"
+      },
+      "options": ["1,2,3,4,5", "5,1,2,3,4", "1,3,2,4,5"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_perfect",
+      "hint": "Future result by a deadline"
+    },
+    {
+      "question": "Tartiblang: \"1=They\", \"2=will have\", \"3=arrived\", \"4=by the time\", \"5=we\", \"6=get there\"",
+      "numbered_options": {
+        "1": "They",
+        "2": "will have",
+        "3": "arrived",
+        "4": "by the time",
+        "5": "we",
+        "6": "get there"
+      },
+      "options": ["1,2,3,4,5,6", "4,5,6,1,2,3", "1,3,2,5,6,4"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_perfect",
+      "hint": "By the time + present simple, future perfect"
+    },
+    {
+      "question": "Tartiblang: \"1=He\", \"2=will have\", \"3=read\", \"4=all the books\", \"5=by summer\"",
+      "numbered_options": {
+        "1": "He",
+        "2": "will have",
+        "3": "read",
+        "4": "all the books",
+        "5": "by summer"
+      },
+      "options": ["1,2,3,4,5", "5,1,2,3,4", "1,3,2,4,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "Focus on completed action before a time"
+    },
+     {
+      "question": "Tartiblang: \"1=By this time\", \"2=next year\", \"3=they\", \"4=will have\", \"5=completed\", \"6=the project\"",
+      "numbered_options": {
+        "1": "By this time",
+        "2": "next year",
+        "3": "they",
+        "4": "will have",
+        "5": "completed",
+        "6": "the project"
+      },
+      "options": ["1,2,3,4,5,6", "3,4,5,6,1,2", "1,2,4,3,5,6"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "By [time], subject + will have + V3"
+    },
+    {
+      "question": "Tartiblang: \"1=She\", \"2=will have\", \"3=left\", \"4=before\", \"5=you\", \"6=arrive\"",
+      "numbered_options": {
+        "1": "She",
+        "2": "will have",
+        "3": "left",
+        "4": "before",
+        "5": "you",
+        "6": "arrive"
+      },
+      "options": ["1,2,3,4,5,6", "4,5,6,1,2,3", "2,1,3,4,5,6"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "Future perfect before another future action"
+    },
+    {
+      "question": "Tartiblang: \"1=By 2025\", \"2=scientists\", \"3=will have\", \"4=discovered\", \"5=a cure\"",
+      "numbered_options": {
+        "1": "By 2025",
+        "2": "scientists",
+        "3": "will have",
+        "4": "discovered",
+        "5": "a cure"
+      },
+      "options": ["1,2,3,4,5", "2,3,4,5,1", "1,3,2,4,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "By [year], subject + will have + V3"
+    },
+    {
+      "question": "Tartiblang: \"1=I\", \"2=will have\", \"3=written\", \"4=five reports\", \"5=by tomorrow\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "will have",
+        "3": "written",
+        "4": "five reports",
+        "5": "by tomorrow"
+      },
+      "options": ["1,2,3,4,5", "5,1,2,3,4", "1,3,2,4,5"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_perfect",
+      "hint": "Future result by a deadline"
+    },
+    {
+      "question": "Tartiblang: \"1=They\", \"2=will have\", \"3=arrived\", \"4=by the time\", \"5=we\", \"6=get there\"",
+      "numbered_options": {
+        "1": "They",
+        "2": "will have",
+        "3": "arrived",
+        "4": "by the time",
+        "5": "we",
+        "6": "get there"
+      },
+      "options": ["1,2,3,4,5,6", "4,5,6,1,2,3", "1,3,2,5,6,4"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_perfect",
+      "hint": "By the time + present simple, future perfect"
+    },
+    {
+      "question": "Tartiblang: \"1=He\", \"2=will have\", \"3=read\", \"4=all the books\", \"5=by summer\"",
+      "numbered_options": {
+        "1": "He",
+        "2": "will have",
+        "3": "read",
+        "4": "all the books",
+        "5": "by summer"
+      },
+      "options": ["1,2,3,4,5", "5,1,2,3,4", "1,3,2,4,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "Focus on completed action before a time"
+    },
+    {
+      "question": "Tartiblang: \"1=I\", \"2=will have\", \"3=finished\", \"4=my work\", \"5=by the time\", \"6=you arrive\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "will have",
+        "3": "finished",
+        "4": "my work",
+        "5": "by the time",
+        "6": "you arrive"
+      },
+      "options": ["1,2,3,4,5,6", "5,6,1,2,3,4", "1,3,2,4,5,6"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_perfect",
+      "hint": "Future perfect for completed action before another future event"
+    },
+    {
+      "question": "Tartiblang: \"1=By next week\", \"2=I\", \"3=will have\", \"4=completed\", \"5=my assignment\"",
+      "numbered_options": {
+        "1": "By next week",
+        "2": "I",
+        "3": "will have",
+        "4": "completed",
+        "5": "my assignment"
+      },
+      "options": ["1,2,3,4,5", "2,3,4,5,1", "1,2,4,3,5"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "Will have + V3 for completed future actions"
+    },
+    {
+      "question": "Tartiblang: \"1=They\", \"2=will have\", \"3=gone\", \"4=before\", \"5=we\", \"6=arrive\"",
+      "numbered_options": {
+        "1": "They",
+        "2": "will have",
+        "3": "gone",
+        "4": "before",
+        "5": "we",
+        "6": "arrive"
+      },
+      "options": ["1,2,3,4,5,6", "5,6,1,2,3,4", "4,5,6,1,2,3"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_perfect",
+      "hint": "Event will be completed before another future event"
+    },
+    {
+      "question": "Tartiblang: \"1=They\", \"2=will have\", \"3=completed\", \"4=the project\", \"5=by next month\"",
+      "numbered_options": {
+        "1": "They",
+        "2": "will have",
+        "3": "completed",
+        "4": "the project",
+        "5": "by next month"
+      },
+      "options": ["1,2,3,4,5", "5,1,2,3,4", "1,3,2,5,4"],
+      "correct": 0,
+      "level": "easy",
+      "grammar_point": "future_perfect",
+      "hint": "Future perfect used to describe actions finished in the future"
+    },
+    {
+      "question": "Tartiblang: \"1=He\", \"2=will have\", \"3=visited\", \"4=several countries\", \"5=by the time he is 30\"",
+      "numbered_options": {
+        "1": "He",
+        "2": "will have",
+        "3": "visited",
+        "4": "several countries",
+        "5": "by the time he is 30"
+      },
+      "options": ["1,2,3,4,5", "5,1,2,3,4", "1,5,2,3,4"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_perfect",
+      "hint": "An action completed in the future before a certain age"
+    },
+    {
+      "question": "Tartiblang: \"1=I\", \"2=will have\", \"3=spoken\", \"4=to the teacher\", \"5=by the end of class\"",
+      "numbered_options": {
+        "1": "I",
+        "2": "will have",
+        "3": "spoken",
+        "4": "to the teacher",
+        "5": "by the end of class"
+      },
+      "options": ["1,2,3,4,5", "5,1,2,3,4", "2,3,1,4,5"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_perfect",
+      "hint": "Subject + will have + V3 (completed action)"
+    },
+    {
+      "question": "Tartiblang: \"1=We\", \"2=will have\", \"3=completed\", \"4=all assignments\", \"5=by tomorrow\"",
+      "numbered_options": {
+        "1": "We",
+        "2": "will have",
+        "3": "completed",
+        "4": "all assignments",
+        "5": "by tomorrow"
+      },
+      "options": ["1,2,3,4,5", "5,1,2,3,4", "2,1,3,4,5"],
+      "correct": 0,
+      "level": "medium",
+      "grammar_point": "future_perfect",
+      "hint": "Action completed by a certain future time"
+    }
+  ]
 }
+
 # Foydalanuvchi ma'lumotlari
 user_data = {}
 ratings = {}
+ADMIN_IDS = [7871012050]  # Admin ID larini qo'shing
 
 @dp.message(Command("start"))
 async def start(message: types.Message):
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
-            [KeyboardButton(text="🧠❤️👀 State Verbs"),  KeyboardButton(text="📚 English Lessons")],
+            [KeyboardButton(text="🧠❤️👀 State Verbs"), KeyboardButton(text="📚 English Lessons")],
             [KeyboardButton(text="📜 Preposition Verbs"), KeyboardButton(text="🌟 Irregular Verbs")],
-            [KeyboardButton(text="⏳ English Tenses"),    KeyboardButton(text="👤 Profil")],  
-            [KeyboardButton(text="📈 Reyting"),           KeyboardButton(text="📞 Adminga murojaat")],
+            [KeyboardButton(text="⏳ English Tenses"), KeyboardButton(text="👤 Profil")],
+            [KeyboardButton(text="📈 Reyting"), KeyboardButton(text="📞 Adminga murojaat")],
         ],
         resize_keyboard=True
     )
@@ -2255,6 +5173,9 @@ async def show_preposition_verbs(message: types.Message):
         keyboard=[
             [KeyboardButton(text="📜 P verb 1"), KeyboardButton(text="📜 P verb 2")],
             [KeyboardButton(text="📜 P verb 3"), KeyboardButton(text="📜 P verb 4")],
+            [KeyboardButton(text="📜 P verb 5"), KeyboardButton(text="📜 P verb 6")],
+            [KeyboardButton(text="📜 P verb 7"), KeyboardButton(text="📜 P verb 8")],
+            [KeyboardButton(text="📜 P verb 9"), KeyboardButton(text="📜 P verb 10")],
             [KeyboardButton(text="♻️ Barcha Preposition Verbs")],
             [KeyboardButton(text="⬅️ Ortga")],
         ],
@@ -2263,14 +5184,21 @@ async def show_preposition_verbs(message: types.Message):
 
     await message.answer(
         "📜 *Preposition Verbs testlaridan birini tanlang:*\n\n"
-        "📌 *Asosiy fe’llar:*\n"
-        "1️⃣ P verb 1 - Eng ko‘p ishlatiladigan preposition verbs\n\n"
-        "📌 *Qo‘shimcha fe’llar:*\n"
-        "2️⃣ P verb 2 - Ko‘proq ishlatiladigan preposition verbs\n\n"
-        "📌 *Kengaytirilgan fe’llar:*\n"
-        "3️⃣ P verb 3 - Qo‘shimcha va murakkab preposition verbs\n\n"
-        "📌 *Murakkab fe’llar:*\n"
+        "📌 *Asosiy fe'llar:*\n"
+        "1️⃣ P verb 1 - Eng ko'p ishlatiladigan preposition verbs\n"
+        "2️⃣ P verb 2 - Ko'proq ishlatiladigan preposition verbs\n\n"
+        "📌 *Qo'shimcha fe'llar:*\n"
+        "3️⃣ P verb 3 - Qo'shimcha va murakkab preposition verbs\n"
         "4️⃣ P verb 4 - Kam uchraydigan va qiyin preposition verbs\n\n"
+        "📌 *Kengaytirilgan to'plamlar:*\n"
+        "5️⃣ P verb 5 - Biznes sohasidagi preposition verbs\n"
+        "6️⃣ P verb 6 - Tibbiyot sohasidagi preposition verbs\n\n"
+        "📌 *Maxsus to'plamlar:*\n"
+        "7️⃣ P verb 7 - IT sohasidagi preposition verbs\n"
+        "8️⃣ P verb 8 - Huquq sohasidagi preposition verbs\n\n"
+        "📌 *Qo'shimcha to'plamlar:*\n"
+        "9️⃣ P verb 9 - Turizm sohasidagi preposition verbs\n"
+        "🔟 P verb 10 - Ta'lim sohasidagi preposition verbs\n\n"
         "♻️ - *Barcha preposition verbs aralash holda*\n"
         "⬅️ *Ortga qaytish*",
         reply_markup=keyboard,
@@ -2314,8 +5242,7 @@ async def show_irregular_verbs(message: types.Message):
         parse_mode="Markdown"
     )
 
-
-@dp.message(lambda message: message.text == "⏳ English Tenses")
+@dp.message(F.text == "⏳ English Tenses")
 async def show_tenses_menu(message: types.Message):
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
@@ -2325,12 +5252,10 @@ async def show_tenses_menu(message: types.Message):
             [KeyboardButton(text="⏳ Past Perfect"), KeyboardButton(text="⏳ Past Perfect Cont.")],
             [KeyboardButton(text="⏳ Future Simple"), KeyboardButton(text="⏳ Future Continuous")],
             [KeyboardButton(text="⏳ Future Perfect"), KeyboardButton(text="⏳ Future Perfect Cont.")],
-            [KeyboardButton(text="♻️ Barcha Tenses")],
             [KeyboardButton(text="⬅️ Ortga")],
         ],
         resize_keyboard=True
     )
-
     await message.answer(
         "⏳ English Tenses testlaridan birini tanlang:\n\n"
         "📌 *Present tenses:*\n"
@@ -2353,6 +5278,7 @@ async def show_tenses_menu(message: types.Message):
         reply_markup=keyboard,
         parse_mode="Markdown"
     )
+
 
 @dp.message(lambda message: message.text == "📚 English Lessons")
 async def show_english_lessons(message: types.Message):
@@ -2636,30 +5562,39 @@ async def show_ratings(message: types.Message):
     
     await message.answer(result, parse_mode="Markdown")
 
+
+
+
 @dp.message(lambda message: message.text in [
     "🧠❤️👀 State Verbs", 
-    "📜 P verb 1", "📜 P verb 2", "📜 P verb 3", "📜 P verb 4",
+    "📜 P verb 1", "📜 P verb 2", "📜 P verb 3", "📜 P verb 4", "📜 P verb 5", "📜 P verb 6", "📜 P verb 7", "📜 P verb 8",  "📜 P verb 9", "📜 P verb 10",
     "🌟 I verb 1", "🌟 I verb 2", "🌟 I verb 3", "🌟 I verb 4", "🌟 I verb 5", "🌟 I verb 6", "🌟 I verb All",
     "⏳ Present Simple", "⏳ Present Continuous", "⏳ Present Perfect", "⏳ Present Perfect Cont.",
     "⏳ Past Simple", "⏳ Past Continuous", "⏳ Past Perfect", "⏳ Past Perfect Cont.",
     "⏳ Future Simple", "⏳ Future Continuous", "⏳ Future Perfect", "⏳ Future Perfect Cont.",
-    "♻️ Barcha Tenses", "♻️ Barcha Preposition Verbs", "♻️ Barcha Irregular Verbs"
+    "♻️ Barcha Preposition Verbs", "♻️ Barcha Irregular Verbs"
 ])
 async def start_quiz(message: types.Message):
     try:
         user_id = message.from_user.id
         subjects_map = {
-            "🧠❤️👀 State Verbs": "state",
-            "📜 P verb 1": "p_verb_1",
-            "📜 P verb 2": "p_verb_2",
-            "📜 P verb 3": "p_verb_3",
-            "📜 P verb 4": "p_verb_4",
-            "🌟 I verb 1": "irregular_verbs_1",
-            "🌟 I verb 2": "irregular_verbs_2",
-            "🌟 I verb 3": "irregular_verbs_3",
-            "🌟 I verb 4": "irregular_verbs_4",
-            "🌟 I verb 5": "irregular_verbs_5",
-            "🌟 I verb 6": "irregular_verbs_6",
+            "🧠❤️👀 State Verbs": "state_verbs",
+            "📜 P verb 1": "preposition_verbs1",
+            "📜 P verb 2": "preposition_verbs2",
+            "📜 P verb 3": "preposition_verbs3",
+            "📜 P verb 4": "preposition_verbs4",
+            "📜 P verb 5": "preposition_verbs5",
+            "📜 P verb 6": "preposition_verbs6",
+            "📜 P verb 7": "preposition_verbs7",
+            "📜 P verb 8": "preposition_verbs8",
+            "📜 P verb 9": "preposition_verbs9",
+            "📜 P verb 10": "preposition_verbs10",
+            "🌟 I verb 1": "irregular_verbs1",
+            "🌟 I verb 2": "irregular_verbs2",
+            "🌟 I verb 3": "irregular_verbs3",
+            "🌟 I verb 4": "irregular_verbs4",
+            "🌟 I verb 5": "irregular_verbs5",
+            "🌟 I verb 6": "irregular_verbs6",
             "🌟 I verb All": "irregular_verbs_all",
             "⏳ Present Simple": "present_simple",
             "⏳ Present Continuous": "present_continuous",
@@ -2673,17 +5608,22 @@ async def start_quiz(message: types.Message):
             "⏳ Future Continuous": "future_continuous",
             "⏳ Future Perfect": "future_perfect",
             "⏳ Future Perfect Cont.": "future_perfect_cont",
-            "♻️ Barcha Tenses": "all_tenses",
-            "♻️ Barcha Preposition Verbs": "all_preposition_verbs",
-            "♻️ Barcha Irregular Verbs": "all_irregular_verbs"
+            "♻️ Barcha Preposition Verbs": "preposition_verbs_all",
+            "♻️ Barcha Irregular Verbs": "irregular_verbs_all"
         }
+        
+        subject_key = subjects_map.get(message.text)
+        if not subject_key:
+            await message.answer("❌ Xatolik yuz berdi! Tanlov noto'g'ri.")
+            return
+        
         
         subject = subjects_map.get(message.text)
         if not subject:
             await message.answer("❌ Xatolik yuz berdi! Tanlov noto'g'ri.")
             return
         
-        # Initialize user data if not exists
+  # Initialize user data if not exists
         if user_id not in user_data:
             user_data[user_id] = {
                 "subjects": {},
@@ -2694,9 +5634,27 @@ async def start_quiz(message: types.Message):
                 "start_time": None
             }
         
+        # Get the correct quiz based on subject
+        if "tenses" in message.text.lower():
+            quiz_type = "tenses"
+            if subject_key == "all_tenses":
+                tests = []
+                for tense in quizzes["tenses"].values():
+                    tests.extend(tense)
+                random.shuffle(tests)
+            else:
+                tests = quizzes["tenses"].get(subject_key, [])
+        else:
+            quiz_type = subject_key
+            tests = quizzes.get(quiz_type, [])
+        
+        if not tests:
+            await message.answer("❌ Ushbu test hozircha mavjud emas!")
+            return
+        
         # Initialize subject data if not exists
-        if subject not in user_data[user_id]["subjects"]:
-            user_data[user_id]["subjects"][subject] = {
+        if quiz_type not in user_data[user_id]["subjects"]:
+            user_data[user_id]["subjects"][quiz_type] = {
                 "correct": 0,
                 "wrong": 0,
                 "total": 0,
@@ -2705,18 +5663,17 @@ async def start_quiz(message: types.Message):
             }
         
         # Reset quiz progress if starting new quiz
-        user_data[user_id]["all_quizzes"] = quizzes[subject].copy()
-        user_data[user_id]["subjects"][subject]["current_index"] = 0
-        user_data[user_id]["subjects"][subject]["attempts"] += 1
+        user_data[user_id]["all_quizzes"] = tests.copy()
+        user_data[user_id]["subjects"][quiz_type]["current_index"] = 0
+        user_data[user_id]["subjects"][quiz_type]["attempts"] += 1
         user_data[user_id]["start_time"] = time.time()
         
         await message.answer(
             f"📢 {message.text} testi boshlandi!\n\n"
-            f"ℹ️ Har bir savolga 1 daqiqa vaqt beriladi!\n"
-            f"🔢 Jami savollar: {len(quizzes[subject])} ta",
-            reply_markup=types.ReplyKeyboardRemove()
+            f"ℹ️ Har bir savolga 30 sekund vaqt beriladi!\n"
+            f"🔢 Jami savollar: {len(tests)} ta",
         )
-        await send_next_question(user_id, subject, message.text)
+        await send_next_question(user_id, quiz_type, message.text)
         
     except KeyError:
         await message.answer("❌ Ushbu test hozircha mavjud emas!")
@@ -2734,7 +5691,19 @@ async def send_next_question(user_id: int, subject: str, quiz_name: str):
         user_info = user_data[user_id]
         questions = user_info.get("all_quizzes", [])
         subject_info = user_info["subjects"][subject]
+        quiz_menu = ReplyKeyboardMarkup(
+            keyboard=[
+                [KeyboardButton(text="⬅️ Testni tugatish")],
+            ],
+            resize_keyboard=True
+        )
         
+        await bot.send_message(
+            user_id,
+            f"🔹 Test: {quiz_name}\n"
+            f"🔢 Savol: {subject_info['current_index'] + 1}/{len(questions)}",
+            reply_markup=quiz_menu
+        )
         # Check if quiz is completed
         if subject_info["current_index"] >= len(questions):
             await show_quiz_results(user_id, subject, quiz_name, subject_info)
@@ -2771,7 +5740,7 @@ async def send_next_question(user_id: int, subject: str, quiz_name: str):
             type="quiz",
             correct_option_id=new_correct_index,
             is_anonymous=False,
-            open_period=60  # 1 minute time limit
+            open_period=30  
         )
         
         user_info["current_poll"]["poll_id"] = poll_msg.poll.id
@@ -2780,17 +5749,38 @@ async def send_next_question(user_id: int, subject: str, quiz_name: str):
         logging.error(f"Error in send_next_question: {e}")
         await bot.send_message(user_id, "❌ Savol yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.")
 
+
+@dp.message(lambda message: message.text == "⬅️ Testni tugatish")
+async def finish_quiz_early(message: types.Message):
+    user_id = message.from_user.id
+    if user_id not in user_data:
+        return
+    
+    if "current_poll" in user_data[user_id]:
+        quiz_name = user_data[user_id]["current_poll"]["quiz_name"]
+        subject = user_data[user_id]["current_poll"]["subject"]
+        await show_quiz_results(user_id, subject, quiz_name, user_data[user_id]["subjects"][subject])
+
+
+
 async def show_quiz_results(user_id: int, subject: str, quiz_name: str, subject_info: dict):
     try:
+
+
+
         # Calculate time taken
         time_taken = int(time.time() - user_data[user_id]["start_time"])
-        minutes = time_taken // 60
-        seconds = time_taken % 60
+        minutes = time_taken // 30
+        seconds = time_taken % 30
         
+
+
         # Calculate accuracy percentage
         accuracy = 0
         if subject_info['total'] > 0:
             accuracy = (subject_info['correct'] / subject_info['total']) * 100
+        
+
         
         # Prepare result message
         result_text = (
@@ -2804,7 +5794,17 @@ async def show_quiz_results(user_id: int, subject: str, quiz_name: str, subject_
         )
         
         await bot.send_message(user_id, result_text)
-        
+        keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="🧠❤️👀 State Verbs"), KeyboardButton(text="📚 English Lessons")],
+            [KeyboardButton(text="📜 Preposition Verbs"), KeyboardButton(text="🌟 Irregular Verbs")],
+            [KeyboardButton(text="⏳ English Tenses"), KeyboardButton(text="👤 Profil")],
+            [KeyboardButton(text="📈 Reyting"), KeyboardButton(text="📞 Adminga murojaat")],
+        ],
+        resize_keyboard=True
+    )
+    
+        await bot.send_message(user_id, "Test muvaffaqiyatli yakunlandi!", reply_markup=keyboard)
         # Update ratings
         ratings[user_id] = user_data[user_id]["score"]
         sorted_ratings = sorted(ratings.items(), key=lambda x: x[1], reverse=True)
@@ -2828,63 +5828,83 @@ async def show_quiz_results(user_id: int, subject: str, quiz_name: str, subject_
         logging.error(f"Error in show_quiz_results: {e}")
         await bot.send_message(user_id, "❌ Natijalarni ko'rsatishda xatolik yuz berdi.")
 
+
+
+
 @dp.poll_answer()
 async def handle_poll_answer(poll_answer: types.PollAnswer):
     try:
         user_id = poll_answer.user.id
-        
+
         # Validate user data
         if user_id not in user_data:
             return
-        
+
         user_info = user_data[user_id]
         if "current_poll" not in user_info:
             return
-        
+
         poll_data = user_info["current_poll"]
-        
-        # Check if answer is too late (after 1 minute)
-        if time.time() - poll_data.get("start_time", 0) > 65:  # 5 second buffer
+
+        # Check if answer is too late (after 35 seconds)
+        if time.time() - poll_data.get("start_time", 0) > 35:  # 5 second buffer
             await bot.send_message(user_id, "⏰ Vaqt tugadi! Keyingi savolga o'tamiz.")
             user_info["subjects"][poll_data["subject"]]["wrong"] += 1
             user_info["subjects"][poll_data["subject"]]["total"] += 1
             user_info["subjects"][poll_data["subject"]]["current_index"] += 1
             await send_next_question(user_id, poll_data["subject"], poll_data["quiz_name"])
             return
-        
+
         # Validate answer
         if not poll_answer.option_ids:
-            return
-        
-        selected_option = poll_answer.option_ids[0]
-        subject = poll_data["subject"]
-        correct_option = poll_data["correct_option"]
-        question_index = poll_data["question_index"]
-        quiz_name = poll_data["quiz_name"]
-        
+            return  # If user did not select any option, nothing happens
+
+        selected_option = poll_answer.option_ids[0]  # Get selected option
+        subject = poll_data["subject"]  # Get current subject
+        correct_option = poll_data["correct_option"]  # Get correct answer index
+        question_index = poll_data["question_index"]  # Get current question index
+        quiz_name = poll_data["quiz_name"]  # Get quiz name
+
         # Get current question data
         question_data = user_info["all_quizzes"][question_index]
-        correct_answer = question_data["options"][question_data["correct"]]
-        
-        # Update scores
+        correct_answer = question_data["options"][question_data["correct"]]  # Correct answer
+
+        # Check if the answer is correct
         if selected_option == correct_option:
-            user_info["subjects"][subject]["correct"] += 1
-            user_info["score"] += 1
+            user_info["subjects"][subject]["correct"] += 1  # Increase correct answers count
+            user_info["score"] += 1  # Increase overall score
             feedback = "✅ To'g'ri javob!"
         else:
-            feedback = f"❌ Noto'g'ri javob! To'g'ri javob: {correct_answer}"
-            user_info["subjects"][subject]["wrong"] += 1
-        
-        user_info["subjects"][subject]["total"] += 1
-        user_info["subjects"][subject]["current_index"] += 1
-        
+            feedback = f"❌ Noto'g'ri javob! To'g'ri javob: {correct_answer}"  # Show correct answer for wrong choice
+            user_info["subjects"][subject]["wrong"] += 1  # Increase wrong answers count
+
+        # Update question stats
+        user_info["subjects"][subject]["total"] += 1  # Increase total questions count
+        user_info["subjects"][subject]["current_index"] += 1  # Move to next question
+
+        # Send feedback to user
         await bot.send_message(user_id, feedback)
+
+        # Proceed to the next question
         await send_next_question(user_id, subject, quiz_name)
-        
+
     except Exception as e:
         logging.error(f"Error in handle_poll_answer: {e}")
         if user_id in user_data:
             await bot.send_message(user_id, "❌ Javoblarni qayta ishlashda xatolik yuz berdi.")
+    quiz_menu = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="⬅️ Testni tugatish")],
+        ],
+        resize_keyboard=True
+    )
+    
+    await bot.send_message(
+        user_id,
+        f"🔹 Test: {poll_data['quiz_name']}\n"
+        f"🔢 Keyingi savolga o'tilmoqda...",
+        reply_markup=quiz_menu
+    )
 
 
 # Contact admin handler
