@@ -5455,7 +5455,7 @@ _(Python kodiga o'xshab tuzilgan, lekin oddiy matn)_
         telegram_text,
         parse_mode="Markdown"
     )
-@dp.message(lambda message: message.text == "3️⃣ Quantifiers")
+@dp.message(lambda message: message.text == 3️⃣ A lot of/much/many)
 async def show_quantifiers_lesson(message: types.Message):
     telegram_text = """
 ⭐ *Ingliz Tili Grammatikasi: Miqdor Olmoshlari (Quantifiers)*  
