@@ -19,7 +19,7 @@ dp = Dispatcher()
 dp.include_router(router)
 
 # BotFather tomonidan berilgan token
-TOKEN = "7267797063:AAEXVjfk2vgfl1V6tWNQsFEoCO9ndLVM8Fc"  # Bu yerga haqiqiy tokenni qo'ying
+TOKEN = "7267797063:AAENMvsiI8RdMulpWlfdu-m2FBFrFnWk6hI"  # Bu yerga haqiqiy tokenni qo'ying
 ADMIN_IDS = [7871012050]  # Admin IDlari
 
 bot = Bot(token=TOKEN)
